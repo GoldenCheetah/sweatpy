@@ -1,12 +1,25 @@
 from .exceptions import MissingDataException
 
 
-def field_validations(fields):
-    def field_validations_wrapper(func):
-        def field_validations_decorator(*args, **kwargs):
-            missing_fields = set(fields) - set(args[0])
-            if missing_fields:
-                raise MissingDataException(func, missing_fields)
+def requirements(columns=None, athlete=None):
+    def requirements_wrapper(func):
+        def requirements_decorator(*args, **kwargs):
+            workout = args[0]
+            missing_data = set()
+
+            if columns:
+                missing_data.update(set(columns) - set(list(workout)))
+
+            if athlete:
+                missing_data.update(
+                    {i for i in athlete if not getattr(
+                        workout._metadata['athlete'], i, None)})
+
+            if missing_data:
+                raise MissingDataException(func, missing_data)
+
             return func(*args, **kwargs)
-        return field_validations_decorator
-    return field_validations_wrapper
+
+        return requirements_decorator
+
+    return requirements_wrapper
