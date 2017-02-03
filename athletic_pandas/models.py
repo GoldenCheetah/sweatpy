@@ -4,27 +4,20 @@ from .helpers import requirements
 
 
 class Athlete:
-    def __init__(self, name=None, weight=None, dob=None, ftp=None):
+    def __init__(self, name=None, sex=None, weight=None, dob=None, ftp=None):
         self.name = name
+        self.sex = sex
         self.weight = weight
         self.dob = dob
         self.ftp = ftp
 
 
-class Workout(DataFrame):
-    def __init__(self, *args, **kwargs):
-        super(Workout, self).__init__(*args, **kwargs)
-        self._metadata = {'athlete': kwargs.pop('athlete', Athlete())}
+class WorkoutDataFrame(DataFrame):
+    _metadata = ['athlete']
 
     @property
     def _constructor(self):
-        return Workout
-
-    def __finalize__(self, other, method=None, **kwargs):
-        # Borrowed from GeoPandas.GeoDataFrame.__finalize__
-        for name in self._metadata:
-            object.__setattr__(self, name, getattr(other, name, None))
-        return self
+        return WorkoutDataFrame
 
     @requirements(columns=["power"])
     def mean_max_power(self):
