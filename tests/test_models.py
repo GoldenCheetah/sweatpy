@@ -3,8 +3,7 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from athletic_pandas import exceptions
-from athletic_pandas import models
+from athletic_pandas import exceptions, models
 
 
 class TestAthlete(unittest.TestCase):
