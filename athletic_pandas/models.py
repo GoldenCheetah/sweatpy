@@ -1,10 +1,15 @@
-from pandas import DataFrame
+import numpy as np
+import pandas as pd
 
 from .helpers import requirements
 from .validators import WorkoutDataFrameValidator
 
+MEAN_MAX_POWER_INTERVALS = [
+    1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90,\
+    120, 180, 300, 600, 1200, 3600, 7200]
 
-class WorkoutDataFrame(DataFrame):
+
+class WorkoutDataFrame(pd.DataFrame):
     _metadata = ['athlete']
 
     @property
@@ -16,14 +21,26 @@ class WorkoutDataFrame(DataFrame):
 
     @requirements(columns=['power'])
     def mean_max_power(self):
-        pass
+        mmp = pd.Series()
+        length = len(self)
 
-    def normalized_power(self):
-        pass
+        for i in MEAN_MAX_POWER_INTERVALS:
+            if i > length:
+                break
 
-    @requirements(columns=['power'], athlete=['ftp'])
+            mmp = mmp.append(
+                pd.Series([int(round(self.power.rolling(i).mean().max(), 0))], [i]))
+
+        return mmp
+
+    def weighted_average_power(self):
+        wap = self.power.rolling(30).mean().pow(4).mean()**(1/4)
+        return int(round(wap, 0))
+
+    @requirements(columns=['power'], athlete=['weight'])
     def power_per_kg(self):
-        pass
+        ppkg = self.power / self.athlete.weight
+        return ppkg.round(2)
 
 
 class Athlete:

@@ -29,7 +29,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
             'time': range(10),
             'heartrate': range(10),
             'power': range(10)}
-        athlete = models.Athlete(name='Chris', ftp=300)
+        athlete = models.Athlete(name='Chris', weight=80, ftp=300)
         self.wdf = models.WorkoutDataFrame(data)
         self.wdf = self.wdf.set_index('time')
         self.wdf.athlete = athlete
@@ -126,8 +126,10 @@ class TestWorkoutDataFrame(unittest.TestCase):
 
     def test_mean_max_power(self):
         self._import_csv_as_wdf()
+        mmp = self.wdf.mean_max_power()
 
-        self.assertIsNone(self.wdf.mean_max_power())
+        self.assertEqual(mmp[1], 280)
+        self.assertEqual(mmp[300], 209)
 
     def test_mean_max_power_missing_power(self):
         del self.wdf['power']
@@ -135,19 +137,21 @@ class TestWorkoutDataFrame(unittest.TestCase):
         with self.assertRaises(exceptions.MissingDataException):
             self.assertIsNone(self.wdf.mean_max_power())
 
-    def test_normalized_power(self):
+    def test_weighted_average_power(self):
         self._import_csv_as_wdf()
 
-        self.assertIsNone(self.wdf.normalized_power())
+        self.assertEqual(self.wdf.weighted_average_power(), 156)
 
     def test_power_per_kg(self):
         self._import_csv_as_wdf()
         self.wdf.athlete.ftp = 300
+        ppkg = self.wdf.power_per_kg()
 
-        self.assertIsNone(self.wdf.power_per_kg())
+        self.assertEqual(ppkg[1], 1.16)
+        self.assertEqual(ppkg[100], 1.01)
 
-    def test_power_per_kg_missing_ftp(self):
-        self.wdf.athlete.ftp = None
+    def test_power_per_kg_missing_weight(self):
+        self.wdf.athlete.weight = None
 
         with self.assertRaises(exceptions.MissingDataException):
             self.wdf.power_per_kg()
