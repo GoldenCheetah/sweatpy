@@ -34,8 +34,16 @@ class TestWorkoutDataFrame(unittest.TestCase):
         self.wdf = self.wdf.set_index('time')
         self.wdf.athlete = athlete
 
+    def _import_csv_as_wdf(self, filename='workout_1.csv'):
+        athlete = self.wdf.athlete
+        self.wdf = models.WorkoutDataFrame(
+            pd.read_csv('tests/example_files/{}'.format(filename)))
+        self.wdf = self.wdf.set_index('time')
+        self.wdf.athlete = athlete
+
     def test_empty_init(self):
         wdf = models.WorkoutDataFrame()
+
         self.assertIsInstance(wdf, pd.DataFrame)
         self.assertIsInstance(wdf, models.WorkoutDataFrame)
 
@@ -47,6 +55,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
     
     def test_slicing(self):
         new_wdf = self.wdf[1:5]
+
         self.assertTrue(isinstance(new_wdf, models.WorkoutDataFrame))
     
     def test_metadata_propagation(self):
@@ -59,6 +68,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
 
     def test_is_valid_missing_time_index(self):
         self.wdf.index.name = 'not_time'
+
         with self.assertRaises(exceptions.WorkoutDataFrameValidationException):
             self.wdf.is_valid()
 
@@ -69,6 +79,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
             'power': range(10)}
         wdf = models.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
+
         with self.assertRaisesRegex(
             expected_exception=exceptions.WorkoutDataFrameValidationException,
             expected_regex='[.\n]*Sample rate is not \(consistent\) 1Hz[.\n]*'):
@@ -81,6 +92,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
             'power': range(10)}
         wdf = models.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
+
         with self.assertRaisesRegex(
             expected_exception=exceptions.WorkoutDataFrameValidationException,
             expected_regex='[.\n]*Column \'heartrate\' is not of dtype[.\n]*'):
@@ -93,6 +105,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
             'power': range(10)}
         wdf = models.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
+
         with self.assertRaisesRegex(
             expected_exception=exceptions.WorkoutDataFrameValidationException,
             expected_regex='[.\n]*Column \'heartrate\' has values < 0[.\n]*'):
@@ -105,28 +118,36 @@ class TestWorkoutDataFrame(unittest.TestCase):
             'power': range(10000, 10010)}
         wdf = models.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
+
         with self.assertRaisesRegex(
             expected_exception=exceptions.WorkoutDataFrameValidationException,
             expected_regex='[.\n]*Column \'power\' has values > 3000[.\n]*'):
             wdf.is_valid()
 
     def test_mean_max_power(self):
-        self.wdf['power'] = np.nan
+        self._import_csv_as_wdf()
+
         self.assertIsNone(self.wdf.mean_max_power())
 
     def test_mean_max_power_missing_power(self):
         del self.wdf['power']
+
         with self.assertRaises(exceptions.MissingDataException):
             self.assertIsNone(self.wdf.mean_max_power())
 
     def test_normalized_power(self):
+        self._import_csv_as_wdf()
+
         self.assertIsNone(self.wdf.normalized_power())
 
     def test_power_per_kg(self):
+        self._import_csv_as_wdf()
         self.wdf.athlete.ftp = 300
+
         self.assertIsNone(self.wdf.power_per_kg())
 
     def test_power_per_kg_missing_ftp(self):
         self.wdf.athlete.ftp = None
+
         with self.assertRaises(exceptions.MissingDataException):
             self.wdf.power_per_kg()
