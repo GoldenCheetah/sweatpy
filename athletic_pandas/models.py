@@ -2,22 +2,19 @@ import numpy as np
 import pandas as pd
 
 from .helpers import requires
-from .validators import WorkoutDataFrameValidator
+from .mixins import ValidationMixin
 
 MEAN_MAX_POWER_INTERVALS = [
     1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90,\
     120, 180, 300, 600, 1200, 3600, 7200]
 
 
-class WorkoutDataFrame(pd.DataFrame):
+class WorkoutDataFrame(pd.DataFrame, ValidationMixin):
     _metadata = ['athlete']
 
     @property
     def _constructor(self):
         return WorkoutDataFrame
-
-    def is_valid(self):
-        return WorkoutDataFrameValidator.is_valid(self)
 
     @requires(columns=['power'])
     def mean_max_power(self):

@@ -26,26 +26,24 @@ COLUMN_MAX_VALUE = {
         'speed': 0}
 
 
-class WorkoutDataFrameValidator:
-    @classmethod
-    def is_valid(cls, wdf):
+class ValidationMixin(object):
+    def is_valid(self):
         errors = list()
 
-        errors += cls._validate_index(wdf)
-        errors += cls._validate_columns(wdf)
+        errors += self._validate_index()
+        errors += self._validate_columns()
 
         if errors:
             raise WorkoutDataFrameValidationException(errors)
         return True
     
-    @classmethod
-    def _validate_columns(cls, wdf):
+    def _validate_columns(self):
         errors = list()
-        columns = set(VALIDATION_COLUMNS) & set(list(wdf))
+        columns = set(VALIDATION_COLUMNS) & set(list(self))
 
         for c in columns:
-            errors += cls._validate_series(
-                series=wdf[c],
+            errors += self._validate_series(
+                series=self[c],
                 dtype=COLUMN_DTYPES[c], 
                 min_value=COLUMN_MIN_VALUE[c],
                 max_value=COLUMN_MAX_VALUE[c])
@@ -64,18 +62,17 @@ class WorkoutDataFrameValidator:
             errors.append('Column \'{}\' has values > {}'.format(series.name, max_value))
         return errors
 
-    @classmethod
-    def _validate_index(cls, wdf):
+    def _validate_index(self):
         errors = list()
 
-        if not wdf.index.name == 'time':
+        if not self.index.name == 'time':
             errors.append(
                 'Index should be set to \'time\'. See \'pandas.DataFrame.set_index\'')
             return errors
 
         # @TODO change diff to calculation that's meaningful for time object
         # @TODO also change time dtype and min max
-        index_diff = wdf.index.to_series().diff(1)
+        index_diff = self.index.to_series().diff(1)
         if index_diff.where(index_diff != 1).where(index_diff != np.nan).count():
             errors.append('Sample rate is not (consistent) 1Hz')
 
