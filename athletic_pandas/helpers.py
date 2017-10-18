@@ -1,9 +1,9 @@
 from .exceptions import MissingDataException
 
 
-def requirements(columns=None, athlete=None):
-    def requirements_wrapper(func):
-        def requirements_decorator(*args, **kwargs):
+def requires(columns=None, athlete=None):
+    def requires_wrapper(func):
+        def requires_decorator(*args, **kwargs):
             wdf = args[0]
             missing_data = set()
 
@@ -19,6 +19,6 @@ def requirements(columns=None, athlete=None):
 
             return func(*args, **kwargs)
 
-        return requirements_decorator
+        return requires_decorator
 
-    return requirements_wrapper
+    return requires_wrapper

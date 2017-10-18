@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from .helpers import requirements
+from .helpers import requires
 from .validators import WorkoutDataFrameValidator
 
 MEAN_MAX_POWER_INTERVALS = [
@@ -19,7 +19,7 @@ class WorkoutDataFrame(pd.DataFrame):
     def is_valid(self):
         return WorkoutDataFrameValidator.is_valid(self)
 
-    @requirements(columns=['power'])
+    @requires(columns=['power'])
     def mean_max_power(self):
         mmp = pd.Series()
         length = len(self)
@@ -37,7 +37,7 @@ class WorkoutDataFrame(pd.DataFrame):
         wap = self.power.rolling(30).mean().pow(4).mean()**(1/4)
         return int(round(wap, 0))
 
-    @requirements(columns=['power'], athlete=['weight'])
+    @requires(columns=['power'], athlete=['weight'])
     def power_per_kg(self):
         ppkg = self.power / self.athlete.weight
         return ppkg.round(2)
