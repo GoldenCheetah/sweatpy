@@ -129,7 +129,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
         mmp = self.wdf.mean_max_power()
 
         self.assertEqual(mmp[1], 280)
-        self.assertEqual(mmp[300], 209)
+        self.assertEqual(mmp[300], 209.43666666666667)
 
     def test_mean_max_power_missing_power(self):
         del self.wdf['power']
@@ -140,15 +140,24 @@ class TestWorkoutDataFrame(unittest.TestCase):
     def test_weighted_average_power(self):
         self._import_csv_as_wdf()
 
-        self.assertEqual(self.wdf.weighted_average_power(), 156)
+        self.assertEqual(self.wdf.weighted_average_power(), 156.24624656343036)
+
+    def test_weighted_average_power_missing_weight(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.weight = None
+
+        self.assertEqual(self.wdf.weighted_average_power(), 156.24624656343036)
+
+        with self.assertRaises(exceptions.MissingDataException):
+            self.wdf.power_per_kg()
 
     def test_power_per_kg(self):
         self._import_csv_as_wdf()
         self.wdf.athlete.ftp = 300
         ppkg = self.wdf.power_per_kg()
 
-        self.assertEqual(ppkg[1], 1.16)
-        self.assertEqual(ppkg[100], 1.01)
+        self.assertEqual(ppkg[1], 1.1625000000000001)
+        self.assertEqual(ppkg[100], 1.0125)
 
     def test_power_per_kg_missing_weight(self):
         self.wdf.athlete.weight = None

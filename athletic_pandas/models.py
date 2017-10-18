@@ -20,18 +20,23 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
                 break
 
             mmp = mmp.append(
-                pd.Series([int(round(self.power.rolling(i).mean().max(), 0))], [i]))
+                pd.Series(
+                    [self.power.rolling(i).mean().max()],
+                    [i]
+                )
+            )
 
         return mmp
 
+    @requires(columns=['power'])
     def weighted_average_power(self):
         wap = self.power.rolling(30).mean().pow(4).mean()**(1/4)
-        return int(round(wap, 0))
+        return wap
 
     @requires(columns=['power'], athlete=['weight'])
     def power_per_kg(self):
         ppkg = self.power / self.athlete.weight
-        return ppkg.round(2)
+        return ppkg
 
 
 class Athlete:
