@@ -40,9 +40,12 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
 
 class Athlete:
-    def __init__(self, name=None, sex=None, weight=None, dob=None, ftp=None):
+    def __init__(self, name=None, sex=None, weight=None, dob=None, ftp=None,
+            cp=None, w_prime=None):
         self.name = name
         self.sex = sex
         self.weight = weight
         self.dob = dob
         self.ftp = ftp
+        self.cp = cp
+        self.w_prime = w_prime

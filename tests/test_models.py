@@ -17,6 +17,8 @@ class TestAthlete(unittest.TestCase):
         self.assertTrue(hasattr(athlete, 'weight'))
         self.assertTrue(hasattr(athlete, 'dob'))
         self.assertTrue(hasattr(athlete, 'ftp'))
+        self.assertTrue(hasattr(athlete, 'cp'))
+        self.assertTrue(hasattr(athlete, 'w_prime'))
 
     def test_init(self):
         self.assertEqual(self.athlete.name, 'Chris')
