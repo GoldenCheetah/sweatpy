@@ -166,3 +166,21 @@ class TestWorkoutDataFrame(unittest.TestCase):
 
         with self.assertRaises(exceptions.MissingDataException):
             self.wdf.power_per_kg()
+
+    def test_tau_w_prime_balance(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        tau = self.wdf._tau_w_prime_balance()
+        self.assertEqual(tau, 482.32071983184653)
+
+    def test_w_prime_balance(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance()
+
+        self.assertEqual(len(self.wdf), len(w_balance))
+        self.assertEqual(w_balance[0], 20000)
+        self.assertEqual(w_balance[2500], 18389.473009018817)
+        self.assertEqual(w_balance[3577], 19597.259313320854)

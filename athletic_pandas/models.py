@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 import pandas as pd
 
@@ -37,6 +39,33 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
     def power_per_kg(self):
         ppkg = self.power / self.athlete.weight
         return ppkg
+
+    def _tau_w_prime_balance(self):
+        avg_power_below_cp = self.power[self.power < self.athlete.cp].mean()
+        return 546*math.e**(-0.01*avg_power_below_cp) + 316
+
+    @requires(columns=['power'], athlete=['cp', 'w_prime'])
+    def w_prime_balance(self):
+        '''
+        Source:
+        Skiba, Philip Friere, et al. "Modeling the expenditure and reconstitution of work capacity above critical power." Medicine and science in sports and exercise 44.8 (2012): 1526-1532.
+        '''
+        sampling_rate = 1
+        running_sum = 0
+        w_balance = []
+        tau = self._tau_w_prime_balance()
+        
+        for i, power in enumerate(self.power):
+            power_above_cp = power - self.athlete.cp
+            w_prime_expenditure = max(0, power_above_cp)*sampling_rate
+            running_sum = running_sum + \
+                w_prime_expenditure*(math.e**(i*sampling_rate/tau))
+
+            w_balance.append(
+                self.athlete.w_prime - running_sum*math.e**(-i*sampling_rate/tau)
+            )
+
+        return pd.Series(w_balance)
 
 
 class Athlete:
