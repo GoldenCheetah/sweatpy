@@ -174,7 +174,7 @@ class TestWorkoutDataFrame(unittest.TestCase):
         tau = self.wdf._tau_w_prime_balance()
         self.assertEqual(tau, 482.32071983184653)
 
-    def test_w_prime_balance(self):
+    def test_w_prime_balance_waterworth(self):
         self._import_csv_as_wdf()
         self.wdf.athlete.cp = 200
         self.wdf.athlete.w_prime = 20000
@@ -184,3 +184,36 @@ class TestWorkoutDataFrame(unittest.TestCase):
         self.assertEqual(w_balance[0], 20000)
         self.assertEqual(w_balance[2500], 18389.473009018817)
         self.assertEqual(w_balance[3577], 19597.259313320854)
+
+    def test_w_prime_balance_waterworth_2(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(algorithm='waterworth')
+
+        self.assertEqual(len(self.wdf), len(w_balance))
+        self.assertEqual(w_balance[0], 20000)
+        self.assertEqual(w_balance[2500], 18389.473009018817)
+        self.assertEqual(w_balance[3577], 19597.259313320854)
+
+    def test_w_prime_balance_skiba(self):
+        self._import_csv_as_wdf(filename='workout_1_short.csv')
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(algorithm='skiba')
+
+        self.assertEqual(len(self.wdf), len(w_balance))
+        self.assertEqual(w_balance[0], 20000)
+        self.assertEqual(w_balance[500], 19031.580246246991)
+        self.assertEqual(w_balance[900], 19088.871117462611)
+
+    def test_w_prime_balance_froncioni(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(algorithm='froncioni')
+
+        self.assertEqual(len(self.wdf), len(w_balance))
+        self.assertEqual(w_balance[0], 20000)
+        self.assertEqual(w_balance[2500], 19369.652383790162)
+        self.assertEqual(w_balance[3577], 19856.860886492974)
