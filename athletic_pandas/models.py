@@ -97,16 +97,16 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
         Source:
         https://github.com/GoldenCheetah/GoldenCheetah/blob/160eb74cab712bfaa9eab64dd19310e5d42ed193/src/Metrics/WPrime.cpp#L257
         """
-        w_prime_balance = []
+        cp = self.athlete.cp
+        w_prime = self.athlete.w_prime
         last = self.athlete.w_prime
+        w_prime_balance = []
 
         for power in self.power:
-            power_above_cp = power - self.athlete.cp
-
-            if power_above_cp < 0:
-                new = last - power_above_cp * (self.athlete.w_prime - last)/last
+            if power < cp:
+                new = last + (cp - power) * (w_prime - last)/last
             else:
-                new = last - power_above_cp
+                new = last + (cp - power)
 
             w_prime_balance.append(new)
             last = new
