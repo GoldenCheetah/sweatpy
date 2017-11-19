@@ -199,7 +199,7 @@ class TestWorkoutDataFrame:
         assert w_balance[2500] == 18389.473009018817
         assert w_balance[3577] == 19597.259313320854
 
-    def test_w_prime_balance_waterworth_2(self):
+    def test_w_prime_balance_waterworth_explicit_algorithm(self):
         self._import_csv_as_wdf()
         self.wdf.athlete.cp = 200
         self.wdf.athlete.w_prime = 20000
@@ -209,6 +209,28 @@ class TestWorkoutDataFrame:
         assert w_balance[0] == 20000
         assert w_balance[2500] == 18389.473009018817
         assert w_balance[3577] == 19597.259313320854
+
+    def test_w_prime_balance_waterworth_dynamic_tau(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(tau_dynamic=True)
+
+        assert len(self.wdf) == len(w_balance)
+        assert w_balance[0] == 20000
+        assert w_balance[2500] == 18246.025713411207
+        assert w_balance[3577] == 19606.930102103735
+
+    def test_w_prime_balance_waterworth_static_tau(self):
+        self._import_csv_as_wdf()
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(tau_value=500)
+
+        assert len(self.wdf) == len(w_balance)
+        assert w_balance[0] == 20000
+        assert w_balance[2500] == 18329.857855118014
+        assert w_balance[3577] == 19568.496639353485
 
     def test_w_prime_balance_skiba(self):
         self._import_csv_as_wdf(filename='workout_1_short.csv')
@@ -220,6 +242,28 @@ class TestWorkoutDataFrame:
         assert w_balance[0] == 20000
         assert w_balance[500] == 19031.580246246991
         assert w_balance[900] == 19088.871117462611
+
+    def test_w_prime_balance_skiba_dynamic_tau(self):
+        self._import_csv_as_wdf(filename='workout_1_short.csv')
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(algorithm='skiba', tau_dynamic=True)
+
+        assert len(self.wdf) == len(w_balance)
+        assert w_balance[0] == 20000
+        assert w_balance[500] == 19006.367817316444
+        assert w_balance[900] == 19084.000010385578
+
+    def test_w_prime_balance_skiba_static_tau(self):
+        self._import_csv_as_wdf(filename='workout_1_short.csv')
+        self.wdf.athlete.cp = 200
+        self.wdf.athlete.w_prime = 20000
+        w_balance = self.wdf.w_prime_balance(algorithm='skiba', tau_value=500)
+
+        assert len(self.wdf) == len(w_balance)
+        assert w_balance[0] == 20000
+        assert w_balance[500] == 18995.181601642591
+        assert w_balance[900] == 19025.332229442905
 
     def test_w_prime_balance_froncioni(self):
         self._import_csv_as_wdf()
