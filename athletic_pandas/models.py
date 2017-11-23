@@ -1,3 +1,4 @@
+from collections import namedtuple
 import math
 
 import numpy as np
@@ -9,6 +10,9 @@ from .helpers import requires
 MEAN_MAX_POWER_INTERVALS = [
     1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90,\
     120, 180, 300, 600, 1200, 3600, 7200]
+
+
+DataPoint = namedtuple('DataPoint', ['index', 'value'])
 
 
 class WorkoutDataFrame(BaseWorkoutDataFrame):
@@ -32,7 +36,7 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
     @requires(columns=['power'])
     def weighted_average_power(self):
-        wap = self.power.rolling(30).mean().pow(4).mean()**(1/4)
+        wap = self.power.rolling(30).mean().pow(4).mean().__pow__(1/4)
         return wap
 
     @requires(columns=['power'], athlete=['weight'])
@@ -57,7 +61,7 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
         running_sum = 0
         w_prime_balance = []
         tau = self._tau_w_prime_balance()
-        
+
         for i, power in enumerate(self.power):
             power_above_cp = power - self.athlete.cp
             w_prime_expended = max(0, power_above_cp)*sampling_rate
@@ -87,9 +91,8 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
                 w_prime_exp_sum += w_prime_exp * np.power(np.e, (u - t)/tau)
 
             w_prime_balance.append(self.athlete.w_prime - w_prime_exp_sum)
-        
-        return pd.Series(w_prime_balance)
 
+        return pd.Series(w_prime_balance)
 
     @requires(columns=['power'], athlete=['cp', 'w_prime'])
     def _w_prime_balance_froncioni(self):
@@ -113,13 +116,33 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
         return pd.Series(w_prime_balance)
 
-
     def w_prime_balance(self, algorithm=None):
         if algorithm is None:
             algorithm = 'waterworth'
         method = getattr(self, '_w_prime_balance_' + algorithm)
 
         return method()
+
+    def compute_mean_max_bests(self, interval, n):
+        moving_average = self.power.rolling(interval).mean()
+        length = len(moving_average)
+        mean_max_bests = []
+
+        for i in range(n):
+            if moving_average.isnull().all():
+                mean_max_bests.append(DataPoint(np.nan, np.nan))
+                continue
+
+            max_value = moving_average.max()
+            max_index = moving_average.idxmax()
+            mean_max_bests.append(DataPoint(max_index, max_value))
+
+            # Set moving averages that overlap with last found max to np.nan
+            overlap_min_index = max(0, max_index-interval)
+            overlap_max_index = min(length, max_index+interval)
+            moving_average.loc[overlap_min_index:overlap_max_index] = np.nan
+
+        return mean_max_bests
 
 
 class Athlete:

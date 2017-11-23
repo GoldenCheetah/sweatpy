@@ -6,6 +6,23 @@ import pandas as pd
 from athletic_pandas import exceptions, models
 
 
+class TestDataPoint(unittest.TestCase):
+    def test_init(self):
+        p = models.DataPoint(1, 2)
+
+        self.assertEqual(p, (1, 2))
+        self.assertEqual(p.index, 1)
+        self.assertEqual(p.value, 2)
+
+    def test_init_missing_values(self):
+        with self.assertRaises(TypeError):
+            models.DataPoint()
+
+    def test_init_too_many_values(self):
+        with self.assertRaises(TypeError):
+            models.DataPoint(1, 2, 3)
+
+
 class TestAthlete(unittest.TestCase):
     def setUp(self):
         self.athlete = models.Athlete(name='Chris', ftp=300)
@@ -217,3 +234,28 @@ class TestWorkoutDataFrame(unittest.TestCase):
         self.assertEqual(w_balance[0], 20000)
         self.assertEqual(w_balance[2500], 19369.652383790162)
         self.assertEqual(w_balance[3577], 19856.860886492974)
+
+    def test_compute_mean_max_bests(self):
+        self._import_csv_as_wdf()
+        result = self.wdf.compute_mean_max_bests(60, 3)
+
+        self.assertEqual(len(result), 3)
+        self.assertIsInstance(result[0], models.DataPoint)
+        self.assertEqual(result[0], (2038, 215.13333333333333))
+        self.assertEqual(result[1], (2236, 210.48333333333332))
+        self.assertEqual(result[2], (2159, 208.93333333333334))
+
+    def test_compute_mean_max_bests_only_one_result(self):
+        self._import_csv_as_wdf()
+        result = self.wdf.compute_mean_max_bests(3000, 2)
+
+        self.assertEqual(len(result), 2)
+        self.assertNotEqual(result[0], (np.nan, np.nan))
+        self.assertEqual(result[1], (np.nan, np.nan))
+
+    def test_compute_mean_max_bests_no_results(self):
+        self._import_csv_as_wdf()
+        result = self.wdf.compute_mean_max_bests(10000, 1)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0], (np.nan, np.nan))
