@@ -71,12 +71,12 @@ class TestWorkoutDataFrame(unittest.TestCase):
         self.assertTrue('heartrate' in list(self.wdf))
         self.assertEqual(len(self.wdf), 10)
         self.assertTrue(hasattr(self.wdf, 'athlete'))
-    
+
     def test_slicing(self):
         new_wdf = self.wdf[1:5]
 
         self.assertTrue(isinstance(new_wdf, models.WorkoutDataFrame))
-    
+
     def test_metadata_propagation(self):
         self.assertEqual(self.wdf[1:5].athlete.name, 'Chris')
         self.assertEqual(self.wdf.iloc[[0, 1], :].athlete.name, 'Chris')

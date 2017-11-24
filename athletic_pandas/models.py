@@ -16,6 +16,8 @@ DataPoint = namedtuple('DataPoint', ['index', 'value'])
 
 
 class WorkoutDataFrame(BaseWorkoutDataFrame):
+    _metadata = ['athlete']
+
     @requires(columns=['power'])
     def mean_max_power(self):
         mmp = pd.Series()
