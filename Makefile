@@ -1,8 +1,8 @@
 test:
-	python -m unittest discover tests ${ARGS}
+	pytest
 
 coverage:
-	coverage run --source=athletic_pandas -m unittest discover tests
+	coverage run --source=athletic_pandas -m pytest --
 	coverage report
 	coverage html
 
