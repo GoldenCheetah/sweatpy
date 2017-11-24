@@ -4,12 +4,21 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from athletic_pandas import exceptions, models
+from athletic_pandas import algorithms, exceptions, models
 
+
+@pytest.fixture
+def wdf():
+    athlete = models.Athlete(cp=200, w_prime=20000)
+    wdf = models.WorkoutDataFrame(
+        pd.read_csv('tests/example_files/workout_1_short.csv'))
+    wdf = wdf.set_index('time')
+    wdf.athlete = athlete
+    return wdf
 
 class TestDataPoint:
     def test_init(self):
-        p = models.DataPoint(1, 2)
+        p = algorithms.DataPoint(1, 2)
 
         assert p == (1, 2)
         assert p.index == 1
@@ -17,11 +26,11 @@ class TestDataPoint:
 
     def test_init_missing_values(self):
         with pytest.raises(TypeError):
-            models.DataPoint()
+            algorithms.DataPoint()
 
     def test_init_too_many_values(self):
         with pytest.raises(TypeError):
-            models.DataPoint(1, 2, 3)
+            algorithms.DataPoint(1, 2, 3)
 
 
 class TestAthlete:
@@ -144,8 +153,8 @@ class TestWorkoutDataFrame:
         self._import_csv_as_wdf()
         mmp = self.wdf.mean_max_power()
 
-        assert mmp[1] == 280
-        assert mmp[300] == 209.43666666666667
+        assert mmp.iloc[1] == 263.0
+        assert mmp.iloc[300] == 209.37209302325581
 
     def test_mean_max_power_missing_power(self):
         del self.wdf['power']
@@ -181,107 +190,27 @@ class TestWorkoutDataFrame:
         with pytest.raises(exceptions.MissingDataException):
             self.wdf.power_per_kg()
 
-    def test_tau_w_prime_balance(self):
-        self._import_csv_as_wdf()
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        tau = self.wdf._tau_w_prime_balance()
-        assert tau == 482.32071983184653
+    @pytest.mark.parametrize("test_input,expected", [
+        (dict(), 19174.872458854417),
+        (dict(algorithm='waterworth'), 19174.872458854417),
+        (dict(algorithm='waterworth', tau_value=500), 19118.509110305589),
+        (dict(algorithm='waterworth', tau_dynamic=True), 19188.176024873737),
+        (dict(algorithm='skiba'), 19177.872458854417),
+        (dict(algorithm='skiba', tau_value=500), 19121.509110305589),
+        (dict(algorithm='skiba', tau_dynamic=True), 19166.47851826546),
+        (dict(algorithm='froncioni'), 19189.746089851626),
+    ])
+    def test_w_prime_balance(self, wdf, test_input, expected):
+        w_balance = wdf.w_prime_balance(**test_input)
 
-    def test_w_prime_balance_waterworth(self):
-        self._import_csv_as_wdf()
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance()
-
-        assert len(self.wdf), len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[2500] == 18389.473009018817
-        assert w_balance[3577] == 19597.259313320854
-
-    def test_w_prime_balance_waterworth_explicit_algorithm(self):
-        self._import_csv_as_wdf()
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(algorithm='waterworth')
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[2500] == 18389.473009018817
-        assert w_balance[3577] == 19597.259313320854
-
-    def test_w_prime_balance_waterworth_dynamic_tau(self):
-        self._import_csv_as_wdf()
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(tau_dynamic=True)
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[2500] == 18246.025713411207
-        assert w_balance[3577] == 19606.930102103735
-
-    def test_w_prime_balance_waterworth_static_tau(self):
-        self._import_csv_as_wdf()
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(tau_value=500)
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[2500] == 18329.857855118014
-        assert w_balance[3577] == 19568.496639353485
-
-    def test_w_prime_balance_skiba(self):
-        self._import_csv_as_wdf(filename='workout_1_short.csv')
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(algorithm='skiba')
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[500] == 19031.580246246991
-        assert w_balance[900] == 19088.871117462611
-
-    def test_w_prime_balance_skiba_dynamic_tau(self):
-        self._import_csv_as_wdf(filename='workout_1_short.csv')
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(algorithm='skiba', tau_dynamic=True)
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[500] == 19006.367817316444
-        assert w_balance[900] == 19084.000010385578
-
-    def test_w_prime_balance_skiba_static_tau(self):
-        self._import_csv_as_wdf(filename='workout_1_short.csv')
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(algorithm='skiba', tau_value=500)
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[500] == 18995.181601642591
-        assert w_balance[900] == 19025.332229442905
-
-    def test_w_prime_balance_froncioni(self):
-        self._import_csv_as_wdf()
-        self.wdf.athlete.cp = 200
-        self.wdf.athlete.w_prime = 20000
-        w_balance = self.wdf.w_prime_balance(algorithm='froncioni')
-
-        assert len(self.wdf) == len(w_balance)
-        assert w_balance[0] == 20000
-        assert w_balance[2500] == 19369.652383790162
-        assert w_balance[3577] == 19856.860886492974
+        assert w_balance.iloc[800] == expected
 
     def test_compute_mean_max_bests(self):
         self._import_csv_as_wdf()
         result = self.wdf.compute_mean_max_bests(60, 3)
 
         assert len(result) == 3
-        assert isinstance(result[0], models.DataPoint)
+        assert isinstance(result[0], algorithms.DataPoint)
         assert result[0] == (2038, 215.13333333333333)
         assert result[1] == (2236, 210.48333333333332)
         assert result[2] == (2159, 208.93333333333334)
