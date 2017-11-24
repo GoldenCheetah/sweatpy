@@ -123,12 +123,12 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
         return method()
 
-    def compute_mean_max_bests(self, interval, n):
-        moving_average = self.power.rolling(interval).mean()
+    def compute_mean_max_bests(self, duration, amount):
+        moving_average = self.power.rolling(duration).mean()
         length = len(moving_average)
         mean_max_bests = []
 
-        for i in range(n):
+        for i in range(amount):
             if moving_average.isnull().all():
                 mean_max_bests.append(DataPoint(np.nan, np.nan))
                 continue
@@ -138,8 +138,8 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
             mean_max_bests.append(DataPoint(max_index, max_value))
 
             # Set moving averages that overlap with last found max to np.nan
-            overlap_min_index = max(0, max_index-interval)
-            overlap_max_index = min(length, max_index+interval)
+            overlap_min_index = max(0, max_index-duration)
+            overlap_max_index = min(length, max_index+duration)
             moving_average.loc[overlap_min_index:overlap_max_index] = np.nan
 
         return mean_max_bests
