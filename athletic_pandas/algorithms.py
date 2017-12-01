@@ -38,13 +38,16 @@ def mean_max_bests(power, duration, amount):
 
     return pd.Series(mean_max_bests)
 
+
 def weighted_average_power(power):
     wap = power.rolling(30).mean().pow(4).mean().__pow__(1/4)
     return wap
 
+
 def power_per_kg(power, weight):
     ppkg = power / weight
     return ppkg
+
 
 def _tau_w_prime_balance(power, cp, untill=None):
     if untill is None:
@@ -55,6 +58,7 @@ def _tau_w_prime_balance(power, cp, untill=None):
         avg_power_below_cp = 0
 
     return 546*math.e**(-0.01*avg_power_below_cp) + 316
+
 
 def _get_tau_method(power, cp, tau_dynamic, tau_value):
     if tau_dynamic:
@@ -69,6 +73,7 @@ def _get_tau_method(power, cp, tau_dynamic, tau_value):
         tau = lambda t: tau_value
 
     return tau
+
 
 def w_prime_balance_waterworth(power, cp, w_prime, tau_dynamic=False,
         tau_value=None, *args, **kwargs):
@@ -96,6 +101,7 @@ def w_prime_balance_waterworth(power, cp, w_prime, tau_dynamic=False,
 
     return pd.Series(w_prime_balance)
 
+
 def w_prime_balance_skiba(power, cp, w_prime, tau_dynamic=False,
         tau_value=None, *args, **kwargs):
     '''
@@ -116,6 +122,7 @@ def w_prime_balance_skiba(power, cp, w_prime, tau_dynamic=False,
 
     return pd.Series(w_prime_balance)
 
+
 def w_prime_balance_froncioni(power, cp, w_prime):
     """
     Source:
@@ -135,9 +142,15 @@ def w_prime_balance_froncioni(power, cp, w_prime):
 
     return pd.Series(w_prime_balance)
 
+
 def w_prime_balance(power, cp, w_prime, algorithm=None, *args, **kwargs):
     if algorithm is None:
-        algorithm = 'waterworth'
-    method = eval('w_prime_balance_' + algorithm)
+        method = w_prime_balance_waterworth
+    elif algorithm == 'waterworth':
+        method = w_prime_balance_waterworth
+    elif algorithm == 'skiba':
+        method = w_prime_balance_skiba
+    elif algorithm == 'froncioni':
+        method = w_prime_balance_froncioni
 
     return method(power, cp, w_prime, *args, **kwargs)
