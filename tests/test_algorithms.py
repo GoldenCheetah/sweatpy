@@ -64,7 +64,7 @@ class TestAlgorithms:
     ])
     def test_w_prime_balance_waterworth(self, power, test_input, expected):
         w_bal = algorithms.w_prime_balance_waterworth(power, cp=25,
-            w_prime=2000, **test_input)
+                                                      w_prime=2000, **test_input)
         assert w_bal.iloc[75] == expected
 
     @pytest.mark.parametrize("test_input,expected", [
@@ -74,12 +74,12 @@ class TestAlgorithms:
     ])
     def test_w_prime_balance_skiba(self, power, test_input, expected):
         w_bal = algorithms.w_prime_balance_skiba(power, cp=25,
-            w_prime=2000, **test_input)
+                                                 w_prime=2000, **test_input)
         assert w_bal.iloc[75] == expected
 
     def test_w_prime_balance_froncioni(self, power):
         w_bal = algorithms.w_prime_balance_froncioni(power, cp=25,
-            w_prime=2000)
+                                                     w_prime=2000)
         assert w_bal.iloc[75] == 725.0
 
     @pytest.mark.parametrize("test_input,expected", [
@@ -94,5 +94,17 @@ class TestAlgorithms:
     ])
     def test_w_prime_balance(self, power, test_input, expected):
         w_bal = algorithms.w_prime_balance(power, cp=25, w_prime=2000,
-            **test_input)
+                                           **test_input)
         assert w_bal.iloc[50] == expected
+
+    @pytest.mark.parametrize('version,expected', [
+        ('5_3', [520.7906012962726, 371.41971316054241, 500]),
+        ('7_3', [406.62249287047558, 201.27837128971581, 500]),
+    ])
+    def test_extended_critical_power(self, version, expected):
+        power = pd.Series(range(500))
+        mean_max_power = algorithms.mean_max_power(power)
+        ecp = algorithms.extended_critical_power(mean_max_power, version=version)
+        assert ecp[1] == expected[0]
+        assert ecp[250] == expected[1]
+        assert len(ecp) == expected[2]
