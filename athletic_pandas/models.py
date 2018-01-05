@@ -20,12 +20,16 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
     @requires(columns=['power'], athlete=['cp', 'w_prime'])
     def compute_w_prime_balance(self, algorithm=None, *args, **kwargs):
-        return algorithms.w_prime_balance(self.power, self.athlete.cp, 
+        return algorithms.w_prime_balance(self.power, self.athlete.cp,
             self.athlete.w_prime, algorithm, *args, **kwargs)
 
     @requires(columns=['power'])
     def compute_mean_max_bests(self, duration, amount):
         return algorithms.mean_max_bests(self.power, duration, amount)
+
+    @requires(columns=['power', 'heartrate'])
+    def compute_heartrate_model(self):
+        return algorithms.heartrate_model(self.heartrate, self.power)
 
 
 class Athlete:

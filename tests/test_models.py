@@ -228,3 +228,14 @@ class TestWorkoutDataFrame:
 
         assert len(result) == 1
         assert result[0] == (np.nan, np.nan)
+
+    def test_compute_heartrate_model(self, wdf_big):
+        model, predictions = wdf_big.compute_heartrate_model()
+
+        assert len(predictions) == len(wdf_big)
+        assert model.params['hr_rest'].value == 86.552894067943839
+        assert model.params['hr_max'].value == 223.29248085198429
+        assert model.params['dhr'].value == 0.26860492517685708
+        assert model.params['tau_rise'].value == 51.806209961533796
+        assert model.params['tau_fall'].value == 155.18880949951827
+        assert model.params['hr_drift'].value == 7.9899370717145379 * 10**-5
