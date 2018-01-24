@@ -39,11 +39,11 @@ class TestAlgorithms:
         assert ppkg.iloc[-1] == 1.2375
 
     def test_tau_w_prime_balance(self, power):
-        tau = algorithms._tau_w_prime_balance(power, cp=25)
+        tau = algorithms.tau_w_prime_balance(power, cp=25)
         assert tau == 800.25855844756802
 
     def test_tau_w_prime_balance_with_untill(self, power):
-        tau = algorithms._tau_w_prime_balance(power, cp=25, untill=15)
+        tau = algorithms.tau_w_prime_balance(power, cp=25, untill=15)
         assert tau == 825.08702566864781
 
     @pytest.mark.parametrize("test_input,expected", [
@@ -53,7 +53,7 @@ class TestAlgorithms:
     ])
     def test_get_tau_method(self, power, test_input, expected):
 
-        tau_method = algorithms._get_tau_method(power, cp=25, **test_input)
+        tau_method = algorithms.get_tau_method(power, cp=25, **test_input)
         assert tau_method(0) == expected[0]
         assert tau_method(99) == expected[1]
 
