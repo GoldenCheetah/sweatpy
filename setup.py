@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'athletic_pandas',
     packages = ['athletic_pandas'],
-    version = '0.6.0',
+    version = '0.7.0',
     description = 'Workout analysis',
     author='Aart Goossens',
     author_email='aart@goossens.me',
