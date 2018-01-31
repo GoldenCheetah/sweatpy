@@ -11,8 +11,9 @@ def tau_w_prime_balance(power, cp, untill=None):
     avg_power_below_cp = power[:untill][power[:untill] < cp].mean()
     if math.isnan(avg_power_below_cp):
         avg_power_below_cp = 0
+    delta_cp = cp - avg_power_below_cp
 
-    return 546*math.e**(-0.01*avg_power_below_cp) + 316
+    return 546*math.e**(-0.01*delta_cp) + 316
 
 
 def get_tau_method(power, cp, tau_dynamic, tau_value):
