@@ -1,9 +1,9 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
     name = 'athletic_pandas',
-    packages = ['athletic_pandas'],
-    version = '0.7.0',
+    packages = find_packages(),
+    version = '0.7.2',
     description = 'Workout analysis',
     author='Aart Goossens',
     author_email='aart@goossens.me',
