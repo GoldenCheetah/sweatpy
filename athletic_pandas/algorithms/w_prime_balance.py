@@ -70,7 +70,7 @@ def w_prime_balance_skiba(power, cp, w_prime, tau_dynamic=False,
     for t in range(len(power)):
         w_prime_exp_sum = 0
 
-        for u, p in enumerate(power[:t]):
+        for u, p in enumerate(power[:t+1]):
             w_prime_exp = max(0, p - cp)
             w_prime_exp_sum += w_prime_exp * np.power(np.e, (u - t)/tau(t))
 

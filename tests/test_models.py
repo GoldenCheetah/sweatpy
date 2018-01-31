@@ -197,9 +197,9 @@ class TestWorkoutDataFrame:
         (dict(algorithm='waterworth'), 19006.732787629098),
         (dict(algorithm='waterworth', tau_value=500), 19118.509110305589),
         (dict(algorithm='waterworth', tau_dynamic=True), 18989.003862950944),
-        (dict(algorithm='skiba'), 19009.732787629102),
-        (dict(algorithm='skiba', tau_value=500), 19121.509110305589),
-        (dict(algorithm='skiba', tau_dynamic=True), 19026.724199486114),
+        (dict(algorithm='skiba'), 19006.732787629102),
+        (dict(algorithm='skiba', tau_value=500), 19118.509110305589),
+        (dict(algorithm='skiba', tau_dynamic=True), 19023.724199486114),
         (dict(algorithm='froncioni'), 19189.746089851626),
     ])
     def test_compute_w_prime_balance(self, wdf_small, test_input, expected):

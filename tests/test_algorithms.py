@@ -68,9 +68,9 @@ class TestAlgorithms:
         assert w_bal.iloc[75] == expected
 
     @pytest.mark.parametrize("test_input,expected", [
-        (dict(tau_dynamic=False, tau_value=None), 800.77417744392892),
-        (dict(tau_dynamic=True, tau_value=None), 800.77417744392892),
-        (dict(tau_dynamic=False, tau_value=100), 959.61894732869769),
+        (dict(tau_dynamic=False, tau_value=None), 750.77417744392892),
+        (dict(tau_dynamic=True, tau_value=None), 750.77417744392892),
+        (dict(tau_dynamic=False, tau_value=100), 909.61894732869769),
     ])
     def test_w_prime_balance_skiba(self, power, test_input, expected):
         w_bal = algorithms.w_prime_balance_skiba(power, cp=25,
@@ -87,9 +87,9 @@ class TestAlgorithms:
         (dict(algorithm='waterworth'), 1678.2431086242659),
         (dict(algorithm='waterworth', tau_value=500), 1680.1356439412966),
         (dict(algorithm='waterworth', tau_dynamic=True), 1678.2431086242659),
-        (dict(algorithm='skiba'), 1703.2431086242659),
-        (dict(algorithm='skiba', tau_value=500), 1705.1356439412966),
-        (dict(algorithm='skiba', tau_dynamic=True), 1703.2431086242659),
+        (dict(algorithm='skiba'), 1678.2431086242659),
+        (dict(algorithm='skiba', tau_value=500), 1680.1356439412966),
+        (dict(algorithm='skiba', tau_dynamic=True), 1678.2431086242659),
         (dict(algorithm='froncioni'), 1675.0),
     ])
     def test_w_prime_balance(self, power, test_input, expected):
