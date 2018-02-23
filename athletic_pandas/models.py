@@ -1,4 +1,4 @@
-from . import algorithms
+from .algorithms import heartrate_models, main, w_prime_balance
 from .base import BaseWorkoutDataFrame
 from .helpers import requires
 
@@ -8,28 +8,28 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
     @requires(columns=['power'])
     def compute_mean_max_power(self):
-        return algorithms.mean_max_power(self.power)
+        return main.mean_max_power(self.power)
 
     @requires(columns=['power'])
     def compute_weighted_average_power(self):
-        return algorithms.weighted_average_power(self.power)
+        return main.weighted_average_power(self.power)
 
     @requires(columns=['power'], athlete=['weight'])
     def compute_power_per_kg(self):
-        return algorithms.power_per_kg(self.power, self.athlete.weight)
+        return main.power_per_kg(self.power, self.athlete.weight)
 
     @requires(columns=['power'], athlete=['cp', 'w_prime'])
     def compute_w_prime_balance(self, algorithm=None, *args, **kwargs):
-        return algorithms.w_prime_balance(self.power, self.athlete.cp,
+        return w_prime_balance.w_prime_balance(self.power, self.athlete.cp,
             self.athlete.w_prime, algorithm, *args, **kwargs)
 
     @requires(columns=['power'])
     def compute_mean_max_bests(self, duration, amount):
-        return algorithms.mean_max_bests(self.power, duration, amount)
+        return main.mean_max_bests(self.power, duration, amount)
 
     @requires(columns=['power', 'heartrate'])
     def compute_heartrate_model(self):
-        return algorithms.heartrate_model(self.heartrate, self.power)
+        return heartrate_models.heartrate_model(self.heartrate, self.power)
 
 
 class Athlete:

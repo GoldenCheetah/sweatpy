@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from athletic_pandas import algorithms, exceptions, models
+from athletic_pandas import exceptions, models
 
 
 @pytest.fixture
@@ -40,23 +40,6 @@ def wdf_big():
     wdf = wdf.set_index('time')
     wdf.athlete = athlete
     return wdf
-
-
-class TestDataPoint:
-    def test_init(self):
-        p = algorithms.DataPoint(1, 2)
-
-        assert p == (1, 2)
-        assert p.index == 1
-        assert p.value == 2
-
-    def test_init_missing_values(self):
-        with pytest.raises(TypeError):
-            algorithms.DataPoint()
-
-    def test_init_too_many_values(self):
-        with pytest.raises(TypeError):
-            algorithms.DataPoint(1, 2, 3)
 
 
 class TestAthlete:
@@ -211,7 +194,6 @@ class TestWorkoutDataFrame:
         result = wdf_big.compute_mean_max_bests(60, 3)
 
         assert len(result) == 3
-        assert isinstance(result[0], algorithms.DataPoint)
         assert result[0] == (2038, 215.13333333333333)
         assert result[1] == (2236, 210.48333333333332)
         assert result[2] == (2159, 208.93333333333334)
