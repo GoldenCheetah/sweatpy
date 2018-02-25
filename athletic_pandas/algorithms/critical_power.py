@@ -1,8 +1,18 @@
+from collections import OrderedDict
+
 import numpy as np
 from scipy.optimize import curve_fit
 
 
-def extended_5_3_predict(x, power_anaerobic_alactic, power_anaerobic_decay,
+def two_parameter_non_linear_predict(t, cp, w_prime):
+    return cp + w_prime / t
+
+
+def three_parameter_non_linear_predict(t, cp, w_prime, p_max):
+    return w_prime / (t + (w_prime / (p_max - cp))) + cp
+
+
+def extended_5_3_predict(t, power_anaerobic_alactic, power_anaerobic_decay,
                      cp, tau_delay, cp_delay, cp_decay, cp_decay_delay, tau):
     """
     Credits to Damien Grauser. Source:
@@ -13,21 +23,21 @@ def extended_5_3_predict(x, power_anaerobic_alactic, power_anaerobic_decay,
             (
                 power_anaerobic_alactic
             ) * (
-                1.20 - 0.20 * np.exp(-1 * x)
+                1.20 - 0.20 * np.exp(-1 * t)
             ) * (
-                np.exp(power_anaerobic_decay * x)
+                np.exp(power_anaerobic_decay * t)
             )
         ) + (
             (
                 cp
             ) * (
-                1 - np.exp(cp_delay * x)
+                1 - np.exp(cp_delay * t)
             ) * (
-                1 + cp_decay * np.exp(cp_decay_delay / x)
+                1 + cp_decay * np.exp(cp_decay_delay / t)
             ) * (
-                1 - np.exp(tau_delay * x)
+                1 - np.exp(tau_delay * t)
             ) * (
-                1 + tau / x
+                1 + tau / t
             )
         )
     )
@@ -39,7 +49,7 @@ def extended_5_3_predict(x, power_anaerobic_alactic, power_anaerobic_decay,
     return model
 
 
-def extended_7_3_predict(x, power_anaerobic_alactic, power_anaerobic_decay,
+def extended_7_3_predict(t, power_anaerobic_alactic, power_anaerobic_decay,
                      cp, tau_delay, cp_delay, cp_decay, cp_decay_delay, tau):
     """
     Credits to Damien Grauser. Source:
@@ -53,18 +63,18 @@ def extended_7_3_predict(x, power_anaerobic_alactic, power_anaerobic_decay,
                 (
                     np.exp(power_anaerobic_decay)
                 ) * (
-                    np.power(x, power_anaerobic_alactic)
+                    np.power(t, power_anaerobic_alactic)
                 )
             )
         ) + (
             (
-                cp * (1 - np.exp(tau_delay * x))
+                cp * (1 - np.exp(tau_delay * t))
             ) * (
-                1 - np.exp(cp_delay * x)
+                1 - np.exp(cp_delay * t)
             ) * (
-                1 + cp_decay * np.exp(cp_decay_delay / x)
+                1 + cp_decay * np.exp(cp_decay_delay / t)
             ) * (
-                1 + tau / x
+                1 + tau / t
             )
         )
     )
@@ -76,34 +86,45 @@ def extended_7_3_predict(x, power_anaerobic_alactic, power_anaerobic_decay,
     return model
 
 
-def model_fit(max_efforts, time_axis, version='extended_5_3'):
-    if version == 'extended_5_3':
+def model_fit(x, y, version='extended_5_3'):
+    if version == '2_parameter_non_linear':
+        predict_func = two_parameter_non_linear_predict
+        initial_model_params = OrderedDict(
+            cp =300,
+            w_prime=20000
+        )
+    if version == '3_parameter_non_linear':
+        predict_func = three_parameter_non_linear_predict
+        initial_model_params = OrderedDict(
+            cp =300,
+            w_prime=20000,
+            p_max=1000
+        )
+    elif version == 'extended_5_3':
         predict_func = extended_5_3_predict
-        initial_model_params = np.array([811, -2, 280, -0.9, -0.583, -180, 1.208, -4.8])
-        model_param_names = [
-            'power_anaerobic_alactic',
-            'power_anaerobic_decay',
-            'cp',
-            'cp_delay',
-            'cp_decay',
-            'cp_decay_delay',
-            'tau',
-            'tau_delay'
-        ]
+        initial_model_params = OrderedDict(
+            power_anaerobic_alactic=811,
+            power_anaerobic_decay=-2,
+            cp=280,
+            cp_delay=-0.9,
+            cp_decay=-0.583,
+            cp_decay_delay=-180,
+            tau=1.208,
+            tau_delay=-4.8
+        )
     elif version == 'extended_7_3':
         predict_func = extended_7_3_predict
-        initial_model_params = np.array([811, -2, 280, -0.9, -0.583, -180, 1.208, -4.8])
-        model_param_names = [
-            'power_anaerobic_alactic',
-            'power_anaerobic_decay',
-            'cp',
-            'cp_delay',
-            'cp_decay',
-            'cp_decay_delay',
-            'tau',
-            'tau_delay'
-        ]
+        initial_model_params = OrderedDict(
+            power_anaerobic_alactic=811,
+            power_anaerobic_decay=-2,
+            cp=280,
+            cp_delay=-0.9,
+            cp_decay=-0.583,
+            cp_decay_delay=-180,
+            tau=1.208,
+            tau_delay=-4.8
+        )
 
-    model_params, _ = curve_fit(predict_func, time_axis, max_efforts, initial_model_params)
+    model_params, _ = curve_fit(predict_func, x, y, np.array(list(initial_model_params.values())))
 
-    return dict(zip(model_param_names, model_params))
+    return dict(zip(initial_model_params.keys(), model_params))

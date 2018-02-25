@@ -2,12 +2,26 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from athletic_pandas.algorithms import critical_power, main
+from athletic_pandas.algorithms import critical_power
 
 
-@pytest.mark.parametrize('predict_func,version,expected_model', [
+@pytest.mark.parametrize('version,expected_model', [
     (
-        critical_power._ecp_predict_5_3,
+        '2_parameter_non_linear',
+        dict(
+            cp=200,
+            w_prime=10000
+        )
+    ),
+    (
+        '3_parameter_non_linear',
+        dict(
+            cp=199.9999996798856,
+            w_prime=10000.000107025966,
+            p_max=926323089119.79919
+        )
+    ),
+    (
         'extended_5_3',
         dict(
             power_anaerobic_alactic=811.0,
@@ -21,7 +35,6 @@ from athletic_pandas.algorithms import critical_power, main
         )
     ),
     (
-        critical_power._ecp_predict_7_3,
         'extended_7_3',
         dict(
             power_anaerobic_alactic=811,
@@ -35,12 +48,13 @@ from athletic_pandas.algorithms import critical_power, main
         )
     ),
 ])
-def test_critical_power(predict_func, version, expected_model):
-    power = pd.Series(range(500))
-    mean_max_power = main.mean_max_power(power)
-    model = critical_power.critical_power_model(
-        mean_max_power,
-        np.linspace(1, 501, num=500),
+def test_critical_power(version, expected_model):
+    # mean_max_power = np.arange(499.0, 249.0, -0.5)
+    time_axis = np.arange(1, 1800, 10)
+    max_efforts = 10000 / time_axis + 200
+    model = critical_power.model_fit(
+        time_axis,
+        max_efforts,
         version=version
     )
     
