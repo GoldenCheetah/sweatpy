@@ -86,21 +86,21 @@ def extended_7_3_predict(t, power_anaerobic_alactic, power_anaerobic_decay,
     return model
 
 
-def model_fit(x, y, version='extended_5_3'):
-    if version == '2_parameter_non_linear':
+def model_fit(x, y, model='extended_5_3'):
+    if model == '2_parameter_non_linear':
         predict_func = two_parameter_non_linear_predict
         initial_model_params = OrderedDict(
             cp =300,
             w_prime=20000
         )
-    if version == '3_parameter_non_linear':
+    if model == '3_parameter_non_linear':
         predict_func = three_parameter_non_linear_predict
         initial_model_params = OrderedDict(
             cp =300,
             w_prime=20000,
             p_max=1000
         )
-    elif version == 'extended_5_3':
+    elif model == 'extended_5_3':
         predict_func = extended_5_3_predict
         initial_model_params = OrderedDict(
             power_anaerobic_alactic=811,
@@ -112,7 +112,7 @@ def model_fit(x, y, version='extended_5_3'):
             tau=1.208,
             tau_delay=-4.8
         )
-    elif version == 'extended_7_3':
+    elif model == 'extended_7_3':
         predict_func = extended_7_3_predict
         initial_model_params = OrderedDict(
             power_anaerobic_alactic=811,
@@ -125,6 +125,15 @@ def model_fit(x, y, version='extended_5_3'):
             tau_delay=-4.8
         )
 
-    model_params, _ = curve_fit(predict_func, x, y, np.array(list(initial_model_params.values())))
+    initial_param_array = np.array(list(initial_model_params.values()))
 
-    return dict(zip(initial_model_params.keys(), model_params))
+    model_params, _ = curve_fit(
+        f=predict_func,
+        xdata=x,
+        ydata=y,
+        p0=initial_param_array,
+    )
+
+    fitted_model_params = dict(zip(initial_model_params.keys(), model_params))
+
+    return fitted_model_params

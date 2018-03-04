@@ -5,7 +5,7 @@ import pytest
 from athletic_pandas.algorithms import critical_power
 
 
-@pytest.mark.parametrize('version,expected_model', [
+@pytest.mark.parametrize('model,expected_params', [
     (
         '2_parameter_non_linear',
         dict(
@@ -48,14 +48,13 @@ from athletic_pandas.algorithms import critical_power
         )
     ),
 ])
-def test_critical_power(version, expected_model):
-    # mean_max_power = np.arange(499.0, 249.0, -0.5)
+def test_critical_power(model, expected_params):
     time_axis = np.arange(1, 1800, 10)
     max_efforts = 10000 / time_axis + 200
-    model = critical_power.model_fit(
+    fitted_params = critical_power.model_fit(
         time_axis,
         max_efforts,
-        version=version
+        model=model
     )
     
-    assert model == expected_model
+    assert fitted_params == expected_params
