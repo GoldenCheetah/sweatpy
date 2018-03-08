@@ -183,7 +183,7 @@ class TestWorkoutDataFrame:
         (dict(algorithm='skiba'), 19006.732787629102),
         (dict(algorithm='skiba', tau_value=500), 19118.509110305589),
         (dict(algorithm='skiba', tau_dynamic=True), 19023.724199486114),
-        (dict(algorithm='froncioni'), 19189.746089851626),
+        (dict(algorithm='froncioni-skiba-clarke'), 19170.066066056541),
     ])
     def test_compute_w_prime_balance(self, wdf_small, test_input, expected):
         w_balance = wdf_small.compute_w_prime_balance(**test_input)

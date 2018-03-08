@@ -79,17 +79,17 @@ def w_prime_balance_skiba(power, cp, w_prime, tau_dynamic=False,
     return pd.Series(w_prime_balance)
 
 
-def w_prime_balance_froncioni(power, cp, w_prime):
+def w_prime_balance_froncioni_skiba_clarke(power, cp, w_prime):
     """
     Source:
-    https://github.com/GoldenCheetah/GoldenCheetah/blob/160eb74cab712bfaa9eab64dd19310e5d42ed193/src/Metrics/WPrime.cpp#L257
+    Skiba, P. F., Fulford, J., Clarke, D. C., Vanhatalo, A., & Jones, A. M. (2015). Intramuscular determinants of the ability to recover work capacity above critical power. European journal of applied physiology, 115(4), 703-713.
     """
     last = w_prime
     w_prime_balance = []
 
     for p in power:
         if p < cp:
-            new = last + (cp - p) * (w_prime - last)/last
+            new = last + (cp - p) * (w_prime - last)/w_prime
         else:
             new = last + (cp - p)
 
@@ -106,7 +106,7 @@ def w_prime_balance(power, cp, w_prime, algorithm=None, *args, **kwargs):
         method = w_prime_balance_waterworth
     elif algorithm == 'skiba':
         method = w_prime_balance_skiba
-    elif algorithm == 'froncioni':
-        method = w_prime_balance_froncioni
+    elif algorithm == 'froncioni-skiba-clarke':
+        method = w_prime_balance_froncioni_skiba_clarke
 
     return method(power, cp, w_prime, *args, **kwargs)

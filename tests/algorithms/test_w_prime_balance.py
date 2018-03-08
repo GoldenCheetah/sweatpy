@@ -44,7 +44,7 @@ def test_w_prime_balance_skiba(power, test_input, expected):
     assert w_bal.iloc[75] == expected
 
 def test_w_prime_balance_froncioni(power):
-    w_bal = w_prime_balance.w_prime_balance_froncioni(power, cp=25,
+    w_bal = w_prime_balance.w_prime_balance_froncioni_skiba_clarke(power, cp=25,
                                                  w_prime=2000)
     assert w_bal.iloc[75] == 725.0
 
@@ -56,7 +56,7 @@ def test_w_prime_balance_froncioni(power):
     (dict(algorithm='skiba'), 1678.2431086242659),
     (dict(algorithm='skiba', tau_value=500), 1680.1356439412966),
     (dict(algorithm='skiba', tau_dynamic=True), 1678.2431086242659),
-    (dict(algorithm='froncioni'), 1675.0),
+    (dict(algorithm='froncioni-skiba-clarke'), 1675.0),
 ])
 def test_w_prime_balance(power, test_input, expected):
     w_bal = w_prime_balance.w_prime_balance(power, cp=25, w_prime=2000,
