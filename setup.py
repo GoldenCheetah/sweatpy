@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name = 'athletic_pandas',
     packages = find_packages(),
-    version = '0.7.3',
+    version = '0.8.0',
     description = 'Workout analysis',
     author='Aart Goossens',
     author_email='aart@goossens.me',
