@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'athletic_pandas',
+    name = 'sweat',
     packages = find_packages(),
-    version = '0.8.0',
+    version = '0.1.0',
     description = 'Workout analysis',
     author='Aart Goossens',
     author_email='aart@goossens.me',
-    url='https://github.com/AartGoossens/athletic_pandas',
+    url='https://github.com/GoldenCheetah/sweatpy',
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',

@@ -1,12 +1,12 @@
-# Athletic Pandas
+# Sweatpy
 
 ## Introduction
-Athletic Pandas is an extension of [pandas](https://github.com/pandas-dev/pandas) designed to make workout analysis a breeze. The current state of the project is very beta: features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with me or create an issue if you have problems/questions/feature requests/special use cases.
+Sweatpy is a Python library that is designed to make workout analysis a breeze. The current state of the project is very beta: features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with the contributors or create an issue if you have problems/questions/feature requests/special use cases.
 
 ## Installation
 This library can be installed via PyPI:
 ```
-pip install athletic_pandas
+pip install sweat
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ This class is a subclass of `pandas.DataFrame` and offers all the functionality 
 
 After installation, the `WorkoutDataFrame` can be imported this way:
 ```python
-from athletic_pandas.models import WorkoutDataFrame
+from sweat.models import WorkoutDataFrame
 ```
 
 To load some example data from this repository:
@@ -37,7 +37,7 @@ wdf.heartrate.plot()
 For some workout specific functionality information about the athlete is needed.
 This can be set on the `WorkoutDataFrame` as follows:
 ```python
-from athletic_pandas.models import Athlete
+from sweat.models import Athlete
 wdf.athlete = Athlete(name='Chris Froome', cp=175, w_prime=20000)
 ```
 
@@ -79,6 +79,7 @@ This documentation is quite compact at the moment but will be extended with more
 Coming soon...
 
 ## Contributors
+[Maksym Sladkov](https://github.com/sladkovm)
 [Aart Goossens](https://github.com/AartGoossens)
 
 ## License

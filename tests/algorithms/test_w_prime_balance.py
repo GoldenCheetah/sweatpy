@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from athletic_pandas.algorithms import w_prime_balance
+from sweat.algorithms import w_prime_balance
 
 
 def test_tau_w_prime_balance(power):

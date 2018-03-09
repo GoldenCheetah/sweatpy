@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from athletic_pandas.algorithms import heartrate_models
+from sweat.algorithms import heartrate_models
 
 
 def test_heartrate_model():

@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from athletic_pandas.algorithms import critical_power
+from sweat.algorithms import critical_power
 
 
 @pytest.mark.parametrize('model,expected_params', [

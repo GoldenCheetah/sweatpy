@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from athletic_pandas import exceptions, models
+from sweat import exceptions, models
 
 
 @pytest.fixture

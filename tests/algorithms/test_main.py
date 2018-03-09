@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from athletic_pandas.algorithms import main
+from sweat.algorithms import main
 
 
 class TestDataPoint:
