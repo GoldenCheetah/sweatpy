@@ -1,0 +1,1710 @@
+{
+    "partner_brand_tag": null,
+    "elev_low": -46.0,
+    "external_id": "garmin_push_2432063255",
+    "weighted_average_watts": 171,
+    "athlete": {
+        "resource_state": 1,
+        "id": 1202065
+    },
+    "end_latlng": [
+        50.79,
+        4.32
+    ],
+    "average_watts": 133.4,
+    "max_watts": 599,
+    "suffer_score": 39,
+    "segment_efforts": [
+        {
+            "elapsed_time": 229,
+            "end_index": 469,
+            "name": "Hollebeek",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 252.3,
+            "moving_time": 229,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.34175,
+                "name": "Hollebeek",
+                "resource_state": 2,
+                "elevation_high": 102.5,
+                "end_latlng": [
+                    50.76691,
+                    4.34175
+                ],
+                "country": "Belgium",
+                "id": 1545387,
+                "start_latitude": 50.77245,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 8.8,
+                "private": false,
+                "end_latitude": 50.76691,
+                "hazardous": false,
+                "distance": 972.42,
+                "average_grade": 5.2,
+                "start_latlng": [
+                    50.77245,
+                    4.332215
+                ],
+                "city": "Linkebeek",
+                "climb_category": 0,
+                "start_longitude": 4.332215,
+                "elevation_low": 52.1
+            },
+            "hidden": false,
+            "id": 33598777011,
+            "start_index": 240,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:15:22Z",
+            "max_heartrate": 167.0,
+            "average_heartrate": 154.6,
+            "start_date_local": "2018-01-13T14:15:22Z",
+            "pr_rank": 3,
+            "average_cadence": 78.9,
+            "achievements": [
+                {
+                    "type_id": 3,
+                    "rank": 3,
+                    "type": "pr"
+                }
+            ],
+            "kom_rank": null,
+            "distance": 963.9
+        },
+        {
+            "elapsed_time": 641,
+            "end_index": 885,
+            "name": "Hollebeekstraat - Linkebeeksedreef",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 203.9,
+            "moving_time": 641,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.376227316666666,
+                "name": "Hollebeekstraat - Linkebeeksedreef",
+                "resource_state": 2,
+                "elevation_high": 125.6,
+                "end_latlng": [
+                    50.75930185000001,
+                    4.376227316666666
+                ],
+                "country": "Belgium",
+                "id": 1714771,
+                "start_latitude": 50.77211751666667,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 8.8,
+                "private": false,
+                "end_latitude": 50.75930185000001,
+                "hazardous": false,
+                "distance": 3551.71,
+                "average_grade": 2.0,
+                "start_latlng": [
+                    50.77211751666667,
+                    4.3321965166666665
+                ],
+                "city": "Linkebeek",
+                "climb_category": 0,
+                "start_longitude": 4.3321965166666665,
+                "elevation_low": 53.0
+            },
+            "hidden": false,
+            "id": 33598777071,
+            "start_index": 244,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:15:26Z",
+            "max_heartrate": 167.0,
+            "average_heartrate": 148.3,
+            "start_date_local": "2018-01-13T14:15:26Z",
+            "pr_rank": 2,
+            "average_cadence": 83.1,
+            "achievements": [
+                {
+                    "type_id": 3,
+                    "rank": 2,
+                    "type": "pr"
+                }
+            ],
+            "kom_rank": null,
+            "distance": 3577.3
+        },
+        {
+            "elapsed_time": 164,
+            "end_index": 812,
+            "name": "Brug Holleken rondpunt Bevrijdingslaan",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 159.6,
+            "moving_time": 164,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.371515,
+                "name": "Brug Holleken rondpunt Bevrijdingslaan",
+                "resource_state": 2,
+                "elevation_high": 110.7,
+                "end_latlng": [
+                    50.76014,
+                    4.371515
+                ],
+                "country": "Belgium",
+                "id": 8090501,
+                "start_latitude": 50.764123,
+                "state": "Flanders",
+                "maximum_grade": 7.2,
+                "private": false,
+                "end_latitude": 50.76014,
+                "hazardous": false,
+                "distance": 1118.8,
+                "average_grade": 0.7,
+                "start_latlng": [
+                    50.764123,
+                    4.357235
+                ],
+                "city": "Linkebeek",
+                "climb_category": 0,
+                "start_longitude": 4.357235,
+                "elevation_low": 95.2
+            },
+            "hidden": false,
+            "id": 33598777039,
+            "start_index": 648,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:22:10Z",
+            "max_heartrate": 155.0,
+            "average_heartrate": 138.9,
+            "start_date_local": "2018-01-13T14:22:10Z",
+            "pr_rank": 3,
+            "average_cadence": 86.7,
+            "achievements": [
+                {
+                    "type_id": 3,
+                    "rank": 3,
+                    "type": "pr"
+                }
+            ],
+            "kom_rank": null,
+            "distance": 1121.2
+        },
+        {
+            "elapsed_time": 214,
+            "end_index": 893,
+            "name": "Linkebeeksedreef",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 213.2,
+            "moving_time": 214,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.376738,
+                "name": "Linkebeeksedreef",
+                "resource_state": 2,
+                "elevation_high": 127.9,
+                "end_latlng": [
+                    50.759118,
+                    4.376738
+                ],
+                "country": "Belgium",
+                "id": 6199081,
+                "start_latitude": 50.763397,
+                "state": "Flanders",
+                "maximum_grade": 7.3,
+                "private": false,
+                "end_latitude": 50.759118,
+                "hazardous": false,
+                "distance": 1252.0,
+                "average_grade": 2.4,
+                "start_latlng": [
+                    50.763397,
+                    4.360652
+                ],
+                "city": "Sint Genesius Rode",
+                "climb_category": 0,
+                "start_longitude": 4.360652,
+                "elevation_low": 95.3
+            },
+            "hidden": false,
+            "id": 33598777106,
+            "start_index": 679,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:22:41Z",
+            "max_heartrate": 156.0,
+            "average_heartrate": 145.6,
+            "start_date_local": "2018-01-13T14:22:41Z",
+            "pr_rank": 3,
+            "average_cadence": 81.2,
+            "achievements": [
+                {
+                    "type_id": 3,
+                    "rank": 3,
+                    "type": "pr"
+                }
+            ],
+            "kom_rank": null,
+            "distance": 1260.4
+        },
+        {
+            "elapsed_time": 364,
+            "end_index": 1832,
+            "name": "Alsemberg-Dworp",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 122.5,
+            "moving_time": 364,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.304682,
+                "name": "Alsemberg-Dworp",
+                "resource_state": 2,
+                "elevation_high": 93.1,
+                "end_latlng": [
+                    50.72917,
+                    4.304682
+                ],
+                "country": "Belgium",
+                "id": 3734177,
+                "start_latitude": 50.740284,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 4.0,
+                "private": false,
+                "end_latitude": 50.72917,
+                "hazardous": false,
+                "distance": 2706.16,
+                "average_grade": -0.6,
+                "start_latlng": [
+                    50.740284,
+                    4.337693
+                ],
+                "city": "Beersel",
+                "climb_category": 0,
+                "start_longitude": 4.337693,
+                "elevation_low": 70.9
+            },
+            "hidden": false,
+            "id": 33598777145,
+            "start_index": 1468,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:35:50Z",
+            "max_heartrate": 154.0,
+            "average_heartrate": 136.7,
+            "start_date_local": "2018-01-13T14:35:50Z",
+            "pr_rank": 1,
+            "average_cadence": 85.3,
+            "achievements": [
+                {
+                    "type_id": 3,
+                    "rank": 1,
+                    "type": "pr"
+                }
+            ],
+            "kom_rank": null,
+            "distance": 2710.3
+        },
+        {
+            "elapsed_time": 57,
+            "end_index": 1993,
+            "name": "gravenhofberg",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 174.7,
+            "moving_time": 57,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.290525,
+                "name": "gravenhofberg",
+                "resource_state": 2,
+                "elevation_high": 51.2,
+                "end_latlng": [
+                    50.733239,
+                    4.290525
+                ],
+                "country": "Belgium",
+                "id": 4372054,
+                "start_latitude": 50.731654,
+                "state": "Flemish Region",
+                "maximum_grade": 6.2,
+                "private": false,
+                "end_latitude": 50.733239,
+                "hazardous": false,
+                "distance": 356.0,
+                "average_grade": 0.9,
+                "start_latlng": [
+                    50.731654,
+                    4.294904
+                ],
+                "city": "Beersel",
+                "climb_category": 0,
+                "start_longitude": 4.294904,
+                "elevation_low": 48.0
+            },
+            "hidden": false,
+            "id": 33598777174,
+            "start_index": 1936,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:43:38Z",
+            "max_heartrate": 140.0,
+            "average_heartrate": 131.9,
+            "start_date_local": "2018-01-13T14:43:38Z",
+            "pr_rank": 3,
+            "average_cadence": 85.3,
+            "achievements": [
+                {
+                    "type_id": 3,
+                    "rank": 3,
+                    "type": "pr"
+                }
+            ],
+            "kom_rank": null,
+            "distance": 355.5
+        },
+        {
+            "elapsed_time": 290,
+            "end_index": 2302,
+            "name": "Krabbos",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 227.1,
+            "moving_time": 290,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": true,
+                "end_longitude": 4.2755828239023685,
+                "name": "Krabbos",
+                "resource_state": 2,
+                "elevation_high": 106.6,
+                "end_latlng": [
+                    50.727063501253724,
+                    4.2755828239023685
+                ],
+                "country": "Belgium",
+                "id": 929720,
+                "start_latitude": 50.732984310016036,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 18.0,
+                "private": false,
+                "end_latitude": 50.727063501253724,
+                "hazardous": false,
+                "distance": 1224.86,
+                "average_grade": 4.7,
+                "start_latlng": [
+                    50.732984310016036,
+                    4.289357140660286
+                ],
+                "city": "Beersel",
+                "climb_category": 0,
+                "start_longitude": 4.289357140660286,
+                "elevation_low": 48.8
+            },
+            "hidden": false,
+            "id": 33598777231,
+            "start_index": 2012,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:44:54Z",
+            "max_heartrate": 164.0,
+            "average_heartrate": 160.0,
+            "start_date_local": "2018-01-13T14:44:54Z",
+            "pr_rank": null,
+            "average_cadence": 77.1,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 1219.1
+        },
+        {
+            "elapsed_time": 271,
+            "end_index": 3053,
+            "name": "Spitaelsklimt (maasdal tot top)",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 224.9,
+            "moving_time": 271,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.255449,
+                "name": "Spitaelsklimt (maasdal tot top)",
+                "resource_state": 2,
+                "elevation_high": 120.0,
+                "end_latlng": [
+                    50.702208,
+                    4.255449
+                ],
+                "country": "Belgium",
+                "id": 9897540,
+                "start_latitude": 50.707908,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 9.1,
+                "private": false,
+                "end_latitude": 50.702208,
+                "hazardous": false,
+                "distance": 1031.0,
+                "average_grade": 5.7,
+                "start_latlng": [
+                    50.707908,
+                    4.245786
+                ],
+                "city": "Halle",
+                "climb_category": 0,
+                "start_longitude": 4.245786,
+                "elevation_low": 60.9
+            },
+            "hidden": false,
+            "id": 33598777308,
+            "start_index": 2782,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:57:44Z",
+            "max_heartrate": 166.0,
+            "average_heartrate": 156.9,
+            "start_date_local": "2018-01-13T14:57:44Z",
+            "pr_rank": null,
+            "average_cadence": 74.4,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 1025.1
+        },
+        {
+            "elapsed_time": 106,
+            "end_index": 3354,
+            "name": "Sprint feel the speed 1km",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 3.9,
+            "moving_time": 106,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.271158,
+                "name": "Sprint feel the speed 1km",
+                "resource_state": 2,
+                "elevation_high": 116.0,
+                "end_latlng": [
+                    50.686183,
+                    4.271158
+                ],
+                "country": "Belgium",
+                "id": 10750608,
+                "start_latitude": 50.695136,
+                "state": "R\u00e9gion wallonne",
+                "maximum_grade": -2.3,
+                "private": false,
+                "end_latitude": 50.686183,
+                "hazardous": false,
+                "distance": 1026.8,
+                "average_grade": -5.3,
+                "start_latlng": [
+                    50.695136,
+                    4.267884
+                ],
+                "city": "Braine-le-Ch\u00e2teau",
+                "climb_category": 0,
+                "start_longitude": 4.267884,
+                "elevation_low": 61.6
+            },
+            "hidden": false,
+            "id": 33598777337,
+            "start_index": 3248,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T14:05:30Z",
+            "max_heartrate": 151.0,
+            "average_heartrate": 114.5,
+            "start_date_local": "2018-01-13T15:05:30Z",
+            "pr_rank": null,
+            "average_cadence": 97.6,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 1017.6
+        },
+        {
+            "elapsed_time": 510,
+            "end_index": 5703,
+            "name": "Rondpunt Halle tot sas Lot",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 136.3,
+            "moving_time": 510,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.26974,
+                "name": "Rondpunt Halle tot sas Lot",
+                "resource_state": 2,
+                "elevation_high": 34.1,
+                "end_latlng": [
+                    50.766122,
+                    4.26974
+                ],
+                "country": "Belgium",
+                "id": 8672110,
+                "start_latitude": 50.739328,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 2.9,
+                "private": false,
+                "end_latitude": 50.766122,
+                "hazardous": false,
+                "distance": 3614.7,
+                "average_grade": -0.2,
+                "start_latlng": [
+                    50.739328,
+                    4.241902
+                ],
+                "city": "Halle",
+                "climb_category": 0,
+                "start_longitude": 4.241902,
+                "elevation_low": 24.1
+            },
+            "hidden": false,
+            "id": 33598777451,
+            "start_index": 5193,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T14:37:55Z",
+            "max_heartrate": 144.0,
+            "average_heartrate": 131.2,
+            "start_date_local": "2018-01-13T15:37:55Z",
+            "pr_rank": null,
+            "average_cadence": 91.5,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 3617.4
+        },
+        {
+            "elapsed_time": 239,
+            "end_index": 5696,
+            "name": "Brug Buizingen Sas Lot",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 151.0,
+            "moving_time": 239,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.269127,
+                "name": "Brug Buizingen Sas Lot",
+                "resource_state": 2,
+                "elevation_high": 32.0,
+                "end_latlng": [
+                    50.765817,
+                    4.269127
+                ],
+                "country": "Belgium",
+                "id": 8659046,
+                "start_latitude": 50.752707,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 2.5,
+                "private": false,
+                "end_latitude": 50.765817,
+                "hazardous": false,
+                "distance": 1754.4,
+                "average_grade": -0.4,
+                "start_latlng": [
+                    50.752707,
+                    4.25557
+                ],
+                "city": "Sint-Pieters-Leeuw",
+                "climb_category": 0,
+                "start_longitude": 4.25557,
+                "elevation_low": 24.0
+            },
+            "hidden": false,
+            "id": 33598777395,
+            "start_index": 5457,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T14:42:19Z",
+            "max_heartrate": 144.0,
+            "average_heartrate": 136.8,
+            "start_date_local": "2018-01-13T15:42:19Z",
+            "pr_rank": null,
+            "average_cadence": 93.5,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 1758.2
+        },
+        {
+            "elapsed_time": 64,
+            "end_index": 5658,
+            "name": "Heideveld Sprint",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 156.2,
+            "moving_time": 64,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.266276,
+                "name": "Heideveld Sprint",
+                "resource_state": 2,
+                "elevation_high": 12.6,
+                "end_latlng": [
+                    50.764135,
+                    4.266276
+                ],
+                "country": "Belgium",
+                "id": 8387559,
+                "start_latitude": 50.760554,
+                "state": "Flanders",
+                "maximum_grade": 2.5,
+                "private": false,
+                "end_latitude": 50.764135,
+                "hazardous": false,
+                "distance": 462.2,
+                "average_grade": 0.3,
+                "start_latlng": [
+                    50.760554,
+                    4.262845
+                ],
+                "city": "Sint-Pieters-Leeuw",
+                "climb_category": 0,
+                "start_longitude": 4.262845,
+                "elevation_low": 10.2
+            },
+            "hidden": false,
+            "id": 33598777366,
+            "start_index": 5594,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T14:44:36Z",
+            "max_heartrate": 141.0,
+            "average_heartrate": 136.6,
+            "start_date_local": "2018-01-13T15:44:36Z",
+            "pr_rank": null,
+            "average_cadence": 93.3,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 469.8
+        },
+        {
+            "elapsed_time": 426,
+            "end_index": 6153,
+            "name": "Lot - Ruisbroek kanaal",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 139.2,
+            "moving_time": 426,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.29346029,
+                "name": "Lot - Ruisbroek kanaal",
+                "resource_state": 2,
+                "elevation_high": 26.3,
+                "end_latlng": [
+                    50.7900344,
+                    4.29346029
+                ],
+                "country": "Belgium",
+                "id": 2195830,
+                "start_latitude": 50.76660502,
+                "state": "Vlaams Gewest",
+                "maximum_grade": 3.4,
+                "private": false,
+                "end_latitude": 50.7900344,
+                "hazardous": false,
+                "distance": 3101.26,
+                "average_grade": -0.0,
+                "start_latlng": [
+                    50.76660502,
+                    4.27105637
+                ],
+                "city": "Beersel",
+                "climb_category": 0,
+                "start_longitude": 4.27105637,
+                "elevation_low": 21.3
+            },
+            "hidden": false,
+            "id": 33598777618,
+            "start_index": 5727,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T14:46:49Z",
+            "max_heartrate": 142.0,
+            "average_heartrate": 132.8,
+            "start_date_local": "2018-01-13T15:46:49Z",
+            "pr_rank": null,
+            "average_cadence": 92.3,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 3091.6
+        },
+        {
+            "elapsed_time": 83,
+            "end_index": 6146,
+            "name": "sprint ruisbroek",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 147.1,
+            "moving_time": 83,
+            "segment": {
+                "activity_type": "Ride",
+                "starred": false,
+                "end_longitude": 4.293158,
+                "name": "sprint ruisbroek",
+                "resource_state": 2,
+                "elevation_high": 25.2,
+                "end_latlng": [
+                    50.78967,
+                    4.293158
+                ],
+                "country": "Belgium",
+                "id": 7472952,
+                "start_latitude": 50.78469,
+                "state": "Flanders",
+                "maximum_grade": 0.0,
+                "private": false,
+                "end_latitude": 50.78967,
+                "hazardous": false,
+                "distance": 618.7,
+                "average_grade": 0.0,
+                "start_latlng": [
+                    50.78469,
+                    4.289275
+                ],
+                "city": "Sint Pieters Leeuw",
+                "climb_category": 0,
+                "start_longitude": 4.289275,
+                "elevation_low": 25.2
+            },
+            "hidden": false,
+            "id": 33598777558,
+            "start_index": 6063,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T14:52:25Z",
+            "max_heartrate": 142.0,
+            "average_heartrate": 137.7,
+            "start_date_local": "2018-01-13T15:52:25Z",
+            "pr_rank": null,
+            "average_cadence": 94.4,
+            "achievements": [],
+            "kom_rank": null,
+            "distance": 618.1
+        }
+    ],
+    "kilojoules": 922.1,
+    "average_cadence": 85.1,
+    "segment_leaderboard_opt_out": false,
+    "map": {
+        "summary_polyline": "ol}tHy{jYxI}VnGmD~KmTzKqNdKP|IaMxEoAfT{h@vCg\\zEqMXg\\|Cu_@nC{Q~GqMtWerBnVxo@`e@tcAjE]lMflApGbRvClUjNbe@|{@xcCdGrsA}BxPsTj{@|@fEpOtVhCrQ~IvTnBnS~LjMlU~I|NbSjOjv@xd@nhAvMtLVkJzDkKtGmJdIU~HoWjJkf@hAoOpYsShcAgYuDhFgIfCvIqCvDuFvH{CxDfMc@vPdHlXlB`UmEpVo@oK{MbUmGfAf@aQgCeIoRwHuCcRJbEkDzEiBvNkB`BsEoImQ_If@mFmBiH{OcCq_Aff@oTnDm`@hQu\\bd@aOxKuUzX}P|SqBlFcWiZuUlC_IcC_m@iy@uaBy{A_^cx@aX_T{CoGgFu@{SgPms@uo@aXgP{MgCXyHuNaKnFcH|@eNfElG`DhAp@ah@",
+        "polyline": "ed_uHq|jYEATGhAq@r@s@V]bBoCFY?OI}A@_@F[d@qAr@{BR_@RIH?jBd@H@FCd@{@j@s@\\q@jDwFLCJDL?pAc@l@E^F\\NTNb@j@`@r@bChF|BtF`DxJr@pAjBxBHNCN@Fv@qAVi@rCaInA{CJ_@d@cCRm@NWX_@zAiAh@i@^M`AELEDGd@kAbAyBd@w@vDkH\\e@Pe@`@o@rDmFZ]dBcBj@q@x@oAFEHC`@DlAd@\\F~AE`ADTCl@SxA_AbAiAxCeGPYRWTMVKbBK`@I\\UNS\\cARy@|@iBd@yAd@mAjAkDTk@Nk@f@eAj@_BXk@b@gA`@{@h@qAh@iAr@_BR]RSLYh@cHPkAl@oCTmBF}@@mDLmAJ_@jAeCh@sAj@aBl@uB?OE_@]cACk@\\wC?uADoCVmGD{BP_Bx@kGr@oIXeCB{@EkBDk@d@}CfAwI`@eBh@iApB}Bh@{@z@uB\\wAhAuIdByNPgBv@aGPiAdBaNF_@LUHYAm@@[n@oFd@gDdBoOt@uFvA}LR{AJa@FKHCFB\\bA`A|BfBpEtAhDf@pAfBhFjFrNtAjDfC~FfEhJlDnHfGtMtEdKnCvFtAfDVZNBL@NCNK~@cALEL@LFJNVxAH|@L`Ar@dEh@|DZfCz@fIz@lHp@tGjB`VLrAb@xBf@jB\\t@jAvB\\t@Zz@`@|ALr@`@hDt@nIp@~CtFbP`BlFz@bCVz@P^Jt@?r@BX\\lAj@pA~@hC~@tCRd@H\\tCbI`CjGx@fCjKpYjDvJ~DxKz@jC@N?j@BVNX\\LJNfDpInDpJfBhF`@tAj@jCRzAFjBPtBbArShC~e@NrD@tAAlBEhBQzCW`CO~@cAzEyAdGm@bBQdAiEzPa@vBcBjFU|@[jBy@fDq@zBMn@]|@?NRNDJP|AP|@Nf@f@|@tHpKfBjC`@z@Xt@XdATpAJr@b@vFTpAR|@l@`BrBpE`A`CVd@x@pBDDb@bBl@zDXnDP|AFr@?VGl@?RBTP`@v@fAd@j@z@r@f@f@f@l@zAvAb@j@|@v@VPb@PnKxCx@`@`Al@fBz@t@f@Z^fEnFpCvDz@dA\\h@l@jAVn@Rt@`@nBx@~F^tB~AtL`@bC`@bB~D`Oh@xAp@`BnAbC|BdELZF\\@^GNH@BF`BhEvBtEtBtD`@bA^f@d@|A|@`Eb@vAlBdE~@~B`DfHNXRRPLh@VRRrAbBf@f@bAjARP|BvALLDHD@BWH_B@kA?yBFm@`AoDl@eB^u@f@y@tEiH^i@b@_@\\QXIl@InAFvBPJ?JIzAqCLUHYdAyFZmAlAwDZmAN{@\\{CPmAr@_DRgAZeAt@cDjC}M|@mGJaALqB?i@Im@@KDEjEgDhEqDbDgCfBmApBcAlAc@~A]vDcAdUwFdHkBzFuArBk@dBi@dA_@fCeA|DiBJA@DAJUf@_@d@eAzAg@f@WPYJiALqATaA\\y@f@E@MAC@AHD@HC|@i@b@Q|Ac@~AUr@Yb@_@~@qAl@q@N_@He@JKdD}AbBq@f@MLFHRr@bCt@xBr@rCLz@B^Cr@e@pDIlA?jBD`AFj@TrApAjE|CdLTz@pAhJb@tDBl@?l@EbAGn@u@~D_@vAYpBs@tD[`CGVGDMCEOO}E?a@Bc@H]Ra@BK?ICGGAS?I@SJ[ZcEvG}@bBi@`B_@~@}@vAm@p@q@j@WNYHYBY?}AIUGQQEMCM?k@Lw@l@aCJ}@Do@ByACwAQqA_AgB]{@WyAMSQK{@YgCkA{Ak@mA]sCe@w@i@UWW_@IYG[KiAAc@Is@Cm@Uy@QoAMqBYaACACBCNNd@Lv@@f@Gj@Y|@Yf@g@p@s@b@[^M|@AnAGj@EbA}@vDM`AWd@c@`@WRKDK?SSu@oAQm@YoAM[u@q@Y_@c@S{@ESIQOe@w@QMYAk@Na@FSEs@]_C{Ay@q@e@i@Ia@?e@P{@X}@D[?OG[k@{ASwAOi@GQAMKOSKa@GsAi@[GM@SHc@XYLO?MEe@WUIS?k@LY@MCKKS_@Me@QEM?WLQVk@jAMPOLYJoBTKKKg@ICKBmDlCeAdAeEdDs@f@mBjAu@`@gAd@mN|F{HdDgB|@eAn@y@`@]L}@PoDb@qAJ}@TuBVgB\\u@R}Al@wPxH_HtC}@`@y@h@e@^c@b@_DhE_AjAsApByAjBwAvBq@z@}AvBg@j@c@x@_DlEu@v@q@f@{I`GwArA{DnE_@p@sDnE{IfKi@p@_@v@kArB}@pAy@x@sC`CaAbAs@~@U`@aApCKl@EHG@GGaBuB_EyE}@aAoBeCwBgC}CqDUOK@KDy@r@YJg@Hs@Fu@B{BRq@Bc@C{@WQUGEI?GFMX[Ra@Pg@DeA@qAKm@MqAi@o@a@a@]_AeAkD_F_CwDiAaByAkBYe@cEuF}K}OcDgEoC{CoEkE_EcEGEIJK@MEuH_HaBeBeCsCwKmKgB}AaKcIqGqFyZ{YaAcAk@o@{@sAoAiCaEqKeAgCEW@IJMES{BqEcAeCk@eAcDkIwAgCeBuBaA{@oA_AoScPi@s@c@y@q@wBQ]IKKGYGaADg@Ae@Mq@[{SgP{AoAyAuAaHuHmBmBoAcAcA_AsGuFyAqAk@m@c@WkImHiDkCuAaA{GyDiEoCe@]SIkDsBu@YqBi@gH_AKC?IJs@XwDAe@I]SUgCsBuEmDaBgAMBCDOK|@e@VKLCb@u@^wAXq@Va@TKP_FV{EDWLQD?FBDFt@jAb@z@d@x@r@~@t@j@PJt@H^HBADk@AGKUCW@Y\\uFNy@AOGSA[Ru@AWKs@Cm@JsCCg@@]PqBA_BD}AGmB@w@Ee@Oi@WqCi@}CyAoGu@qD_@yAeA}E]qAG]E{@@_@C_@IOECa@EKKsBkJm@sDQu@?OH_@Dm@BGJENALIxBuCnAyAZYbAu@^Qp@QXWHQ@GCi@?KDIbA_@|BYdCs@DEBM?]",
+        "resource_state": 3,
+        "id": "a1354978421"
+    },
+    "athlete_count": 1,
+    "start_latlng": [
+        50.79,
+        4.32
+    ],
+    "commute": false,
+    "photos": {
+        "primary": null,
+        "count": 0
+    },
+    "from_accepted_tag": false,
+    "average_heartrate": 132.8,
+    "embed_token": "8018c9e64575a3ea5f46dbd9175f4cca239d5814",
+    "kudos_count": 33,
+    "timezone": "(GMT+01:00) Europe/Brussels",
+    "comment_count": 0,
+    "start_date_local": "2018-01-13T14:06:58Z",
+    "average_temp": 2.0,
+    "has_kudoed": false,
+    "location_state": null,
+    "average_speed": 6.225,
+    "distance": 43037.5,
+    "laps": [
+        {
+            "total_elevation_gain": 446.0,
+            "elapsed_time": 7029,
+            "end_index": 6500,
+            "name": "Lap 1",
+            "athlete": {
+                "resource_state": 1,
+                "id": 1202065
+            },
+            "resource_state": 2,
+            "average_watts": 133.4,
+            "max_speed": 14.9,
+            "id": 4271077533,
+            "average_speed": 6.12,
+            "start_index": 0,
+            "device_watts": true,
+            "activity": {
+                "resource_state": 1,
+                "id": 1354978421
+            },
+            "start_date": "2018-01-13T13:06:58Z",
+            "max_heartrate": 168.0,
+            "moving_time": 7029,
+            "split": 1,
+            "lap_index": 1,
+            "average_heartrate": 132.8,
+            "start_date_local": "2018-01-13T14:06:58Z",
+            "average_cadence": 85.1,
+            "distance": 43037.5
+        }
+    ],
+    "pr_count": 1,
+    "elev_high": 59.6,
+    "total_elevation_gain": 446.0,
+    "calories": 1028.1,
+    "splits_standard": [
+        {
+            "elevation_difference": 6.6,
+            "pace_zone": 0,
+            "elapsed_time": 295,
+            "average_heartrate": 112.72101449275362,
+            "average_speed": 5.85,
+            "distance": 1614.5,
+            "moving_time": 276,
+            "split": 1
+        },
+        {
+            "elevation_difference": 24.0,
+            "pace_zone": 0,
+            "elapsed_time": 273,
+            "average_heartrate": 135.83882783882783,
+            "average_speed": 5.89,
+            "distance": 1607.7,
+            "moving_time": 273,
+            "split": 2
+        },
+        {
+            "elevation_difference": 47.0,
+            "pace_zone": 0,
+            "elapsed_time": 321,
+            "average_heartrate": 155.00623052959503,
+            "average_speed": 5.01,
+            "distance": 1609.6,
+            "moving_time": 321,
+            "split": 3
+        },
+        {
+            "elevation_difference": 17.8,
+            "pace_zone": 0,
+            "elapsed_time": 255,
+            "average_heartrate": 141.5686274509804,
+            "average_speed": 6.31,
+            "distance": 1609.2,
+            "moving_time": 255,
+            "split": 4
+        },
+        {
+            "elevation_difference": -22.4,
+            "pace_zone": 0,
+            "elapsed_time": 218,
+            "average_heartrate": 127.5,
+            "average_speed": 7.38,
+            "distance": 1608.9,
+            "moving_time": 218,
+            "split": 5
+        },
+        {
+            "elevation_difference": -22.4,
+            "pace_zone": 0,
+            "elapsed_time": 220,
+            "average_heartrate": 126.21363636363637,
+            "average_speed": 7.31,
+            "distance": 1607.3,
+            "moving_time": 220,
+            "split": 6
+        },
+        {
+            "elevation_difference": -6.8,
+            "pace_zone": 0,
+            "elapsed_time": 241,
+            "average_heartrate": 128.7214611872146,
+            "average_speed": 7.36,
+            "distance": 1611.3,
+            "moving_time": 219,
+            "split": 7
+        },
+        {
+            "elevation_difference": -3.4,
+            "pace_zone": 0,
+            "elapsed_time": 225,
+            "average_heartrate": 138.62666666666667,
+            "average_speed": 7.16,
+            "distance": 1612.0,
+            "moving_time": 225,
+            "split": 8
+        },
+        {
+            "elevation_difference": -18.8,
+            "pace_zone": 0,
+            "elapsed_time": 210,
+            "average_heartrate": 124.25714285714285,
+            "average_speed": 7.65,
+            "distance": 1605.7,
+            "moving_time": 210,
+            "split": 9
+        },
+        {
+            "elevation_difference": 64.0,
+            "pace_zone": 0,
+            "elapsed_time": 357,
+            "average_heartrate": 157.91596638655463,
+            "average_speed": 4.51,
+            "distance": 1609.6,
+            "moving_time": 357,
+            "split": 10
+        },
+        {
+            "elevation_difference": -21.8,
+            "pace_zone": 0,
+            "elapsed_time": 200,
+            "average_heartrate": 135.66,
+            "average_speed": 8.05,
+            "distance": 1609.0,
+            "moving_time": 200,
+            "split": 11
+        },
+        {
+            "elevation_difference": -2.4,
+            "pace_zone": 0,
+            "elapsed_time": 328,
+            "average_heartrate": 126.86805555555556,
+            "average_speed": 5.57,
+            "distance": 1609.5,
+            "moving_time": 289,
+            "split": 12
+        },
+        {
+            "elevation_difference": 26.8,
+            "pace_zone": 0,
+            "elapsed_time": 318,
+            "average_heartrate": 152.82704402515722,
+            "average_speed": 5.06,
+            "distance": 1610.0,
+            "moving_time": 318,
+            "split": 13
+        },
+        {
+            "elevation_difference": -54.4,
+            "pace_zone": 0,
+            "elapsed_time": 203,
+            "average_heartrate": 122.04926108374384,
+            "average_speed": 7.93,
+            "distance": 1608.8,
+            "moving_time": 203,
+            "split": 14
+        },
+        {
+            "elevation_difference": -0.6,
+            "pace_zone": 0,
+            "elapsed_time": 261,
+            "average_heartrate": 126.24521072796935,
+            "average_speed": 6.18,
+            "distance": 1612.8,
+            "moving_time": 261,
+            "split": 15
+        },
+        {
+            "elevation_difference": 30.2,
+            "pace_zone": 0,
+            "elapsed_time": 289,
+            "average_heartrate": 138.95847750865053,
+            "average_speed": 5.55,
+            "distance": 1604.8,
+            "moving_time": 289,
+            "split": 16
+        },
+        {
+            "elevation_difference": 11.4,
+            "pace_zone": 0,
+            "elapsed_time": 361,
+            "average_heartrate": 141.1634349030471,
+            "average_speed": 4.46,
+            "distance": 1609.2,
+            "moving_time": 361,
+            "split": 17
+        },
+        {
+            "elevation_difference": 23.4,
+            "pace_zone": 0,
+            "elapsed_time": 347,
+            "average_heartrate": 138.90825688073394,
+            "average_speed": 4.89,
+            "distance": 1608.7,
+            "moving_time": 329,
+            "split": 18
+        },
+        {
+            "elevation_difference": -48.0,
+            "pace_zone": 0,
+            "elapsed_time": 191,
+            "average_heartrate": 104.08241758241758,
+            "average_speed": 8.44,
+            "distance": 1612.5,
+            "moving_time": 191,
+            "split": 19
+        },
+        {
+            "elevation_difference": -37.4,
+            "pace_zone": 0,
+            "elapsed_time": 237,
+            "average_heartrate": 111.16279069767442,
+            "average_speed": 7.47,
+            "distance": 1606.7,
+            "moving_time": 215,
+            "split": 20
+        },
+        {
+            "elevation_difference": -6.0,
+            "pace_zone": 0,
+            "elapsed_time": 227,
+            "average_heartrate": 120.80176211453744,
+            "average_speed": 7.1,
+            "distance": 1611.6,
+            "moving_time": 227,
+            "split": 21
+        },
+        {
+            "elevation_difference": -0.6,
+            "pace_zone": 0,
+            "elapsed_time": 232,
+            "average_heartrate": 131.60173160173161,
+            "average_speed": 6.93,
+            "distance": 1608.4,
+            "moving_time": 232,
+            "split": 22
+        },
+        {
+            "elevation_difference": -4.8,
+            "pace_zone": 0,
+            "elapsed_time": 231,
+            "average_heartrate": 133.46753246753246,
+            "average_speed": 6.98,
+            "distance": 1611.5,
+            "moving_time": 231,
+            "split": 23
+        },
+        {
+            "elevation_difference": 0.6,
+            "pace_zone": 0,
+            "elapsed_time": 221,
+            "average_heartrate": 132.29864253393666,
+            "average_speed": 7.29,
+            "distance": 1610.5,
+            "moving_time": 221,
+            "split": 24
+        },
+        {
+            "elevation_difference": -2.6,
+            "pace_zone": 0,
+            "elapsed_time": 230,
+            "average_heartrate": 134.34782608695653,
+            "average_speed": 7.0,
+            "distance": 1611.1,
+            "moving_time": 230,
+            "split": 25
+        },
+        {
+            "elevation_difference": 0.6,
+            "pace_zone": 0,
+            "elapsed_time": 309,
+            "average_heartrate": 124.89902280130293,
+            "average_speed": 5.2,
+            "distance": 1607.0,
+            "moving_time": 309,
+            "split": 26
+        },
+        {
+            "elevation_difference": 6.2,
+            "pace_zone": 0,
+            "elapsed_time": 234,
+            "average_heartrate": 121.43347639484979,
+            "average_speed": 5.08,
+            "distance": 1189.6,
+            "moving_time": 234,
+            "split": 27
+        }
+    ],
+    "upload_id": 1463771659,
+    "elapsed_time": 7034,
+    "photo_count": 0,
+    "name": "Afternoon Ride",
+    "resource_state": 3,
+    "total_photo_count": 0,
+    "moving_time": 6914,
+    "id": 1354978421,
+    "start_latitude": 50.79,
+    "description": null,
+    "private": false,
+    "device_watts": true,
+    "utc_offset": 3600.0,
+    "type": "Ride",
+    "device_name": "Garmin Edge 520",
+    "start_date": "2018-01-13T13:06:58Z",
+    "flagged": false,
+    "location_city": null,
+    "location_country": "Belgium",
+    "max_heartrate": 168.0,
+    "max_speed": 14.9,
+    "splits_metric": [
+        {
+            "elevation_difference": 5.2,
+            "pace_zone": 0,
+            "elapsed_time": 196,
+            "average_heartrate": 111.24293785310735,
+            "average_speed": 5.67,
+            "distance": 1004.2,
+            "moving_time": 177,
+            "split": 1
+        },
+        {
+            "elevation_difference": 7.0,
+            "pace_zone": 0,
+            "elapsed_time": 171,
+            "average_heartrate": 118.64912280701755,
+            "average_speed": 5.86,
+            "distance": 1001.4,
+            "moving_time": 171,
+            "split": 2
+        },
+        {
+            "elevation_difference": 9.0,
+            "pace_zone": 0,
+            "elapsed_time": 158,
+            "average_heartrate": 139.9240506329114,
+            "average_speed": 6.31,
+            "distance": 997.2,
+            "moving_time": 158,
+            "split": 3
+        },
+        {
+            "elevation_difference": 52.6,
+            "pace_zone": 0,
+            "elapsed_time": 238,
+            "average_heartrate": 156.26050420168067,
+            "average_speed": 4.21,
+            "distance": 1002.2,
+            "moving_time": 238,
+            "split": 4
+        },
+        {
+            "elevation_difference": 3.8,
+            "pace_zone": 0,
+            "elapsed_time": 151,
+            "average_heartrate": 145.7086092715232,
+            "average_speed": 6.63,
+            "distance": 1001.6,
+            "moving_time": 151,
+            "split": 5
+        },
+        {
+            "elevation_difference": 2.0,
+            "pace_zone": 0,
+            "elapsed_time": 145,
+            "average_heartrate": 138.17241379310346,
+            "average_speed": 6.85,
+            "distance": 993.9,
+            "moving_time": 145,
+            "split": 6
+        },
+        {
+            "elevation_difference": 19.0,
+            "pace_zone": 0,
+            "elapsed_time": 180,
+            "average_heartrate": 147.76666666666668,
+            "average_speed": 5.55,
+            "distance": 999.6,
+            "moving_time": 180,
+            "split": 7
+        },
+        {
+            "elevation_difference": -25.4,
+            "pace_zone": 0,
+            "elapsed_time": 117,
+            "average_heartrate": 112.85470085470085,
+            "average_speed": 8.59,
+            "distance": 1004.9,
+            "moving_time": 117,
+            "split": 8
+        },
+        {
+            "elevation_difference": -21.0,
+            "pace_zone": 0,
+            "elapsed_time": 129,
+            "average_heartrate": 121.72093023255815,
+            "average_speed": 7.75,
+            "distance": 999.4,
+            "moving_time": 129,
+            "split": 9
+        },
+        {
+            "elevation_difference": -8.6,
+            "pace_zone": 0,
+            "elapsed_time": 135,
+            "average_heartrate": 126.56296296296296,
+            "average_speed": 7.44,
+            "distance": 1004.1,
+            "moving_time": 135,
+            "split": 10
+        },
+        {
+            "elevation_difference": 0.4,
+            "pace_zone": 0,
+            "elapsed_time": 166,
+            "average_heartrate": 127.4375,
+            "average_speed": 6.89,
+            "distance": 992.6,
+            "moving_time": 144,
+            "split": 11
+        },
+        {
+            "elevation_difference": -3.6,
+            "pace_zone": 0,
+            "elapsed_time": 138,
+            "average_heartrate": 141.2173913043478,
+            "average_speed": 7.26,
+            "distance": 1001.2,
+            "moving_time": 138,
+            "split": 12
+        },
+        {
+            "elevation_difference": -7.8,
+            "pace_zone": 0,
+            "elapsed_time": 136,
+            "average_heartrate": 138.0,
+            "average_speed": 7.38,
+            "distance": 1004.1,
+            "moving_time": 136,
+            "split": 13
+        },
+        {
+            "elevation_difference": -13.6,
+            "pace_zone": 0,
+            "elapsed_time": 120,
+            "average_heartrate": 122.13333333333334,
+            "average_speed": 8.29,
+            "distance": 994.8,
+            "moving_time": 120,
+            "split": 14
+        },
+        {
+            "elevation_difference": 22.6,
+            "pace_zone": 0,
+            "elapsed_time": 187,
+            "average_heartrate": 143.33689839572193,
+            "average_speed": 5.36,
+            "distance": 1001.4,
+            "moving_time": 187,
+            "split": 15
+        },
+        {
+            "elevation_difference": 43.6,
+            "pace_zone": 0,
+            "elapsed_time": 235,
+            "average_heartrate": 159.82553191489362,
+            "average_speed": 4.27,
+            "distance": 1003.5,
+            "moving_time": 235,
+            "split": 16
+        },
+        {
+            "elevation_difference": 4.6,
+            "pace_zone": 0,
+            "elapsed_time": 144,
+            "average_heartrate": 144.55555555555554,
+            "average_speed": 6.92,
+            "distance": 996.2,
+            "moving_time": 144,
+            "split": 17
+        },
+        {
+            "elevation_difference": -28.2,
+            "pace_zone": 0,
+            "elapsed_time": 121,
+            "average_heartrate": 121.36363636363636,
+            "average_speed": 8.26,
+            "distance": 999.3,
+            "moving_time": 121,
+            "split": 18
+        },
+        {
+            "elevation_difference": -17.0,
+            "pace_zone": 0,
+            "elapsed_time": 195,
+            "average_heartrate": 116.27096774193548,
+            "average_speed": 6.42,
+            "distance": 1002.0,
+            "moving_time": 156,
+            "split": 19
+        },
+        {
+            "elevation_difference": 54.4,
+            "pace_zone": 0,
+            "elapsed_time": 264,
+            "average_heartrate": 158.65530303030303,
+            "average_speed": 3.78,
+            "distance": 997.8,
+            "moving_time": 264,
+            "split": 20
+        },
+        {
+            "elevation_difference": -8.8,
+            "pace_zone": 0,
+            "elapsed_time": 149,
+            "average_heartrate": 140.30872483221478,
+            "average_speed": 6.72,
+            "distance": 1001.6,
+            "moving_time": 149,
+            "split": 21
+        },
+        {
+            "elevation_difference": -42.0,
+            "pace_zone": 0,
+            "elapsed_time": 117,
+            "average_heartrate": 130.85470085470087,
+            "average_speed": 8.54,
+            "distance": 999.5,
+            "moving_time": 117,
+            "split": 22
+        },
+        {
+            "elevation_difference": -15.0,
+            "pace_zone": 0,
+            "elapsed_time": 159,
+            "average_heartrate": 116.90566037735849,
+            "average_speed": 6.31,
+            "distance": 1003.3,
+            "moving_time": 159,
+            "split": 23
+        },
+        {
+            "elevation_difference": 1.4,
+            "pace_zone": 0,
+            "elapsed_time": 157,
+            "average_heartrate": 124.03184713375796,
+            "average_speed": 6.34,
+            "distance": 994.9,
+            "moving_time": 157,
+            "split": 24
+        },
+        {
+            "elevation_difference": -1.0,
+            "pace_zone": 0,
+            "elapsed_time": 147,
+            "average_heartrate": 122.66666666666667,
+            "average_speed": 6.82,
+            "distance": 1002.7,
+            "moving_time": 147,
+            "split": 25
+        },
+        {
+            "elevation_difference": 37.8,
+            "pace_zone": 0,
+            "elapsed_time": 211,
+            "average_heartrate": 153.260663507109,
+            "average_speed": 4.73,
+            "distance": 998.7,
+            "moving_time": 211,
+            "split": 26
+        },
+        {
+            "elevation_difference": -11.2,
+            "pace_zone": 0,
+            "elapsed_time": 230,
+            "average_heartrate": 137.75652173913045,
+            "average_speed": 4.34,
+            "distance": 998.7,
+            "moving_time": 230,
+            "split": 27
+        },
+        {
+            "elevation_difference": 29.2,
+            "pace_zone": 0,
+            "elapsed_time": 258,
+            "average_heartrate": 143.98739495798318,
+            "average_speed": 4.17,
+            "distance": 1000.5,
+            "moving_time": 240,
+            "split": 28
+        },
+        {
+            "elevation_difference": 7.6,
+            "pace_zone": 0,
+            "elapsed_time": 172,
+            "average_heartrate": 133.11046511627907,
+            "average_speed": 5.82,
+            "distance": 1001.5,
+            "moving_time": 172,
+            "split": 29
+        },
+        {
+            "elevation_difference": -45.6,
+            "pace_zone": 0,
+            "elapsed_time": 95,
+            "average_heartrate": 100.89473684210526,
+            "average_speed": 10.53,
+            "distance": 999.9,
+            "moving_time": 95,
+            "split": 30
+        },
+        {
+            "elevation_difference": -13.6,
+            "pace_zone": 0,
+            "elapsed_time": 144,
+            "average_heartrate": 111.2,
+            "average_speed": 7.01,
+            "distance": 1008.9,
+            "moving_time": 144,
+            "split": 31
+        },
+        {
+            "elevation_difference": -22.4,
+            "pace_zone": 0,
+            "elapsed_time": 157,
+            "average_heartrate": 109.6,
+            "average_speed": 7.32,
+            "distance": 988.7,
+            "moving_time": 135,
+            "split": 32
+        },
+        {
+            "elevation_difference": -5.4,
+            "pace_zone": 0,
+            "elapsed_time": 143,
+            "average_heartrate": 117.53146853146853,
+            "average_speed": 7.04,
+            "distance": 1006.6,
+            "moving_time": 143,
+            "split": 33
+        },
+        {
+            "elevation_difference": -3.8,
+            "pace_zone": 0,
+            "elapsed_time": 140,
+            "average_heartrate": 123.07857142857142,
+            "average_speed": 7.11,
+            "distance": 995.5,
+            "moving_time": 140,
+            "split": 34
+        },
+        {
+            "elevation_difference": 0.8,
+            "pace_zone": 0,
+            "elapsed_time": 149,
+            "average_heartrate": 130.93243243243242,
+            "average_speed": 6.72,
+            "distance": 1001.6,
+            "moving_time": 149,
+            "split": 35
+        },
+        {
+            "elevation_difference": -0.8,
+            "pace_zone": 0,
+            "elapsed_time": 136,
+            "average_heartrate": 136.9264705882353,
+            "average_speed": 7.34,
+            "distance": 998.1,
+            "moving_time": 136,
+            "split": 36
+        },
+        {
+            "elevation_difference": -4.8,
+            "pace_zone": 0,
+            "elapsed_time": 148,
+            "average_heartrate": 130.99324324324326,
+            "average_speed": 6.78,
+            "distance": 1003.3,
+            "moving_time": 148,
+            "split": 37
+        },
+        {
+            "elevation_difference": 0.6,
+            "pace_zone": 0,
+            "elapsed_time": 137,
+            "average_heartrate": 131.96350364963504,
+            "average_speed": 7.28,
+            "distance": 996.7,
+            "moving_time": 137,
+            "split": 38
+        },
+        {
+            "elevation_difference": 0.0,
+            "pace_zone": 0,
+            "elapsed_time": 137,
+            "average_heartrate": 134.86131386861314,
+            "average_speed": 7.29,
+            "distance": 999.4,
+            "moving_time": 137,
+            "split": 39
+        },
+        {
+            "elevation_difference": -3.8,
+            "pace_zone": 0,
+            "elapsed_time": 140,
+            "average_heartrate": 135.09285714285716,
+            "average_speed": 7.18,
+            "distance": 1005.1,
+            "moving_time": 140,
+            "split": 40
+        },
+        {
+            "elevation_difference": 2.2,
+            "pace_zone": 0,
+            "elapsed_time": 178,
+            "average_heartrate": 129.7921348314607,
+            "average_speed": 5.59,
+            "distance": 995.1,
+            "moving_time": 178,
+            "split": 41
+        },
+        {
+            "elevation_difference": 0.0,
+            "pace_zone": 0,
+            "elapsed_time": 195,
+            "average_heartrate": 120.4041450777202,
+            "average_speed": 5.15,
+            "distance": 1003.5,
+            "moving_time": 195,
+            "split": 42
+        },
+        {
+            "elevation_difference": 4.0,
+            "pace_zone": 0,
+            "elapsed_time": 194,
+            "average_heartrate": 121.24226804123711,
+            "average_speed": 5.14,
+            "distance": 997.3,
+            "moving_time": 194,
+            "split": 43
+        },
+        {
+            "elevation_difference": 1.8,
+            "pace_zone": 0,
+            "elapsed_time": 15,
+            "average_heartrate": 120.92857142857143,
+            "average_speed": 2.33,
+            "distance": 35.0,
+            "moving_time": 15,
+            "split": 44
+        }
+    ],
+    "trainer": false,
+    "achievement_count": 6,
+    "has_heartrate": true,
+    "manual": false,
+    "gear_id": null,
+    "workout_type": null,
+    "highlighted_kudosers": [
+        {
+            "destination_url": "strava://athletes/2997254",
+            "display_name": "Rostyslav K.",
+            "show_name": true,
+            "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/2997254/958133/1/medium.jpg"
+        },
+        {
+            "destination_url": "strava://athletes/6872286",
+            "display_name": "Maarten T.",
+            "show_name": true,
+            "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/6872286/3355702/5/medium.jpg"
+        },
+        {
+            "destination_url": "strava://athletes/9499305",
+            "display_name": "Karpinsk 5.",
+            "show_name": true,
+            "avatar_url": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/9499305/3194071/1/medium.jpg"
+        }
+    ],
+    "start_longitude": 4.32
+}
