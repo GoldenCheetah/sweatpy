@@ -95,8 +95,6 @@ def time_in_zones(arg, **kwargs):
     return rv
 
 
-
-
 def normalized_power(arg, mask=None, value=0.0, **kwargs):
     """Normalized power
 
