@@ -3,3 +3,4 @@ isort==4.2.15
 lmfit==0.9.7
 pandas==0.20.3
 pytest==3.2.5
+requests==2.18.4
