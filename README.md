@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/GoldenCheetah/sweatpy.svg?branch=master)](https://travis-ci.org/GoldenCheetah/sweatpy)
+
 # Sweatpy
 
 ## Introduction
