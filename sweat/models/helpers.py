@@ -1,4 +1,4 @@
-from .exceptions import MissingDataException
+from sweat.models.exceptions import MissingDataException
 
 
 def requires(columns=None, athlete=None):

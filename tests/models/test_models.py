@@ -1,57 +1,17 @@
-import unittest
-
 import numpy as np
 import pandas as pd
 import pytest
-import os
-
-from sweat import exceptions, models
-
-
-@pytest.fixture
-def wdf():
-    data = {
-        'time': range(10),
-        'heartrate': range(10),
-        'power': range(10)}
-    athlete = models.Athlete(name='Chris', weight=80, ftp=300)
-    wdf = models.WorkoutDataFrame(data)
-    wdf = wdf.set_index('time')
-    wdf.athlete = athlete
-    return wdf
-
-
-@pytest.fixture
-def wdf_small():
-
-    athlete = models.Athlete(cp=200, w_prime=20000)
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    wdf = models.WorkoutDataFrame(
-        pd.read_csv(os.path.join(current_dir, 'example_files/workout_1_short.csv'))
-    )
-    wdf = wdf.set_index('time')
-    wdf.athlete = athlete
-    return wdf
-
-
-@pytest.fixture
-def wdf_big():
-    athlete = models.Athlete(cp=200, w_prime=20000, weight=80)
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    wdf = models.WorkoutDataFrame(
-        pd.read_csv(os.path.join(current_dir, 'example_files/workout_1.csv'))
-    )
-    wdf = wdf.set_index('time')
-    wdf.athlete = athlete
-    return wdf
+from sweat.models import dataframes
+from sweat.models import exceptions
 
 
 class TestAthlete:
+
     def setup(self):
-        self.athlete = models.Athlete(name='Chris', ftp=300)
+        self.athlete = dataframes.Athlete(name='Chris', ftp=300)
 
     def test_empty_init(self):
-        athlete = models.Athlete()
+        athlete = dataframes.Athlete()
         assert hasattr(athlete, 'name')
         assert hasattr(athlete, 'sex')
         assert hasattr(athlete, 'weight')
@@ -66,11 +26,12 @@ class TestAthlete:
 
 
 class TestWorkoutDataFrame:
+
     def test_empty_init(self):
-        wdf = models.WorkoutDataFrame()
+        wdf = dataframes.WorkoutDataFrame()
 
         assert isinstance(wdf, pd.DataFrame)
-        assert isinstance(wdf, models.WorkoutDataFrame)
+        assert isinstance(wdf, dataframes.WorkoutDataFrame)
 
     def test_init(self, wdf):
         assert 'power' in list(wdf)
@@ -81,7 +42,7 @@ class TestWorkoutDataFrame:
     def test_slicing(self, wdf):
         new_wdf = wdf[1:5]
 
-        assert isinstance(new_wdf, models.WorkoutDataFrame)
+        assert isinstance(new_wdf, dataframes.WorkoutDataFrame)
 
     def test_metadata_propagation(self, wdf):
         assert wdf[1:5].athlete.name == 'Chris'
@@ -102,7 +63,7 @@ class TestWorkoutDataFrame:
             'time': range(0, 20, 2),
             'heartrate': range(10),
             'power': range(10)}
-        wdf = models.WorkoutDataFrame(data)
+        wdf = dataframes.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
 
         with pytest.raises(exceptions.WorkoutDataFrameValidationException) as e:
@@ -114,7 +75,7 @@ class TestWorkoutDataFrame:
             'time': range(10),
             'heartrate': np.arange(0, 15, 1.5),
             'power': range(10)}
-        wdf = models.WorkoutDataFrame(data)
+        wdf = dataframes.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
 
         with pytest.raises(exceptions.WorkoutDataFrameValidationException) as e:
@@ -126,7 +87,7 @@ class TestWorkoutDataFrame:
             'time': range(10),
             'heartrate': range(-10, 0),
             'power': range(10)}
-        wdf = models.WorkoutDataFrame(data)
+        wdf = dataframes.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
 
         with pytest.raises(exceptions.WorkoutDataFrameValidationException) as e:
@@ -138,7 +99,7 @@ class TestWorkoutDataFrame:
             'time': range(10),
             'heartrate': range(10),
             'power': range(10000, 10010)}
-        wdf = models.WorkoutDataFrame(data)
+        wdf = dataframes.WorkoutDataFrame(data)
         wdf = wdf.set_index('time')
 
         with pytest.raises(exceptions.WorkoutDataFrameValidationException) as e:

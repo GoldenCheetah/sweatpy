@@ -1,8 +1,8 @@
 from sweat.algorithms.hrm import heartrate_models
 from sweat.algorithms.pdm import w_prime_balance
-from .algorithms.metrics import core, power
+from sweat.algorithms.metrics import core, power
 from .base import BaseWorkoutDataFrame
-from .helpers import requires
+from sweat.models.helpers import requires
 
 
 class WorkoutDataFrame(BaseWorkoutDataFrame):
