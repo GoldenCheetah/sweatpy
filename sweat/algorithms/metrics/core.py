@@ -76,3 +76,51 @@ def rolling_mean(arg, window=10, mask=None, value=0.0, **kwargs):
 
     return y
 
+
+def median_filter(arg, window=31, threshold=1, value=None, **kwargs):
+    """Outlier replacement using median filter
+
+    Detect outliers using median filter and replace with rolling median or specified value
+
+    Parameters
+    ----------
+    arg : array-like
+    window : int, optional
+        Size of window (including the sample; default=31 is equal to 15 on either side of value)
+    threshold : number, optional
+        default=3 and corresponds to 2xSigma
+    value : float, optional
+        Value to be used for replacement, default=None, which means replacement by rolling median value
+
+    Returns
+    -------
+    y: type of input argument
+
+    In case the arg is an ndarray all operations will be performed on the original array.
+    To preserve original array pass a copy to the function
+    """
+    y = pd.Series(arg)
+
+    rolling_median = y.rolling(window, min_periods=1).median()
+
+    difference = np.abs(y - rolling_median)
+
+    median_abs_deviation = difference.rolling(window, min_periods=1).median()
+
+    outlier_idx = difference > 1.4826 * threshold * median_abs_deviation
+    """ The factor 1.4826 makes the MAD scale estimate
+        an unbiased estimate of the standard deviation for Gaussian data.
+    """
+
+    if value:
+        y[outlier_idx] = value
+    else:
+        y[outlier_idx] = rolling_median[outlier_idx]
+
+    y = y.as_matrix()
+
+    y = cast_array_to_original_type(y, type(arg))
+
+    return y
+
+

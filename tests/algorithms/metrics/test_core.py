@@ -1,5 +1,6 @@
 import numpy as np
-from sweat.algorithms.metrics.core import (mask_fill, rolling_mean)
+from sweat.algorithms.metrics.core import (mask_fill, rolling_mean,
+                                           median_filter)
 
 
 class TestMaskFill():
@@ -90,3 +91,42 @@ class TestRollingMean():
 
         assert type(rv) == list
         assert rv == test_stream['watts']
+
+
+class TestMedianFilter():
+
+    def test_median_filter(self):
+        stream = np.ones(60)
+        stream[-1] = 2
+
+        rv = median_filter(stream)
+        assert type(rv) == np.ndarray
+        assert (rv == np.ones(60)).all()
+
+
+    def test_median_filter_list(self):
+        stream = np.ones(60)
+        stream[-1] = 2
+        stream = stream.tolist()
+
+        expected = np.ones(60)
+        expected = expected.tolist()
+
+        rv = median_filter(stream)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_median_filter_with_replacement(self):
+        stream = np.ones(60)
+        stream[-1] = 2
+
+        expected = np.ones(60)
+        expected[-1] = 10
+
+        rv = median_filter(stream, value=10)
+
+        assert type(rv) == np.ndarray
+        assert (rv == expected).all()
+
