@@ -2,7 +2,8 @@ import numpy as np
 from unittest import mock
 from sweat.algorithms.metrics.core import (mask_fill, rolling_mean,
                                            median_filter, compute_zones,
-                                           best_interval, time_in_zones)
+                                           best_interval, time_in_zones,
+                                           weighted_average_power)
 
 
 class TestMaskFill():
@@ -229,4 +230,21 @@ class TestTimeInZones():
 
         assert type(rv) == list
         assert rv == expected
+
+
+class TestWeightedAveragePower():
+
+    def test_wap(self):
+        stream = np.ones(30)
+        moving = np.ones(30, dtype=bool)
+
+        assert weighted_average_power(stream, moving) == 1
+
+
+    def test_normalized_power_xpower(self):
+        stream = np.ones(30)
+        moving = np.ones(30, dtype=bool)
+
+        assert weighted_average_power(stream, moving, type='xPower') == 1
+
 

@@ -230,3 +230,33 @@ def time_in_zones(arg, **kwargs):
     return rv
 
 
+def weighted_average_power(arg, mask=None, value=0.0, **kwargs):
+    """Weighted average power
+
+    Parameters
+    ----------
+    arg : array-like
+        Power stream
+    mask: array-like of bool, optional
+        default=None, which means no masking
+    value : number, optional
+        Value to use for replacement, default=0.0
+    type : {"WAP", "xPower"}
+        Determines calculation method to use, default='WAP'
+
+    Returns
+    -------
+    number
+    """
+
+    if kwargs.get('type', 'WAP') == 'xPower':
+        _rolling_mean = rolling_mean(arg, window=25, mask=mask, value=value, type='emwa')
+    else:
+        _rolling_mean = rolling_mean(arg, window=30, mask=mask, value=value)
+
+    if type(_rolling_mean) == list:
+        _rolling_mean = np.asarray(_rolling_mean, dtype=np.float)
+
+    rv = np.mean(np.power(_rolling_mean, 4)) ** (1/4)
+
+    return rv
