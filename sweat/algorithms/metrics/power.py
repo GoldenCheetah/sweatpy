@@ -45,3 +45,27 @@ def relative_intensity(wap, threshold_power):
     rv = wap / threshold_power
 
     return rv
+
+
+def stress_score(wap, threshold_power, duration):
+    """Stress Score
+
+    Parameters
+    ----------
+    wap : number
+        WAP or xPower
+    threshold_power : number
+        FTP or CP
+    duration : int
+        Duration in seconds
+
+    Returns
+    -------
+    ss
+    """
+
+    ss = (duration/3600) * (wap/threshold_power)**2 * 100
+
+    return ss
+
+
