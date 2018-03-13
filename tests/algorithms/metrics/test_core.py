@@ -1,10 +1,12 @@
+import pytest
 import numpy as np
 import pandas as pd
 from unittest import mock
 from sweat.algorithms.metrics.core import (mask_fill, rolling_mean,
                                            median_filter, compute_zones,
                                            best_interval, time_in_zones,
-                                           weighted_average_power, mean_max)
+                                           weighted_average_power, mean_max,
+                                           multiple_best_intervals, DataPoint)
 
 
 class TestMaskFill():
@@ -289,5 +291,36 @@ class TestMeanMax():
 
         assert type(rv) == pd.Series
         assert (rv == expected).all()
+
+
+class TestMultipleBestIntervals():
+
+    def test_mean_max_bests(self, power):
+        bests = multiple_best_intervals(power, 3, 3)
+
+        assert len(bests) == 3
+        assert isinstance(bests[0], DataPoint)
+        assert bests[0].index == 99
+        assert bests[0].value == 98.0
+        assert bests[2].index == 91
+        assert bests[2].value == 90.0
+
+
+class TestDataPoint:
+    def test_init(self):
+        p = DataPoint(1, 2)
+
+        assert p == (1, 2)
+        assert p.index == 1
+        assert p.value == 2
+
+    def test_init_missing_values(self):
+        with pytest.raises(TypeError):
+            DataPoint()
+
+    def test_init_too_many_values(self):
+        with pytest.raises(TypeError):
+            DataPoint(1, 2, 3)
+
 
 

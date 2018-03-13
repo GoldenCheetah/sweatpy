@@ -1,4 +1,4 @@
-from .algorithms import heartrate_models, main, w_prime_balance
+from .algorithms import heartrate_models, w_prime_balance
 from .algorithms.metrics import core, power
 from .base import BaseWorkoutDataFrame
 from .helpers import requires
@@ -25,8 +25,8 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
             self.athlete.w_prime, algorithm, *args, **kwargs)
 
     @requires(columns=['power'])
-    def compute_mean_max_bests(self, duration, amount):
-        return main.mean_max_bests(self.power, duration, amount)
+    def compute_mean_max_bests(self, duration, number):
+        return core.multiple_best_intervals(self.power, duration, number)
 
     @requires(columns=['power', 'heartrate'])
     def compute_heartrate_model(self):

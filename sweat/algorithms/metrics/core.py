@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from collections import namedtuple
 from sweat.utils import cast_array_to_original_type
 
 
@@ -297,3 +298,40 @@ def mean_max(arg, mask=None, value=0.0, **kwargs):
     y = cast_array_to_original_type(y, type(arg))
 
     return y
+
+
+DataPoint = namedtuple('DataPoint', ['index', 'value'])
+
+
+def multiple_best_intervals(power, duration, number):
+    """Compute multiple best intervals
+
+    Parameters
+    ----------
+    power
+    duration
+    number
+
+    Returns
+    -------
+
+    """
+    moving_average = power.rolling(duration).mean()
+    length = len(moving_average)
+    mean_max_bests = []
+
+    for i in range(number):
+        if moving_average.isnull().all():
+            mean_max_bests.append(DataPoint(np.nan, np.nan))
+            continue
+
+        max_value = moving_average.max()
+        max_index = moving_average.idxmax()
+        mean_max_bests.append(DataPoint(max_index, max_value))
+
+        # Set moving averages that overlap with last found max to np.nan
+        overlap_min_index = max(0, max_index-duration)
+        overlap_max_index = min(length, max_index+duration)
+        moving_average.loc[overlap_min_index:overlap_max_index] = np.nan
+
+    return pd.Series(mean_max_bests)
