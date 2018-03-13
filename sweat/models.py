@@ -1,4 +1,5 @@
 from .algorithms import heartrate_models, main, w_prime_balance
+from .algorithms.metrics import core, power
 from .base import BaseWorkoutDataFrame
 from .helpers import requires
 
@@ -8,15 +9,15 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
     @requires(columns=['power'])
     def compute_mean_max_power(self):
-        return main.mean_max_power(self.power)
+        return core.mean_max(self.power)
 
     @requires(columns=['power'])
     def compute_weighted_average_power(self):
-        return main.weighted_average_power(self.power)
+        return core.weighted_average_power(self.power, type='WAP')
 
     @requires(columns=['power'], athlete=['weight'])
     def compute_power_per_kg(self):
-        return main.power_per_kg(self.power, self.athlete.weight)
+        return power.wpk(self.power, self.athlete.weight)
 
     @requires(columns=['power'], athlete=['cp', 'w_prime'])
     def compute_w_prime_balance(self, algorithm=None, *args, **kwargs):

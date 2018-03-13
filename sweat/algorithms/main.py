@@ -10,13 +10,13 @@ from . import heartrate_models
 from . import w_prime_balance
 
 
-def mean_max_power(power):
-    mmp = []
-
-    for i in range(len(power)):
-        mmp.append(power.rolling(i+1).mean().max())
-
-    return pd.Series(mmp)
+# def mean_max_power(power):
+#     mmp = []
+#
+#     for i in range(len(power)):
+#         mmp.append(power.rolling(i+1).mean().max())
+#
+#     return pd.Series(mmp)
 
 
 DataPoint = namedtuple('DataPoint', ['index', 'value'])
@@ -44,11 +44,11 @@ def mean_max_bests(power, duration, amount):
     return pd.Series(mean_max_bests)
 
 
-def weighted_average_power(power):
-    wap = power.rolling(30).mean().pow(4).mean().__pow__(1/4)
-    return wap
+# def weighted_average_power(power):
+#     wap = power.rolling(30).mean().pow(4).mean().__pow__(1/4)
+#     return wap
 
 
-def power_per_kg(power, weight):
-    ppkg = power / weight
-    return ppkg
+# def power_per_kg(power, weight):
+#     ppkg = power / weight
+#     return ppkg
