@@ -181,3 +181,30 @@ def compute_zones(arg, **kwargs):
     return y
 
 
+def best_interval(arg, window, mask=None, value=0.0, **kwargs):
+    """Compute best interval of the stream
+
+    Masking with replacement is controlled by keyword arguments
+
+    Parameters
+    ----------
+    arg: array-like
+    window : int
+        Duration of the interval in seconds
+    mask : array-like of bool, optional
+        default=None, which means no masking
+    value : number, optional
+        Value to use for replacement, default=0.0
+
+    Returns
+    -------
+    float
+    """
+
+    y = rolling_mean(arg, window=window, mask=mask, value=value, **kwargs)
+
+    rv = np.max(y)
+
+    return rv
+
+

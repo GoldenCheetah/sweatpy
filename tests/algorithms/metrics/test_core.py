@@ -1,6 +1,8 @@
 import numpy as np
+from unittest import mock
 from sweat.algorithms.metrics.core import (mask_fill, rolling_mean,
-                                           median_filter, compute_zones)
+                                           median_filter, compute_zones,
+                                           best_interval)
 
 
 class TestMaskFill():
@@ -203,3 +205,13 @@ class TestComputeZones():
 
         assert type(rv) == np.ndarray
         assert (rv == expected).all()
+
+
+class TestBestInterval():
+
+    @mock.patch('sweat.algorithms.metrics.core.rolling_mean')
+    def test_best_interval(self, test_rolling_mean):
+        stream = [1, 1, 1, 1, 1]
+        test_rolling_mean.return_value = stream
+
+        assert best_interval(stream, 5) == 1
