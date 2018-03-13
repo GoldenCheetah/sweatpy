@@ -1,4 +1,5 @@
-from .algorithms import heartrate_models, w_prime_balance
+from sweat.algorithms.hrm import heartrate_models
+from sweat.algorithms.pdm import w_prime_balance
 from .algorithms.metrics import core, power
 from .base import BaseWorkoutDataFrame
 from .helpers import requires
@@ -22,7 +23,7 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
     @requires(columns=['power'], athlete=['cp', 'w_prime'])
     def compute_w_prime_balance(self, algorithm=None, *args, **kwargs):
         return w_prime_balance.w_prime_balance(self.power, self.athlete.cp,
-            self.athlete.w_prime, algorithm, *args, **kwargs)
+                                               self.athlete.w_prime, algorithm, *args, **kwargs)
 
     @requires(columns=['power'])
     def compute_mean_max_bests(self, duration, number):
