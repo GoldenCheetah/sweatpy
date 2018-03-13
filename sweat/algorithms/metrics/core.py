@@ -208,3 +208,25 @@ def best_interval(arg, window, mask=None, value=0.0, **kwargs):
     return rv
 
 
+def time_in_zones(arg, **kwargs):
+    """Time in zones
+
+    Calculate time [sec] spent in each zone
+
+    Parameters
+    ----------
+    arg : array-like, power or heartrate
+    kwargs : see zones
+
+    Returns
+    -------
+    array-like, the same type as arg
+    """
+    type_arg = type(arg)
+    z = pd.Series(compute_zones(arg, **kwargs))
+    tiz = z.groupby(z).count()
+    rv = cast_array_to_original_type(tiz, type_arg)
+
+    return rv
+
+

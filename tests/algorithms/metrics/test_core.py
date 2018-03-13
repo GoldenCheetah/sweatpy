@@ -2,7 +2,7 @@ import numpy as np
 from unittest import mock
 from sweat.algorithms.metrics.core import (mask_fill, rolling_mean,
                                            median_filter, compute_zones,
-                                           best_interval)
+                                           best_interval, time_in_zones)
 
 
 class TestMaskFill():
@@ -215,3 +215,18 @@ class TestBestInterval():
         test_rolling_mean.return_value = stream
 
         assert best_interval(stream, 5) == 1
+
+
+class TestTimeInZones():
+
+    @mock.patch('sweat.algorithms.metrics.core.compute_zones')
+    def test_time_in_zones(self, zones):
+        power = [0.55, 0.75, 0.9, 1.05, 1.2, 1.5, 10.0]
+        zones.return_value = [1, 2, 3, 4, 5, 6, 7]
+
+        rv = time_in_zones(power, ftp=1.0)
+        expected = [1, 1, 1, 1, 1, 1, 1]
+
+        assert type(rv) == list
+        assert rv == expected
+
