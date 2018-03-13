@@ -303,20 +303,21 @@ def mean_max(arg, mask=None, value=0.0, **kwargs):
 DataPoint = namedtuple('DataPoint', ['index', 'value'])
 
 
-def multiple_best_intervals(power, duration, number):
+def multiple_best_intervals(arg, duration, number):
     """Compute multiple best intervals
 
+    TODO: This function should return a list of {'start_index': v, 'stop_index': v, 'index': v, 'value': v}
     Parameters
     ----------
-    power
-    duration
-    number
+    arg : pd.Stream
+    duration : number
+    number : int
 
     Returns
     -------
-
+    pd.Series
     """
-    moving_average = power.rolling(duration).mean()
+    moving_average = arg.rolling(duration).mean()
     length = len(moving_average)
     mean_max_bests = []
 
