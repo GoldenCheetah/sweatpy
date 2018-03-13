@@ -1,5 +1,5 @@
 import numpy as np
-from sweat.algorithms.metrics.core import mask_fill
+from sweat.algorithms.metrics.core import (mask_fill, rolling_mean)
 
 
 class TestMaskFill():
@@ -31,3 +31,62 @@ class TestMaskFill():
         rv = mask_fill(arg, mask=mask, value=3.0)
         assert type(rv) == np.ndarray
         assert (rv == expected).all()
+
+
+class TestRollingMean():
+
+    def test_rolling_mean_ndarray(self):
+        stream = np.asarray([1, 2, 3, 4, 5])
+        expected = np.asarray([1, 1.5, 2.5, 3.5, 4.5])
+
+        rv = rolling_mean(stream, 2)
+
+        assert type(rv) == np.ndarray
+        assert (rv == expected).all()
+
+
+    def test_rolling_mean_list(self):
+        stream = [1, 2, 3, 4, 5]
+        expected = [1, 1.5, 2.5, 3.5, 4.5]
+        rv = rolling_mean(stream, 2)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_rolling_mean_list_with_mask(self):
+        stream = [1, 2, 3, 4, 5]
+        mask = [True, True, False, True, True]
+        expected = [1, 1.5, 1.0, 2.0, 4.5]
+        rv = rolling_mean(stream, window=2, mask=mask)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_rolling_mean_with_mask_ndarray(self):
+        stream = np.asarray([1, 2, 3, 4, 5])
+        mask = np.asarray([True, True, False, True, True], dtype=bool)
+        expected = np.asarray([1, 1.5, 1.0, 2.0, 4.5])
+        rv = rolling_mean(stream, window=2, mask=mask)
+
+        assert type(rv) == np.ndarray
+        assert (rv == expected).all()
+
+
+    def test_rolling_mean_list_emwa(self):
+        stream = list(np.ones(30))
+        expected = list(np.ones(30))
+        rv = rolling_mean(stream, 2, type='ewma')
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_rolling_mean_real_data(self, test_stream):
+        rv = rolling_mean(test_stream['watts'],
+                                  mask=test_stream['moving'],
+                                  window=1)
+
+        assert type(rv) == list
+        assert rv == test_stream['watts']
