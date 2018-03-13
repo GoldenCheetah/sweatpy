@@ -6,6 +6,20 @@ from sweat.models.helpers import requires
 
 
 class WorkoutDataFrame(BaseWorkoutDataFrame):
+    """Pandas DataFrame for Workouts
+
+    Columns
+    -------
+    power : array-like
+    heartrate : array-like
+    time : array-like
+    cadence : array-like
+    speed : array-like
+
+    Metadata
+    --------
+    athlete : Athlete
+    """
     _metadata = ['athlete']
 
     @requires(columns=['power'])
@@ -35,8 +49,22 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 
 
 class Athlete:
+    """Athlete object for WorkoutDataFrame"""
+
     def __init__(self, name=None, sex=None, weight=None, dob=None, ftp=None,
             cp=None, w_prime=None):
+        """
+
+        Parameters
+        ----------
+        name : str, optional
+        sex : srt, optional
+        weight : number, optional
+        dob : str, "YYYY-MM-DD", optional
+        ftp : number, optional
+        cp : number, optional
+        w_prime : number, optional
+        """
         self.name = name
         self.sex = sex
         self.weight = weight
