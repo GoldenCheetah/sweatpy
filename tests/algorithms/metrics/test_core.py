@@ -1,6 +1,6 @@
 import numpy as np
 from sweat.algorithms.metrics.core import (mask_fill, rolling_mean,
-                                           median_filter)
+                                           median_filter, compute_zones)
 
 
 class TestMaskFill():
@@ -130,3 +130,76 @@ class TestMedianFilter():
         assert type(rv) == np.ndarray
         assert (rv == expected).all()
 
+
+class TestComputeZones():
+
+    def test_zones_power_ftp_list(self):
+        stream = [0.55, 0.75, 0.9, 1.05, 1.2, 1.5, 10.0]
+        expected = [1, 2, 3, 4, 5, 6, 7]
+
+        rv = compute_zones(stream, ftp=1.0)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_zones_heart_rate_lthr_list(self):
+        stream = [0.6, 0.8, 0.9, 1.0, 1.1]
+        expected = [1, 2, 3, 4, 5]
+
+        rv = compute_zones(stream, lthr=1.0)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_zones_power_explicit_zones_list(self):
+        stream = [1, 150, 210, 250, 300, 350, 450]
+        expected = [1, 2, 3, 4, 5, 6, 7]
+
+        rv = compute_zones(stream, zones=[-1, 144, 196, 235, 274, 313, 391, 10000])
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_zones_heart_rate_explicit_zones_list(self):
+        stream = [60, 120, 150, 160, 170, 180]
+        expected = [1, 1, 2, 3, 4, 5]
+
+        rv = compute_zones(stream, zones=[-1, 142, 155, 162, 174, 10000])
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_zones_power_ftp_list_of_int(self):
+        stream = [1, 2, ]
+        ftp = 1.0
+        expected = [4, 7, ]
+
+        rv = compute_zones(stream, ftp=ftp)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_zones_power_ftp_unordered_list(self):
+        stream = [2, 1, 3]
+        ftp = 1.0
+        expected = [7, 4, 7, ]
+
+        rv = compute_zones(stream, ftp=ftp)
+
+        assert type(rv) == list
+        assert rv == expected
+
+
+    def test_zones_power_ftp_ndarray(self):
+        stream = np.asarray([0.55, 0.75, 0.9, 1.05, 1.2, 1.5, 10.0])
+        expected = np.asarray(list(range(1, 8)))
+
+        rv = compute_zones(stream, ftp=1.0)
+
+        assert type(rv) == np.ndarray
+        assert (rv == expected).all()
