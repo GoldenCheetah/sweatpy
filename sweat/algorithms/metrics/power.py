@@ -24,3 +24,24 @@ def wpk(power, weight):
     rv = cast_array_to_original_type(rv, type(power))
 
     return rv
+
+
+def relative_intensity(wap, threshold_power):
+    """Relative intensity
+
+    Parameters
+    ----------
+    wap : number
+        WAP or xPower
+    threshold_power : number
+        FTP or CP
+
+    Returns
+    -------
+    float
+        IF or RI
+    """
+
+    rv = wap / threshold_power
+
+    return rv
