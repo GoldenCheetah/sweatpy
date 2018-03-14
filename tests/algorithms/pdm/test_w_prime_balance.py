@@ -1,7 +1,7 @@
-import pandas as pd
 import pytest
 
-from sweat.algorithms import w_prime_balance
+from sweat.algorithms.pdm import w_prime_balance
+
 
 
 def test_tau_w_prime_balance(power):
@@ -30,7 +30,7 @@ def test_get_tau_method(power, test_input, expected):
 ])
 def test_w_prime_balance_waterworth(power, test_input, expected):
     w_bal = w_prime_balance.w_prime_balance_waterworth(power, cp=25,
-                                                  w_prime=2000, **test_input)
+                                                       w_prime=2000, **test_input)
     assert w_bal.iloc[75] == expected
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -40,12 +40,12 @@ def test_w_prime_balance_waterworth(power, test_input, expected):
 ])
 def test_w_prime_balance_skiba(power, test_input, expected):
     w_bal = w_prime_balance.w_prime_balance_skiba(power, cp=25,
-                                             w_prime=2000, **test_input)
+                                                  w_prime=2000, **test_input)
     assert w_bal.iloc[75] == expected
 
 def test_w_prime_balance_froncioni(power):
     w_bal = w_prime_balance.w_prime_balance_froncioni_skiba_clarke(power, cp=25,
-                                                 w_prime=2000)
+                                                                   w_prime=2000)
     assert w_bal.iloc[75] == 725.0
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -60,5 +60,5 @@ def test_w_prime_balance_froncioni(power):
 ])
 def test_w_prime_balance(power, test_input, expected):
     w_bal = w_prime_balance.w_prime_balance(power, cp=25, w_prime=2000,
-                                       **test_input)
+                                            **test_input)
     assert w_bal.iloc[50] == expected

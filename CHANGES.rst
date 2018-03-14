@@ -22,15 +22,12 @@ Bug fixes:
 
 Breaking changes:
 
-- *add item here*
+- New project structure
 
 New features:
 
-- Merged vmpy functionality as is:
-    - io/strava.py
-    - algorithms/streams.py
-    - algorithms/metrics.py
-    - utils.py
+- Merged vmpy functionality
+- Removed duplicates
 
 Bug fixes:
 
