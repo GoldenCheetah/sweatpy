@@ -112,20 +112,8 @@ class TestWorkoutDataFrame:
         assert mmp.iloc[1] == 263.0
         assert mmp.iloc[300] == 209.37209302325581
 
-    def test_compute_mean_max_power_missing_power(self, wdf):
-        del wdf['power']
-
-        with pytest.raises(exceptions.MissingDataException):
-            assert wdf.compute_mean_max_power() is None
-
     def test_compute_weighted_average_power(self, wdf_big):
         assert wdf_big.compute_weighted_average_power() == pytest.approx(156.24624656343036, 0.1)
-
-    def test_compute_weighted_average_power_missing_power(self, wdf_big):
-        del wdf_big['power']
-
-        with pytest.raises(exceptions.MissingDataException):
-            wdf_big.compute_weighted_average_power()
 
     def test_compute_power_per_kg(self, wdf_big):
         # wdf_big.athlete.ftp = 300
@@ -133,12 +121,6 @@ class TestWorkoutDataFrame:
 
         assert ppkg[1] == 1.1625000000000001
         assert ppkg[100] == 1.0125
-
-    def test_compute_power_per_kg_missing_weight(self, wdf):
-        wdf.athlete.weight = None
-
-        with pytest.raises(exceptions.MissingDataException):
-            wdf.compute_power_per_kg()
 
     @pytest.mark.parametrize("test_input,expected", [
         (dict(), 19006.732787629098),
