@@ -1,5 +1,4 @@
 import pandas as pd
-from sweat.utils import cast_array_to_original_type
 
 
 def wpk(power, weight):
@@ -7,7 +6,7 @@ def wpk(power, weight):
 
     Parameters
     ----------
-    power : list, ndarray, series
+    power : ndarray
     weight : number
 
     Returns
@@ -15,15 +14,7 @@ def wpk(power, weight):
     array-like
     """
 
-    if not isinstance(power, pd.Series):
-        y = pd.Series(power)
-    else:
-        y = power
-
-    rv = y/weight
-    rv = cast_array_to_original_type(rv, type(power))
-
-    return rv
+    return power/weight
 
 
 def relative_intensity(wap, threshold_power):

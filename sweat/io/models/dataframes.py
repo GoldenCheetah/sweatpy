@@ -25,7 +25,7 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
         return core.mean_max(self.power)
 
     def compute_weighted_average_power(self):
-        return core.weighted_average_power(self.power, type='WAP')
+        return core.weighted_average_power(self.power, algorithm='WAP')
 
     def compute_power_per_kg(self):
         return power.wpk(self.power, self.athlete.weight)
