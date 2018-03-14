@@ -1,6 +1,5 @@
 language: python
 python:
   - "3.6"
-install:
-  - pip install -r requirements.txt
-script: make test
+install: pip install tox-travis==0.10
+script: tox

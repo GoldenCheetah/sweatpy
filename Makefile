@@ -1,5 +1,5 @@
 test:
-	pytest
+	tox
 
 coverage:
 	coverage run --source=sweat -m pytest --
