@@ -190,7 +190,7 @@ def zones2list(zones, type="power"):
         Zones boundaries with left edge set to -1 and right to 10000
     """
 
-    y = list(map(lambda x: x['min'], zones[type]["zones"]))
+    y = [x['min'] for x in zones[type]['zones']]
     y[0] = -1
     y.append(10000)
 
