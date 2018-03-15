@@ -3,7 +3,7 @@ import pytest
 import os
 import json
 from sweat.io import strava
-from sweat.models import dataframes
+from sweat.io.models import dataframes
 
 
 @pytest.fixture

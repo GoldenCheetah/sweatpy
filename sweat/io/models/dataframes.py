@@ -1,6 +1,6 @@
-from sweat.algorithms.hrm import heartrate_models
-from sweat.algorithms.pdm import w_prime_balance
-from sweat.algorithms.metrics import core, power
+from sweat.hrm import heartrate_models
+from sweat.pdm import w_prime_balance
+from sweat.metrics import core, power
 from .base import BaseWorkoutDataFrame
 
 

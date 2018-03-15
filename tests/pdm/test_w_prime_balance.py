@@ -1,6 +1,6 @@
 import pytest
 
-from sweat.algorithms.pdm import w_prime_balance
+from sweat.pdm import w_prime_balance
 
 
 

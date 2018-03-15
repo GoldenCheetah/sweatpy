@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 import pytest
-from sweat.models import dataframes
-from sweat.models import exceptions
+from sweat.io.models import dataframes
+from sweat.io.models import exceptions
 
 
 class TestAthlete:

@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sweat.algorithms.metrics.power import (wpk, relative_intensity,
+from sweat.metrics.power import (wpk, relative_intensity,
                                             stress_score)
 
 

@@ -1,7 +1,6 @@
 import pandas as pd
 
-from sweat.algorithms.hrm import heartrate_models
-
+from sweat.hrm import heartrate_models
 
 
 def test_heartrate_model():
