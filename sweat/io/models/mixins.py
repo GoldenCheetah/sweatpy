@@ -1,6 +1,6 @@
 import numpy as np
 
-from sweat.models.exceptions import WorkoutDataFrameValidationException
+from sweat.io.models.exceptions import WorkoutDataFrameValidationException
 
 VALIDATION_COLUMNS = ['time', 'power', 'heartrate', 'cadence', 'speed']
 

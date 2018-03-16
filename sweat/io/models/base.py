@@ -1,6 +1,6 @@
 import pandas as pd
 
-from sweat.models.mixins import ValidationMixin
+from sweat.io.models.mixins import ValidationMixin
 
 
 class BaseWorkoutDataFrame(pd.DataFrame, ValidationMixin):
