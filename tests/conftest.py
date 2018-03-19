@@ -17,7 +17,7 @@ def test_stream():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     f_name = os.path.normpath(os.path.join(current_dir,
-                                           'example_files/streams_1202065_1354978421.json'))
+                                           'fixtures/strava/streams_1202065_1354978421.json'))
     with open(f_name) as f:
 
         _stream = json.load(f)
@@ -31,7 +31,7 @@ def test_stream_with_nans():
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     f_name = os.path.normpath(os.path.join(current_dir,
-                                           'example_files/streams_1202065_1299011495.json'))
+                                           'fixtures/strava/streams_1202065_1299011495.json'))
 
     with open(f_name) as f:
 
@@ -59,7 +59,7 @@ def wdf_small():
     athlete = dataframes.Athlete(cp=200, w_prime=20000)
     current_dir = os.path.dirname(os.path.abspath(__file__))
     wdf = dataframes.WorkoutDataFrame(
-        pd.read_csv(os.path.join(current_dir, 'example_files/workout_1_short.csv'))
+        pd.read_csv(os.path.join(current_dir, 'fixtures/workout_1_short.csv'))
     )
     wdf = wdf.set_index('time')
     wdf.athlete = athlete
@@ -71,7 +71,7 @@ def wdf_big():
     athlete = dataframes.Athlete(cp=200, w_prime=20000, weight=80)
     current_dir = os.path.dirname(os.path.abspath(__file__))
     wdf = dataframes.WorkoutDataFrame(
-        pd.read_csv(os.path.join(current_dir, 'example_files/workout_1.csv'))
+        pd.read_csv(os.path.join(current_dir, 'fixtures/workout_1.csv'))
     )
     wdf = wdf.set_index('time')
     wdf.athlete = athlete

@@ -23,7 +23,7 @@ from sweat.models import WorkoutDataFrame
 To load some example data from this repository:
 ```python
 import pandas as pd
-wdf = WorkoutDataFrame(pd.read_csv('./tests.example_files/workout_1.csv'))
+wdf = WorkoutDataFrame(pd.read_csv('./tests/fixtures/workout_1.csv'))
 ```
 
 Basic operations on the data are provided by `pandas.Dataframe` superclass:
