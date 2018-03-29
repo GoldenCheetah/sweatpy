@@ -1,4 +1,5 @@
 coverage==4.4.1
+fitparse==1.0.1
 goldencheetahlib==0.8.0
 isort==4.2.15
 lmfit==0.9.7
