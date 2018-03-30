@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer 1234abcd]
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://www.strava.com/api/v3/athlete
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA8WYbW/iOBDHv0oUaXV7EpDYeebV9U57t6dV21PpdnU9rZCbGPA2iZHjlEOr/e43
+        dgIESijQVCfxAhIzY8/8/PeMv5ssMYfYjTwXuz2zLKjISUbNoUmIkOMp50VB88LsmYIWvBQxHReS
+        SBjg9MwJE4Wsh1/AcBiVkvWTPzb/jZlcgsmLrJBUJCSDgbUV8+oj/Ih5mUuhhlzRhIqU5IkaQv+F
+        J5fwbS5oxsrMHEpRUhguKEwhGRMJ77GNnL4d9G3/FnlD+ODgHv5SzpOtMWHfdvrIv7X9IXywrcY8
+        kGRKx3I5p2MVBaQc8QlL6TijifZnzqScF0PLSqYkXS6WIvSd2dMgTnmZTATP5SCn0pqzWJYQH4vI
+        WUolfKkDaiEHebZtW75VWRx8m0/1erQbmH1n9lMiprQ2PxGMQgSHeZmmkCWepnxBxeo3zQhLwbVK
+        8C+rBA8g55uhY50QcxhCSCpj6yd+z8xKWZJ0vP3C7pn16nVAzSE8UBkYQ+4mVNA8VlC9y6x3ifXu
+        b/CVUVJA0DKay+0xGURQKOLitHwozOE/32tGA+w9xxD3zJrAm8FocDf4PDCuP324uLoebeJ8bjr1
+        BCCX4Njy/CDAyELdJHKv5WYKY/5ExXg+45KfTEnTOGxsL0SOha0W6+MiI6nC4TQS9/vQtmoIizkH
+        AVGbC4xzOQMAIaUHhIBzkfQ/AqzV7t+vCXPBnrT8VEqQ0ewB4lTj6ilcQRoAK6B/QtICxALiyCas
+        8aAUarn8kZKcK8wqG8WMzeFx9QOekiRj+doIX+RqA2mTP3oVkF5ge0Dfri5ugLznQHJG00fjL8GN
+        P/MEVhgv45TlDQ14HZt6Dhb2XCdEQbdw7ppu4edMcirrruvZAYJdhd4Ez2dOWvncpKUm9IbTlE8I
+        6FZSPFGaAxGrE+u+ZCdwWlO4DSpG6vQ8ktQ1RkDRLkTnsotQ4MMU2tkdgQbHZWHcklIwWPwrD8ZK
+        LrRXC7kYY4S7pXXXdLe0VtZ9x3dt7MPEW6y/Skt3fbSyKgVTJy1XTB7UUyFnxn49VWqsZFbJ30FF
+        RVATHsupqu0Amb6skTnIZiXf+2QV2VHoQPHQzuYXIuVv3epo5dRC4BrqNTgtOynXaur1ghq2W+g5
+        U0nrqbtwzkOJ8lZwVmvYOGml85mSNpRTAbu30l8z2KKWJ1C4ADg2czjIYO1sH4QYeTg8xOC6lSmo
+        MVKVjvE5Z9T4CSG9pV7VRdS1lZqC5fqOF0TdaqVe3MZyK45V+9CoRFf6Vr3YKvCOFqWTiry9OKii
+        61hNIquOs6B9Pd9+CWnq6yydzQaGxACR7QJ1d3fXGQXamaXL+CDsmINd260knNccNMz7geW8yamJ
+        d50cL0zrLdxQqKsOmpDj6QTHZ0Poeb4XHIJQnZJfuHiszvguBEm7hEbYCewo6vaMxLu2O0axad5/
+        q2Z418n/jiLCJ0ilOjgXNS8nU/kVoJfQP0P11DMXlE1ncDUX4gH8emCPdHOLYz64dohd7GuBZBlR
+        t35VMVhf4/x+afvq7R55TRj0YPoiCflREDlgf9WMmw/IdlHg2k279fFRG/7Ep8S4ZEsiiSE4SQw1
+        s5cc+UGI7DDacgSXe0GE2x1dzyUszBhJaPSpMN6nbAoXELL4+SVnED2Emq6wE0CwonZXN3B7RtJj
+        VxJ5TtM6gn7G07GG+qvKxHbERvFswfLc+PDE01Iy3XEcTkvohFsesOsEQdA+/1EMN5US7mdiCBdR
+        LggTS+PXIzJj7ziCnBxI/u2MfSsMaDyN94JTdSF0RD6w7+Bgyw20zZ5zIPVKdI/BygsjpJMBG6eY
+        8eYGmToosrd9bO2PESljni/VndJUsMS4YQk1XtwwkReAPMFavv74D61r+qnzFwAA
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Connection: [keep-alive]
+      Content-Encoding: [gzip]
+      Content-Length: ['1416']
+      Content-Type: [application/json; charset=UTF-8]
+      Date: ['Fri, 30 Mar 2018 12:29:43 GMT']
+      ETag: [W/"29e7a146e73f71f30ff9e074ca65239a"]
+      Status: [200 OK]
+      X-Content-Type-Options: [nosniff]
+      X-FRAME-OPTIONS: [DENY]
+      X-RateLimit-Limit: ['600,30000']
+      X-RateLimit-Usage: ['1,1']
+      X-Request-Id: [4f37c026-f991-4a72-a430-5802b46a9689]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

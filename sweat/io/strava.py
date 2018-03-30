@@ -5,7 +5,6 @@
     ALL returned values are python objects e.g. dict or list
 """
 import requests
-import json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,14 +30,8 @@ def retrieve_athlete(access_token):
     r = requests.get(endpoint_url,
                      headers=authorization_header(access_token))
 
-    if r.ok:
-
-        athlete = json.loads(r.text)
-
-    else:
-
-        logger.error('Retrieve Athlete Failed with a reason {}'.format(r.reason))
-        athlete = None
+    r.raise_for_status()
+    athlete = r.json()
 
     return athlete
 
@@ -63,14 +56,8 @@ def retrieve_zones(access_token, **kwargs):
     r = requests.get(endpoint_url,
                      headers=authorization_header(access_token))
 
-    if r.ok:
-
-        zones = json.loads(r.text)
-
-    else:
-
-        logger.error('Retrieve Zones Failed with a reason {}'.format(r.reason))
-        zones = None
+    r.raise_for_status()
+    zones = r.json()
 
     return zones
 
@@ -96,14 +83,8 @@ def retrieve_activity(activity_id, access_token):
     r = requests.get(endpoint_url,
                      headers=authorization_header(access_token))
 
-    if r.ok:
-
-        activity = json.loads(r.text)
-
-    else:
-
-        logger.error('Retrieve Activity Failed with a reason {}'.format(r.reason))
-        activity = None
+    r.raise_for_status()
+    activity = r.json()
 
     return activity
 
@@ -135,14 +116,8 @@ def retrieve_streams(activity_id, access_token, **kwargs):
     r = requests.get(endpoint_url,
                          headers=authorization_header(access_token))
 
-    if r.ok:
-
-        streams = json.loads(r.text)
-
-    else:
-
-        logger.error('Retrieve Streams Failed with a reason {}'.format(r.reason))
-        streams = None
+    r.raise_for_status()
+    streams = r.json()
 
     if streams and not kwargs.get('type', None):
 
