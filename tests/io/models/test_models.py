@@ -109,8 +109,8 @@ class TestWorkoutDataFrame:
     def test_compute_mean_max_power(self, wdf_big):
         mmp = wdf_big.compute_mean_max_power()
 
-        assert mmp.iloc[1] == 263.0
-        assert mmp.iloc[300] == 209.37209302325581
+        assert mmp[1] == 263.0
+        assert mmp[300] == 209.37209302325581
 
     def test_compute_weighted_average_power(self, wdf_big):
         assert wdf_big.compute_weighted_average_power() == pytest.approx(156.24624656343036, 0.1)
