@@ -1,0 +1,34 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer 1234abcd]
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://www.strava.com/api/v3/athlete/zones
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA3XP2woCIRQF0H85zwbj5Tjpr0QMEkZBjqEzFIn/3gXtvNSbLnDvbYGTd2mZkls8
+        2AKHNS8xTI84+wz26C7ZM2i3XYFwnsEODIK7g+V8W1mz17kralLUXUckHbGrUaRGNd3wuq8MrvHm
+        03vTv3ojfzwWmlToHik51UveR0lNH5DatHolhm+uErwpCkpA0RM+U+sTaLJrZUUBAAA=
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Connection: [keep-alive]
+      Content-Encoding: [gzip]
+      Content-Length: ['164']
+      Content-Type: [application/json; charset=UTF-8]
+      Date: ['Fri, 30 Mar 2018 12:38:12 GMT']
+      ETag: [W/"77eb1ef117c2901a97486d18f633569a"]
+      Status: [200 OK]
+      X-Content-Type-Options: [nosniff]
+      X-FRAME-OPTIONS: [DENY]
+      X-RateLimit-Limit: ['600,30000']
+      X-RateLimit-Usage: ['1,2']
+      X-Request-Id: [6f6bda62-c93f-4ed3-91b2-44324e5cda8f]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
