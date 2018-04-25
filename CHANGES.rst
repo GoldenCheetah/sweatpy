@@ -10,14 +10,14 @@ Breaking changes:
 
 New features:
 
-- Stress in zone
+- *add item here*
 
 Bug fixes:
 
 - *add item here*
 
 
-0.1.1 (in progress)
+0.2.0 (in progress)
 ------------------
 
 Breaking changes:
@@ -28,6 +28,7 @@ New features:
 
 - Merged vmpy functionality
 - Removed duplicates
+- Stress in zone
 
 Bug fixes:
 
