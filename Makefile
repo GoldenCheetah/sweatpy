@@ -1,10 +1,14 @@
-test:
-	tox
+venv:
+	pipenv install tox tox-pyenv twine
 
-coverage:
-	coverage run --source=sweat -m pytest --
-	coverage report
-	coverage html
+test: venv
+	pipenv run tox
 
-isort:
-	isort --skip=venv
+build: venv
+	pipenv run python setup.py sdist bdist_wheel
+
+test_publish: venv build
+	pipenv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+publish: venv build
+	pipenv run twine upload dist/*
