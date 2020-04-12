@@ -1,0 +1,45 @@
+FROM ubuntu:18.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# https://realpython.com/intro-to-pyenv/#installing-pyenv
+RUN apt-get update && apt-get install -y \
+    make \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    libncurses5-dev \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    libffi-dev \
+    liblzma-dev \
+    python-openssl \
+    git
+
+RUN curl https://pyenv.run | bash
+ENV PATH "/root/.pyenv/bin:$PATH"
+RUN pyenv update
+
+RUN pyenv install 3.6.10
+RUN pyenv install 3.7.7
+RUN pyenv install 3.8.2
+
+RUN apt-get install -y python3-pip
+RUN pip3 install --upgrade pip
+
+RUN pip3 install tox tox-pyenv
+
+RUN mkdir src
+COPY ./ src/
+
+WORKDIR /src
+
+RUN pyenv local 3.6.10 3.7.7 3.8.2
+CMD tox --parallel all
