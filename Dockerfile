@@ -35,6 +35,8 @@ RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
 
 RUN pip3 install tox tox-pyenv
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+ENV PATH "/root/.poetry/bin:$PATH"
 
 RUN mkdir src
 COPY ./ src/
