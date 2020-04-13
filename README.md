@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/GoldenCheetah/sweatpy.svg?branch=master)](https://travis-ci.org/GoldenCheetah/sweatpy)
 
 # Sweatpy
+> :warning: **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning any dependencies with `sweat==0.4.0`.**
 
 ## Introduction
 Sweatpy is a Python library that is designed to make workout analysis a breeze. The current state of the project is very beta: features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with the contributors or create an issue if you have problems/questions/feature requests/special use cases.
