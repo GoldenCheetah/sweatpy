@@ -79,7 +79,7 @@ This documentation is quite compact at the moment but will be extended with more
 
 
 ## Contributing
-Coming soon...
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contributors
 [Maksym Sladkov](https://github.com/sladkovm)
