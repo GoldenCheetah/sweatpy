@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # https://realpython.com/intro-to-pyenv/#installing-pyenv
 RUN apt-get update && apt-get install -y \
@@ -39,9 +41,6 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 ENV PATH "/root/.poetry/bin:$PATH"
 
 RUN mkdir src
-COPY ./ src/
-
 WORKDIR /src
 
-RUN pyenv local 3.6.10 3.7.7 3.8.2
 CMD tox --parallel all

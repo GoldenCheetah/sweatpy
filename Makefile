@@ -1,8 +1,11 @@
 build_docker:
 	docker build -t sweatpy-test .
 
-test:
-	docker run -it --rm -v ${PWD}/.tox:/src/.tox sweatpy-test tox -e py38
+build_test:
+	docker-compose -f docker/docker-compose.test.yml build
+
+test: build_test
+	docker-compose -f docker/docker-compose.test.yml run sweatpy tox -e py38
 
 testall:
-	docker run -it --rm --cpus="3" -v ${PWD}/.tox:/src/.tox sweatpy-test
+	docker-compose -f docker/docker-compose.test.yml run sweatpy

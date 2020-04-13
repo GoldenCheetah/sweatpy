@@ -19,3 +19,6 @@ Types of changes:
 - Python 3.8 support.
 - Tests are now run in docker.
 - Implements Poetry for packaging and dependencies.
+- Adds Github Actions for tests and publishing.
+- Updates copyright year in LICENSE.
+- Adds CONTRIBUTING.md.
