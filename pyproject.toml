@@ -25,6 +25,7 @@ mkdocs = "^1.1"
 mkdocs-material = "^5.1.0"
 
 # https://tox.readthedocs.io/en/latest/example/basic.html#pyproject-toml-tox-legacy-ini
+black = "^19.10b0"
 [tool.tox]
 legacy_tox_ini = """
 [tox]

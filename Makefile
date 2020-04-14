@@ -3,13 +3,16 @@
 build_docker:
 	docker build -t sweatpy-test .
 
-build_test:
+test:
 	docker-compose -f docker/docker-compose.test.yml build
-
-test: build_test
 	docker-compose -f docker/docker-compose.test.yml run sweatpy tox -e py38
 
+lint:
+	docker-compose -f docker/docker-compose.lint.yml build
+	docker-compose -f docker/docker-compose.lint.yml run sweatpy
+
 testall:
+	docker-compose -f docker/docker-compose.test.yml build
 	docker-compose -f docker/docker-compose.test.yml run sweatpy
 
 docs:
