@@ -1,0 +1,26 @@
+name: Publish
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Publish to PyPi
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install Poetry
+      uses: dschep/install-poetry-action@v1.3
+    - name: Poetry configuration
+      run: |
+        poetry config pypi-token.testpypi ${{ secrets.PYPI_TOKEN }}
+    - name: Build package
+      run: |
+        poetry build
+    - name: Publish package
+      run: |
+        poetry publish

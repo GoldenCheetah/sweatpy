@@ -1,0 +1,20 @@
+site_name: Sweatpy docs
+
+theme:
+    name: 'material'
+    palette:
+        primary: 'blue grey'
+        accent: 'red'
+    icon:
+        logo: fontawesome/solid/tint
+        repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+      toc_depth: 2
+
+repo_name: goldencheetah/sweatpy
+repo_url: https://github.com/goldencheetah/sweatpy

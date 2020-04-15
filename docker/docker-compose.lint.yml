@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  sweatpy:
+    image: sweatpy-lint
+    container_name: sweatpy-lint
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.lint
+    volumes:
+      - ../:/src
+    stdin_open: true
+    tty: true

@@ -1,14 +1,13 @@
-[![Build Status](https://travis-ci.org/GoldenCheetah/sweatpy.svg?branch=master)](https://travis-ci.org/GoldenCheetah/sweatpy)
-
 # Sweatpy
-> :warning: **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning any dependencies with `sweat==0.4.0`.**
+!!! warning
+    **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning any dependencies with `sweat==0.4.0`.**
 
 ## Introduction
-Sweatpy is a Python library that is designed to make workout analysis a breeze. The current state of the project is very beta: features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with the contributors or create an issue if you have problems/questions/feature requests/special use cases.
+Sweatpy is a Python library that is designed to make workout analysis a breeze. The current state of the project is "very beta": features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with the contributors or create an issue if you have problems/questions/feature requests/special use cases.
 
 ## Installation
 This library can be installed via PyPI:
-```
+```bash
 pip install sweat
 ```
 
@@ -35,7 +34,7 @@ wdf.power.max()
 >> 280
 wdf.heartrate.plot()
 ```
-![Heartrate plot](resources/heartrate.png)
+![Heartrate plot](img/heartrate.png)
 
 For some workout specific functionality information about the athlete is needed.
 This can be set on the `WorkoutDataFrame` as follows:
@@ -49,7 +48,7 @@ When this is done for example the W'balance can be computed, added to the wdf an
 wdf = wdf.assign(w_prime_balance=wdf.compute_w_prime_balance())
 wdf.w_prime_balance.plot()
 ```
-![W'prime balance plot](resources/w_prime_balance.png)
+![W'prime balance plot](img/w_prime_balance.png)
 
 It is also possible to compute and plot the mean max power for this workout:
 ```python
@@ -59,7 +58,7 @@ mean_max_power[60]
 >> 215.03278688524591
 mean_max_power.plot()
 ```
-![Mean max power](resources/mean_max_power.png)
+![Mean max power](img/mean_max_power.png)
 
 Another feature of this library is that you can create custom workout and for example analyze the W'balance of it:
 ```python
@@ -82,8 +81,8 @@ This documentation is quite compact at the moment but will be extended with more
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Contributors
-[Maksym Sladkov](https://github.com/sladkovm)
-[Aart Goossens](https://github.com/AartGoossens)
+- [Aart Goossens](https://github.com/AartGoossens)
+- [Maksym Sladkov](https://github.com/sladkovm)
 
 ## License
 See [LICENSE](LICENSE) file.

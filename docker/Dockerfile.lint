@@ -1,0 +1,8 @@
+FROM python
+
+RUN pip install black
+
+RUN mkdir /src/
+WORKDIR /src/
+
+CMD black --diff sweat

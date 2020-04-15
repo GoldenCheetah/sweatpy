@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "sweat"
+version = "0.4.0"
+description = "Workout analysis"
+license = "MIT"
+authors = ["Aart Goossens <aart@goossens.me>"]
+readme = "README.md"
+homepage = "https://github.com/goldencheetah/sweatpy"
+repository = "https://github.com/goldencheetah/sweatpy"
+documentation = "https://github.com/goldencheetah/sweatpy"
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+fitparse = "^1.1.0"
+goldencheetahlib = "^0.8.0"
+lmfit = "^1.0.0"
+scipy = "^1.4.1"
+pandas = "^1.0.3"
+requests = "^2.23.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.4"
+vcrpy = "^4.0.2"
+mkdocs = "^1.1"
+mkdocs-material = "^5.1.0"
+
+# https://tox.readthedocs.io/en/latest/example/basic.html#pyproject-toml-tox-legacy-ini
+black = "^19.10b0"
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = true
+envlist = py36,py37,py38
+tox_pyenv_fallback = False
+
+[testenv]
+whitelist_externals = poetry
+commands =
+    # About the --no-root flag: https://github.com/python-poetry/poetry/issues/1204
+    poetry install -v --no-root
+    poetry run pytest tests/
+"""
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

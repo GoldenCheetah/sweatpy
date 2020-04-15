@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  sweatpy:
+    image: sweatpy-test
+    container_name: sweatpy-test
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.test
+    volumes:
+      - ../:/src
+    stdin_open: true
+    tty: true

@@ -1,14 +1,19 @@
-venv:
-	pipenv install tox tox-pyenv twine
+.PHONY: build_docker build_test test testall docs
 
-test: venv
-	pipenv run tox
+build_docker:
+	docker build -t sweatpy-test .
 
-build: venv
-	pipenv run python setup.py sdist bdist_wheel
+test:
+	docker-compose -f docker/docker-compose.test.yml build
+	docker-compose -f docker/docker-compose.test.yml run sweatpy tox -e py38
 
-test_publish: venv build
-	pipenv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+lint:
+	docker-compose -f docker/docker-compose.lint.yml build
+	docker-compose -f docker/docker-compose.lint.yml run sweatpy
 
-publish: venv build
-	pipenv run twine upload dist/*
+testall:
+	docker-compose -f docker/docker-compose.test.yml build
+	docker-compose -f docker/docker-compose.test.yml run sweatpy
+
+docs:
+	docker run --rm -it -p 8000:8000 -v ${PWD}/docs:/docs squidfunk/mkdocs-material
