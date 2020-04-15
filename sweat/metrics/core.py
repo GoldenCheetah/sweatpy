@@ -31,7 +31,7 @@ def mask_fill(y, mask=None, value=0.0):
     return y
 
 
-def rolling_mean(y, window=10, mask=None, algorithm='uniform', value=0.0):
+def rolling_mean(y, window=10, mask=None, algorithm="uniform", value=0.0):
     """Compute rolling mean
 
     Compute *uniform* or *ewma* rolling mean of the stream. In-process masking with replacement is
@@ -61,10 +61,9 @@ def rolling_mean(y, window=10, mask=None, algorithm='uniform', value=0.0):
 
     y = pd.Series(y)
 
-
-    if algorithm == 'ewma':
+    if algorithm == "ewma":
         y = y.ewm(span=window, min_periods=1).mean().values
-    elif algorithm == 'uniform':
+    elif algorithm == "uniform":
         y = y.rolling(window, min_periods=1).mean().values
 
     return y
@@ -115,13 +114,26 @@ def median_filter(y, window=31, threshold=1, value=None):
 
 # FTP based 7-zones with left bind edge set to -0.001
 POWER_ZONES_THRESHOLD = [-0.001, 0.55, 0.75, 0.9, 1.05, 1.2, 1.5, 10.0]
-POWER_ZONES_THRESHOLD_DESC = ["Active Recovery", "Endurance", "Tempo",
-                              "Threshold", "VO2Max", "Anaerobic", "Neuromuscular",]
+POWER_ZONES_THRESHOLD_DESC = [
+    "Active Recovery",
+    "Endurance",
+    "Tempo",
+    "Threshold",
+    "VO2Max",
+    "Anaerobic",
+    "Neuromuscular",
+]
 POWER_ZONES_THRESHOLD_ZNAME = ["Z1", "Z2", "Z3", "Z4", "Z5", "Z6", "Z7"]
 
 # LTHR based 5-zones with left bind edge set to -0.001
 HEART_RATE_ZONES = [-0.001, 0.68, 0.83, 0.94, 1.05, 10.0]
-HEART_RATE_ZONES_DESC = ["Active recovery", "Endurance", "Tempo", "Threshold", "VO2Max",]
+HEART_RATE_ZONES_DESC = [
+    "Active recovery",
+    "Endurance",
+    "Tempo",
+    "Threshold",
+    "VO2Max",
+]
 HEART_RATE_ZONES_ZNAME = ["Z1", "Z2", "Z3", "Z4", "Z5"]
 
 
@@ -154,7 +166,9 @@ def compute_zones(y, zones=None, ftp=None, lthr=None, labels=None):
     elif lthr is not None:
         abs_zones = np.asarray(HEART_RATE_ZONES) * lthr
     else:
-        raise ValueError('One of the keyword arguments [zones, ftp, lthr] must be provided')
+        raise ValueError(
+            "One of the keyword arguments [zones, ftp, lthr] must be provided"
+        )
 
     if labels is None:
         labels = list(range(1, len(abs_zones)))
@@ -212,7 +226,7 @@ def time_in_zones(y, **kwargs):
     return tiz.values
 
 
-def weighted_average_power(y, mask=None, algorithm='WAP', value=0.0):
+def weighted_average_power(y, mask=None, algorithm="WAP", value=0.0):
     """Weighted average power
 
     Parameters
@@ -231,12 +245,14 @@ def weighted_average_power(y, mask=None, algorithm='WAP', value=0.0):
     number
     """
 
-    if algorithm == 'WAP':
+    if algorithm == "WAP":
         _rolling_mean = rolling_mean(y, window=30, mask=mask, value=value)
-    elif algorithm == 'xPower':
-        _rolling_mean = rolling_mean(y, window=25, mask=mask, value=value, algorithm='emwa')
+    elif algorithm == "xPower":
+        _rolling_mean = rolling_mean(
+            y, window=25, mask=mask, value=value, algorithm="emwa"
+        )
 
-    rv = np.mean(np.power(_rolling_mean, 4)) ** (1/4)
+    rv = np.mean(np.power(_rolling_mean, 4)) ** (1 / 4)
 
     return rv
 
@@ -271,12 +287,12 @@ def mean_max(y, mask=None, value=0.0):
     # This method is x4 faster than using rolling mean
     y = np.array([])
     for t in np.arange(1, len(energy)):
-        y = np.append(y, energy.diff(t).max()/(t))
+        y = np.append(y, energy.diff(t).max() / (t))
 
     return y
 
 
-DataPoint = namedtuple('DataPoint', ['index', 'value'])
+DataPoint = namedtuple("DataPoint", ["index", "value"])
 
 
 def multiple_best_intervals(arg, duration, number):
@@ -307,8 +323,8 @@ def multiple_best_intervals(arg, duration, number):
         mean_max_bests.append(DataPoint(max_index, max_value))
 
         # Set moving averages that overlap with last found max to np.nan
-        overlap_min_index = max(0, max_index-duration)
-        overlap_max_index = min(length, max_index+duration)
+        overlap_min_index = max(0, max_index - duration)
+        overlap_max_index = min(length, max_index + duration)
         moving_average.loc[overlap_min_index:overlap_max_index] = np.nan
 
     return mean_max_bests

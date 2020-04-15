@@ -27,8 +27,7 @@ def retrieve_athlete(access_token):
 
     endpoint_url = "https://www.strava.com/api/v3/athlete"
 
-    r = requests.get(endpoint_url,
-                     headers=authorization_header(access_token))
+    r = requests.get(endpoint_url, headers=authorization_header(access_token))
 
     r.raise_for_status()
     athlete = r.json()
@@ -53,8 +52,7 @@ def retrieve_zones(access_token, **kwargs):
 
     endpoint_url = "https://www.strava.com/api/v3/athlete/zones"
 
-    r = requests.get(endpoint_url,
-                     headers=authorization_header(access_token))
+    r = requests.get(endpoint_url, headers=authorization_header(access_token))
 
     r.raise_for_status()
     zones = r.json()
@@ -80,8 +78,7 @@ def retrieve_activity(activity_id, access_token):
 
     endpoint_url = "https://www.strava.com/api/v3/activities/{}".format(activity_id)
 
-    r = requests.get(endpoint_url,
-                     headers=authorization_header(access_token))
+    r = requests.get(endpoint_url, headers=authorization_header(access_token))
 
     r.raise_for_status()
     activity = r.json()
@@ -108,18 +105,21 @@ def retrieve_streams(activity_id, access_token, **kwargs):
         Streams are the list of dicts
     """
 
-    types = kwargs.get("types",
-                       "time,latlng,distance,altitude,velocity_smooth,heartrate,cadence,watts,temp,moving,grade_smooth")
+    types = kwargs.get(
+        "types",
+        "time,latlng,distance,altitude,velocity_smooth,heartrate,cadence,watts,temp,moving,grade_smooth",
+    )
 
-    endpoint_url = "https://www.strava.com/api/v3/activities/{}/streams/{}".format(activity_id, types)
+    endpoint_url = "https://www.strava.com/api/v3/activities/{}/streams/{}".format(
+        activity_id, types
+    )
 
-    r = requests.get(endpoint_url,
-                         headers=authorization_header(access_token))
+    r = requests.get(endpoint_url, headers=authorization_header(access_token))
 
     r.raise_for_status()
     streams = r.json()
 
-    if streams and not kwargs.get('type', None):
+    if streams and not kwargs.get("type", None):
 
         streams = stream2dict(streams)
 
@@ -145,7 +145,7 @@ def stream2dict(stream_list):
 
     for s in stream_list:
 
-        stream_dict.update({s['type']: s['data']})
+        stream_dict.update({s["type"]: s["data"]})
 
     return stream_dict
 
@@ -165,7 +165,7 @@ def zones2list(zones, type="power"):
         Zones boundaries with left edge set to -1 and right to 10000
     """
 
-    y = [x['min'] for x in zones[type]['zones']]
+    y = [x["min"] for x in zones[type]["zones"]]
     y[0] = -1
     y.append(10000)
 
@@ -185,6 +185,6 @@ def authorization_header(access_token):
     header : dict
     """
 
-    rv = {'Authorization': 'Bearer {}'.format(access_token)}
+    rv = {"Authorization": "Bearer {}".format(access_token)}
 
     return rv

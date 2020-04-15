@@ -14,7 +14,7 @@ def wpk(power, weight):
     array-like
     """
 
-    return power/weight
+    return power / weight
 
 
 def relative_intensity(wap, threshold_power):
@@ -55,8 +55,6 @@ def stress_score(wap, threshold_power, duration):
     ss
     """
 
-    ss = (duration/3600) * (wap/threshold_power)**2 * 100
+    ss = (duration / 3600) * (wap / threshold_power) ** 2 * 100
 
     return ss
-
-

@@ -22,14 +22,14 @@ def load(fname):
     fitfile = FitFile(fname)
 
     records = []
-    for record in fitfile.get_messages('record'):
+    for record in fitfile.get_messages("record"):
         records.append(record.get_values())
 
     wdf = dataframes.WorkoutDataFrame(records)
 
-    wdf = wdf.rename(columns={'heart_rate': 'heartrate'})
+    wdf = wdf.rename(columns={"heart_rate": "heartrate"})
 
-    wdf.index = (wdf.timestamp - wdf.timestamp[0]) / np.timedelta64(1, 's')
+    wdf.index = (wdf.timestamp - wdf.timestamp[0]) / np.timedelta64(1, "s")
     wdf.index = wdf.index.astype(int)
 
     return wdf
