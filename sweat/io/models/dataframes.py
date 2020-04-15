@@ -19,20 +19,27 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
     --------
     athlete : Athlete
     """
-    _metadata = ['athlete']
+
+    _metadata = ["athlete"]
 
     def compute_mean_max_power(self):
         return core.mean_max(self.power)
 
     def compute_weighted_average_power(self):
-        return core.weighted_average_power(self.power, algorithm='WAP')
+        return core.weighted_average_power(self.power, algorithm="WAP")
 
     def compute_power_per_kg(self):
         return power.wpk(self.power, self.athlete.weight)
 
     def compute_w_prime_balance(self, algorithm=None, *args, **kwargs):
-        return w_prime_balance.w_prime_balance(self.power, self.athlete.cp,
-                                               self.athlete.w_prime, algorithm, *args, **kwargs)
+        return w_prime_balance.w_prime_balance(
+            self.power,
+            self.athlete.cp,
+            self.athlete.w_prime,
+            algorithm,
+            *args,
+            **kwargs
+        )
 
     def compute_mean_max_bests(self, duration, number):
         return core.multiple_best_intervals(self.power, duration, number)
@@ -44,8 +51,16 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
 class Athlete:
     """Athlete object for WorkoutDataFrame"""
 
-    def __init__(self, name=None, sex=None, weight=None, dob=None, ftp=None,
-            cp=None, w_prime=None):
+    def __init__(
+        self,
+        name=None,
+        sex=None,
+        weight=None,
+        dob=None,
+        ftp=None,
+        cp=None,
+        w_prime=None,
+    ):
         """
 
         Parameters

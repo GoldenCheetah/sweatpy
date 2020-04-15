@@ -27,6 +27,7 @@ def type_casting(func):
     function
         Decorated function.
     """
+
     @functools.wraps(func)
     def func_wrapper(*args, **kwargs):
         output_type = None
@@ -58,7 +59,7 @@ def type_casting(func):
         #             output_type = input_type
         #     else:
         #         new_kwargs[key] = value
-        # 
+        #
         # output = func(*new_args, **new_kwargs)
 
         output = func(*new_args)
@@ -91,12 +92,21 @@ def enable_type_casting(module_or_func=None):
         key_values = [(key, value) for key, value in sys.modules.items()]
         for key, value in key_values:
             # @TODO this if statement might not cover all cases (or too much cases)
-            if key.startswith('sweat.hrm') or key.startswith('sweat.pdm') or key.startswith('sweat.metrics'):
+            if (
+                key.startswith("sweat.hrm")
+                or key.startswith("sweat.pdm")
+                or key.startswith("sweat.metrics")
+            ):
                 enable_type_casting(module_or_func=value)
 
     elif isinstance(module_or_func, types.ModuleType):
-        for name, obj in [(name, obj) for name, obj in inspect.getmembers(module_or_func)]:
-            if inspect.isfunction(obj) and inspect.getmodule(obj).__package__ == module_or_func.__package__:
+        for name, obj in [
+            (name, obj) for name, obj in inspect.getmembers(module_or_func)
+        ]:
+            if (
+                inspect.isfunction(obj)
+                and inspect.getmodule(obj).__package__ == module_or_func.__package__
+            ):
                 func = getattr(module_or_func, name)
                 setattr(module_or_func, name, type_casting(func))
 
@@ -104,4 +114,6 @@ def enable_type_casting(module_or_func=None):
         return type_casting(module_or_func)
 
     else:
-        raise ValueError('enable_type_casting takes arguments of types [ModuleType, FunctionType]')
+        raise ValueError(
+            "enable_type_casting takes arguments of types [ModuleType, FunctionType]"
+        )

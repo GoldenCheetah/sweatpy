@@ -13,7 +13,7 @@ def tau_w_prime_balance(power, cp, untill=None):
         avg_power_below_cp = 0
     delta_cp = cp - avg_power_below_cp
 
-    return 546*math.e**(-0.01*delta_cp) + 316
+    return 546 * math.e ** (-0.01 * delta_cp) + 316
 
 
 def get_tau_method(power, cp, tau_dynamic, tau_value):
@@ -31,15 +31,16 @@ def get_tau_method(power, cp, tau_dynamic, tau_value):
     return tau
 
 
-def w_prime_balance_waterworth(power, cp, w_prime, tau_dynamic=False,
-        tau_value=None, *args, **kwargs):
-    '''
+def w_prime_balance_waterworth(
+    power, cp, w_prime, tau_dynamic=False, tau_value=None, *args, **kwargs
+):
+    """
     Optimisation of Skiba's algorithm by Dave Waterworth.
     Source:
     http://markliversedge.blogspot.nl/2014/10/wbal-optimisation-by-mathematician.html
     Source:
     Skiba, Philip Friere, et al. "Modeling the expenditure and reconstitution of work capacity above critical power." Medicine and science in sports and exercise 44.8 (2012): 1526-1532.
-    '''
+    """
     sampling_rate = 1
     running_sum = 0
     w_prime_balance = []
@@ -47,32 +48,34 @@ def w_prime_balance_waterworth(power, cp, w_prime, tau_dynamic=False,
 
     for t, p in enumerate(power):
         power_above_cp = p - cp
-        w_prime_expended = max(0, power_above_cp)*sampling_rate
-        running_sum = running_sum + \
-            w_prime_expended*(math.e**(t*sampling_rate/tau(t)))
+        w_prime_expended = max(0, power_above_cp) * sampling_rate
+        running_sum = running_sum + w_prime_expended * (
+            math.e ** (t * sampling_rate / tau(t))
+        )
 
         w_prime_balance.append(
-            w_prime - running_sum*math.e**(-t*sampling_rate/tau(t))
+            w_prime - running_sum * math.e ** (-t * sampling_rate / tau(t))
         )
 
     return pd.Series(w_prime_balance)
 
 
-def w_prime_balance_skiba(power, cp, w_prime, tau_dynamic=False,
-        tau_value=None, *args, **kwargs):
-    '''
+def w_prime_balance_skiba(
+    power, cp, w_prime, tau_dynamic=False, tau_value=None, *args, **kwargs
+):
+    """
     Source:
     Skiba, Philip Friere, et al. "Modeling the expenditure and reconstitution of work capacity above critical power." Medicine and science in sports and exercise 44.8 (2012): 1526-1532.
-    '''
+    """
     w_prime_balance = []
     tau = get_tau_method(power, cp, tau_dynamic, tau_value)
 
     for t in range(len(power)):
         w_prime_exp_sum = 0
 
-        for u, p in enumerate(power[:t+1]):
+        for u, p in enumerate(power[: t + 1]):
             w_prime_exp = max(0, p - cp)
-            w_prime_exp_sum += w_prime_exp * np.power(np.e, (u - t)/tau(t))
+            w_prime_exp_sum += w_prime_exp * np.power(np.e, (u - t) / tau(t))
 
         w_prime_balance.append(w_prime - w_prime_exp_sum)
 
@@ -89,7 +92,7 @@ def w_prime_balance_froncioni_skiba_clarke(power, cp, w_prime):
 
     for p in power:
         if p < cp:
-            new = last + (cp - p) * (w_prime - last)/w_prime
+            new = last + (cp - p) * (w_prime - last) / w_prime
         else:
             new = last + (cp - p)
 
@@ -102,11 +105,11 @@ def w_prime_balance_froncioni_skiba_clarke(power, cp, w_prime):
 def w_prime_balance(power, cp, w_prime, algorithm=None, *args, **kwargs):
     if algorithm is None:
         method = w_prime_balance_waterworth
-    elif algorithm == 'waterworth':
+    elif algorithm == "waterworth":
         method = w_prime_balance_waterworth
-    elif algorithm == 'skiba':
+    elif algorithm == "skiba":
         method = w_prime_balance_skiba
-    elif algorithm == 'froncioni-skiba-clarke':
+    elif algorithm == "froncioni-skiba-clarke":
         method = w_prime_balance_froncioni_skiba_clarke
 
     return method(power, cp, w_prime, *args, **kwargs)
