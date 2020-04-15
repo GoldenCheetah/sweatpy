@@ -1,0 +1,13 @@
+FROM python
+
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+ENV PATH "/root/.poetry/bin:$PATH"
+
+RUN mkdir /src
+WORKDIR /src
+
+COPY pyproject.toml poetry.lock ./
+
+RUN poetry install
+
+CMD poetry run mkdocs serve -f docs/mkdocs.yml --dev-addr=0.0.0.0:8000
