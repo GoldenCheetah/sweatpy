@@ -2,6 +2,10 @@
 !!! warning
     **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning any dependencies with `sweat==0.4.0`.**
 
+!!! tip
+    Noticed a missing feature, found a bug or just have a great idea for `sweatpy`? Get in touch with us by creating an issue [here](https://github.com/GoldenCheetah/sweatpy/issues/new)!
+
+
 ## Introduction
 Sweatpy is a Python library that is designed to make workout analysis a breeze. The current state of the project is "very beta": features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with the contributors or create an issue if you have problems/questions/feature requests/special use cases.
 
