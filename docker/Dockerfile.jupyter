@@ -1,0 +1,8 @@
+FROM python
+
+RUN pip install jupyter
+
+RUN mkdir /src/
+WORKDIR /src/
+
+CMD pip install . && cd docs/docs/ && jupyter notebook --ip=0.0.0.0  --port=8888 --allow-root

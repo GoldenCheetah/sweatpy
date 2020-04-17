@@ -16,4 +16,4 @@ testall:
 	docker-compose -f docker/docker-compose.test.yml run sweatpy
 
 docs:
-	docker run --rm -it -p 8000:8000 -v ${PWD}/docs:/docs squidfunk/mkdocs-material
+	docker-compose -f docker/docker-compose.docs.yml up --remove-orphans

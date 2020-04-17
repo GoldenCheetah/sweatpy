@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  mkdocs:
+    image: sweatpy-mkdocs
+    container_name: sweatpy-mkdocs
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.mkdocs
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../:/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - jupyter
+
+  jupyter:
+    image: sweatpy-jupyter
+    container_name: sweatpy-jupyter
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../:/src
+    stdin_open: true
+    tty: true

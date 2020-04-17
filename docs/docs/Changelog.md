@@ -22,3 +22,4 @@ Types of changes:
 - Adds Github Actions for tests and publishing.
 - Updates copyright year in LICENSE.
 - Adds CONTRIBUTING.md.
+- Adds Jupyter notebook functionality for docs.

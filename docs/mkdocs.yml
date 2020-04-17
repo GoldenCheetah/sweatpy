@@ -18,3 +18,6 @@ markdown_extensions:
 
 repo_name: goldencheetah/sweatpy
 repo_url: https://github.com/goldencheetah/sweatpy
+
+plugins:
+  - mknotebooks
