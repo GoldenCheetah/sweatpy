@@ -15,10 +15,12 @@ jobs:
         python-version: 3.8
     - name: Install Poetry
       uses: dschep/install-poetry-action@v1.3
+    - name: Poetry configuration
+      run: |
+        poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
     - name: Build package
       run: |
         poetry build
     - name: Publish package
       run: |
-        poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
         poetry publish
