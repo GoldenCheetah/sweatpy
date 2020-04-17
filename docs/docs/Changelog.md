@@ -13,8 +13,9 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-
 ## [Unreleased] - {ISO8601 date}
+
+## [0.5.0] - 2020-17-04
 ### Added
 - Python 3.8 support.
 - Tests are now run in docker.
