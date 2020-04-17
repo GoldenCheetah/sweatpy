@@ -17,6 +17,8 @@ lmfit = "^1.0.0"
 scipy = "^1.4.1"
 pandas = "^1.0.3"
 requests = "^2.23.0"
+pydantic = "^1.4"
+pyyaml = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.4"
@@ -36,10 +38,11 @@ tox_pyenv_fallback = False
 
 [testenv]
 whitelist_externals = poetry
+passenv = PYTHONDONTWRITEBYTECODE
 commands =
     # About the --no-root flag: https://github.com/python-poetry/poetry/issues/1204
     poetry install -v --no-root
-    poetry run pytest tests/
+    poetry run pytest tests/ {posargs}
 """
 
 [build-system]

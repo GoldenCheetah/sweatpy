@@ -14,6 +14,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Added example data framework
 
 ## [0.5.0] - 2020-17-04
 ### Added

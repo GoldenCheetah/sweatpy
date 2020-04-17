@@ -1,5 +1,3 @@
-# Contributing to Sweatpy
-
 Thanks for checking out Sweatpy!
 
 We've put together the following guidelines to help you figure out where you can best be helpful.
@@ -102,6 +100,11 @@ The `make docs` command also runs a Jupyter notebook server at [http://localhost
 
 - More information on working with markdown can be found [here](https://guides.github.com/features/mastering-markdown/).
 - More information on working with Jupyter notebooks can be found [here](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html).
+
+## Example data
+Example data is stored in `/sweat/example_data/`.
+Every new data that is added needs to be added to `sweat/example_data/index.yml` too.
+See [Example data](/Loading data/Example_data) for how to use the example data.
 
 ## Continuous integration and continuous deployment
 This repo is setup with Github Actions that are triggered on specific events:
