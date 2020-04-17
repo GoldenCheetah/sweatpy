@@ -17,7 +17,7 @@ jobs:
       uses: dschep/install-poetry-action@v1.3
     - name: Poetry configuration
       run: |
-        poetry config pypi-token.testpypi ${{ secrets.PYPI_TOKEN }}
+        poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
     - name: Build package
       run: |
         poetry build
