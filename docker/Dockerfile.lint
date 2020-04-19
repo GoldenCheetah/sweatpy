@@ -5,4 +5,4 @@ RUN pip install black
 RUN mkdir /src/
 WORKDIR /src/
 
-CMD black sweat
+CMD black sweat && black tests

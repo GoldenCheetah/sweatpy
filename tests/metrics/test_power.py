@@ -1,12 +1,11 @@
 import numpy as np
 import pandas as pd
-from sweat.metrics.power import (wpk, relative_intensity,
-                                            stress_score)
+from sweat.metrics.power import wpk, relative_intensity, stress_score
 
 
 def test_wpk():
 
-    power = [1,2,3]
+    power = [1, 2, 3]
     weight = 2
 
     rv = wpk(np.array(power), weight)
@@ -30,4 +29,3 @@ def test_stress_score():
     duration = 3600
 
     assert stress_score(norm_power, threshold_power, duration) == 100.0
-
