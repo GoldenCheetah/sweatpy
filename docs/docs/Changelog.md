@@ -17,6 +17,9 @@ Types of changes:
 ### Added
 - Added example data framework
 
+### Changed
+- Refactored reading FIT files to pandas-like interface: read_fit()
+
 ## [0.5.0] - 2020-17-04
 ### Added
 - Python 3.8 support.
