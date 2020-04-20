@@ -21,3 +21,12 @@ repo_url: https://github.com/goldencheetah/sweatpy
 
 plugins:
   - mknotebooks
+
+nav:
+    - 'index.md'
+    - 'Features':
+        - 'features/nomenclature.md'
+        - 'features/data_loading.md'
+        - 'features/example_data.md'
+    - 'changelog.md'
+    - 'contributing.md'

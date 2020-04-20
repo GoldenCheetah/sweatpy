@@ -1,1 +1,1 @@
-See [Contributing.md](/docs/docs/Contributing.md) in the docs.
+See [contributing.md](/docs/docs/contributing.md) in the docs.
