@@ -1,0 +1,73 @@
+- path: '4078723797.fit'
+  sport: 'cycling'
+  file_type: 'FIT'
+  recording_device: 'Garmin Edge 1000'
+  sensors:
+    - name: 'Wahoo Tickr X'
+      data_types:
+        - 'heartrate'
+    - name: 'TeamZwatt Zpider'
+      data_types:
+        - 'power'
+        - 'left-right balance'
+        - 'cadence'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'speed'
+    - 'power'
+    - 'left-right balance'
+    - 'elevation'
+    - 'cadence'
+    - 'heartrate'
+    - 'temperature'
+- path: 'activity_4078723797.tcx'
+  description: |
+      Same activity as 4078723797.fit but exported from Garmin Connect as .tcx.
+  sport: 'cycling'
+  file_type: 'TCX'
+  recording_device: 'Garmin Edge 1000'
+  sensors:
+    - name: 'Wahoo Tickr X'
+      data_types:
+        - 'heartrate'
+    - name: 'TeamZwatt Zpider'
+      data_types:
+        - 'power'
+        - 'left-right balance'
+        - 'cadence'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'speed'
+    - 'power'
+    - 'left-right balance'
+    - 'elevation'
+    - 'cadence'
+    - 'heartrate'
+    - 'temperature'
+- path: 'activity_4078723797.gpx'
+  description: |
+      Same activity as 4078723797.fit but exported from Garmin Connect as .tcx.
+  sport: 'cycling'
+  file_type: 'GPX'
+  recording_device: 'Garmin Edge 1000'
+  sensors:
+    - name: 'Wahoo Tickr X'
+      data_types:
+        - 'heartrate'
+    - name: 'TeamZwatt Zpider'
+      data_types:
+        - 'power'
+        - 'left-right balance'
+        - 'cadence'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'speed'
+    - 'power'
+    - 'left-right balance'
+    - 'elevation'
+    - 'cadence'
+    - 'heartrate'
+    - 'temperature'

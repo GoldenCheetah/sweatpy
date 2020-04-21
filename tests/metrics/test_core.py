@@ -2,15 +2,21 @@ import pytest
 import numpy as np
 import pandas as pd
 from unittest import mock
-from sweat.metrics.core import (mask_fill, rolling_mean,
-                                           median_filter, compute_zones,
-                                           best_interval, time_in_zones,
-                                           weighted_average_power, mean_max,
-                                           multiple_best_intervals, DataPoint)
+from sweat.metrics.core import (
+    mask_fill,
+    rolling_mean,
+    median_filter,
+    compute_zones,
+    best_interval,
+    time_in_zones,
+    weighted_average_power,
+    mean_max,
+    multiple_best_intervals,
+    DataPoint,
+)
 
 
-class TestMaskFill():
-
+class TestMaskFill:
     def test_mask_fill_no_mask(self):
 
         arg = np.asarray([1, 1, 1])
@@ -18,7 +24,6 @@ class TestMaskFill():
 
         rv = mask_fill(arg)
         assert (rv == expected).all()
-
 
     def test_mask_fill(self):
 
@@ -37,8 +42,7 @@ class TestMaskFill():
         assert (rv == expected).all()
 
 
-class TestRollingMean():
-
+class TestRollingMean:
     def test_rolling_mean(self):
         stream = np.asarray([1, 2, 3, 4, 5])
         expected = np.asarray([1, 1.5, 2.5, 3.5, 4.5])
@@ -46,7 +50,6 @@ class TestRollingMean():
         rv = rolling_mean(stream, 2)
 
         assert (rv == expected).all()
-
 
     def test_rolling_mean_with_mask(self):
         stream = np.asarray([1, 2, 3, 4, 5])
@@ -56,34 +59,28 @@ class TestRollingMean():
 
         assert (rv == expected).all()
 
-
     def test_rolling_mean_list_emwa(self):
         stream = np.ones(30)
         expected = np.ones(30)
-        rv = rolling_mean(stream, 2, algorithm='ewma')
+        rv = rolling_mean(stream, 2, algorithm="ewma")
 
         assert (rv == expected).all()
 
-
     def test_rolling_mean_real_data(self, test_stream):
         rv = rolling_mean(
-            np.asarray(test_stream['watts']),
-            mask=test_stream['moving'],
-            window=1
+            np.asarray(test_stream["watts"]), mask=test_stream["moving"], window=1
         )
 
-        assert (rv == test_stream['watts']).all()
+        assert (rv == test_stream["watts"]).all()
 
 
-class TestMedianFilter():
-
+class TestMedianFilter:
     def test_median_filter(self):
         stream = np.ones(60)
         stream[-1] = 2
 
         rv = median_filter(stream)
         assert (rv == np.ones(60)).all()
-
 
     def test_median_filter_with_replacement(self):
         stream = np.ones(60)
@@ -97,7 +94,7 @@ class TestMedianFilter():
         assert (rv == expected).all()
 
 
-class TestComputeZones():
+class TestComputeZones:
     def test_zones_power_ftp(self):
         stream = np.asarray([0.55, 0.75, 0.9, 1.05, 1.2, 1.5, 10.0])
         expected = np.asarray(list(range(1, 8)))
@@ -105,7 +102,6 @@ class TestComputeZones():
         rv = compute_zones(stream, ftp=1.0)
 
         assert (rv == expected).all()
-
 
     def test_zones_heart_rate_lthr(self):
         stream = np.asarray([0.6, 0.8, 0.9, 1.0, 1.1])
@@ -115,7 +111,6 @@ class TestComputeZones():
 
         assert (rv == expected).all()
 
-
     def test_zones_power_explicit_zones(self):
         stream = np.asarray([1, 150, 210, 250, 300, 350, 450])
         expected = np.asarray([1, 2, 3, 4, 5, 6, 7])
@@ -123,7 +118,6 @@ class TestComputeZones():
         rv = compute_zones(stream, zones=[-1, 144, 196, 235, 274, 313, 391, 10000])
 
         assert (rv == expected).all()
-
 
     def test_zones_heart_rate_explicit_zones(self):
         stream = np.asarray([60, 120, 150, 160, 170, 180])
@@ -140,9 +134,8 @@ class TestComputeZones():
             compute_zones(stream)
 
 
-class TestBestInterval():
-
-    @mock.patch('sweat.metrics.core.rolling_mean')
+class TestBestInterval:
+    @mock.patch("sweat.metrics.core.rolling_mean")
     def test_best_interval(self, test_rolling_mean):
         stream = [1, 1, 1, 1, 1]
         test_rolling_mean.return_value = stream
@@ -150,9 +143,8 @@ class TestBestInterval():
         assert best_interval(stream, 5) == 1
 
 
-class TestTimeInZones():
-
-    @mock.patch('sweat.metrics.core.compute_zones')
+class TestTimeInZones:
+    @mock.patch("sweat.metrics.core.compute_zones")
     def test_time_in_zones(self, zones):
         power = [0.55, 0.75, 0.9, 1.05, 1.2, 1.5, 10.0]
         zones.return_value = [1, 2, 3, 4, 5, 6, 7]
@@ -163,24 +155,21 @@ class TestTimeInZones():
         assert (rv == expected).all()
 
 
-class TestWeightedAveragePower():
-
+class TestWeightedAveragePower:
     def test_wap(self):
         stream = np.ones(30)
         moving = np.ones(30, dtype=bool)
 
         assert weighted_average_power(stream, moving) == 1
 
-
     def test_normalized_power_xpower(self):
         stream = np.ones(30)
         moving = np.ones(30, dtype=bool)
 
-        assert weighted_average_power(stream, moving, algorithm='xPower') == 1
+        assert weighted_average_power(stream, moving, algorithm="xPower") == 1
 
 
-class TestMeanMax():
-
+class TestMeanMax:
     def test_power_duration_curve(self):
         power = np.arange(101)
         rv = mean_max(power)
@@ -190,8 +179,7 @@ class TestMeanMax():
         assert rv[-1] == 50.5
 
 
-class TestMultipleBestIntervals():
-
+class TestMultipleBestIntervals:
     def test_mean_max_bests(self, power):
         bests = multiple_best_intervals(power, 3, 3)
 
@@ -217,6 +205,3 @@ class TestDataPoint:
     def test_init_too_many_values(self):
         with pytest.raises(TypeError):
             DataPoint(1, 2, 3)
-
-
-
