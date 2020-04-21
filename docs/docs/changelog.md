@@ -15,8 +15,10 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Added reading GPX files.
 
-## [0.6.0] - 2020-21-04
+## [0.6.0] - 2020-04-21
 ### Added
 - Added example data framework
 

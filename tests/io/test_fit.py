@@ -2,6 +2,7 @@ import pandas as pd
 import pytest
 import sweat
 from sweat.io import fit
+from sweat.examples.utils import FileTypeEnum
 from fitparse.utils import FitParseError
 
 
@@ -9,17 +10,16 @@ def test_top_level_import():
     assert sweat.read_fit == fit.read_fit
 
 
-def test_read_fit():
-    example_fit = sweat.examples(path="4078723797.fit")
+@pytest.mark.parametrize(
+    "example_fit", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit)]
+)
+def test_read_fit(example_fit):
     fit_df = fit.read_fit(example_fit.path)
 
     assert isinstance(fit_df, pd.DataFrame)
-    assert "heartrate" in fit_df.columns
-    assert "power" in fit_df.columns
-    assert "cadence" in fit_df.columns
-    assert "distance" in fit_df.columns
     assert fit_df.index.dtype == int
-    assert len(fit_df) == 8357
+    included_data = set(i.value for i in example_fit.included_data)
+    assert included_data <= set(fit_df.columns.to_list())
 
 
 def test_read_fit_no_fit():

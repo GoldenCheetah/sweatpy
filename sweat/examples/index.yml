@@ -1,4 +1,6 @@
 - path: '4078723797.fit'
+  description: |
+      Synced to Garmin Connect and then downloaded as original file.
   sport: 'cycling'
   file_type: 'FIT'
   recording_device: 'Garmin Edge 1000'
@@ -34,21 +36,38 @@
     - name: 'TeamZwatt Zpider'
       data_types:
         - 'power'
-        - 'left-right balance'
         - 'cadence'
   included_data:
     - 'latitude'
     - 'longitude'
     - 'speed'
     - 'power'
-    - 'left-right balance'
+    - 'elevation'
+    - 'cadence'
+    - 'heartrate'
+- path: 'activity_4078723797.gpx'
+  description: |
+      Same activity as 4078723797.fit but exported from Garmin Connect as .gpx.
+  sport: 'cycling'
+  file_type: 'GPX'
+  recording_device: 'Garmin Edge 1000'
+  sensors:
+    - name: 'Wahoo Tickr X'
+      data_types:
+        - 'heartrate'
+    - name: 'TeamZwatt Zpider'
+      data_types:
+        - 'cadence'
+  included_data:
+    - 'latitude'
+    - 'longitude'
     - 'elevation'
     - 'cadence'
     - 'heartrate'
     - 'temperature'
-- path: 'activity_4078723797.gpx'
+- path: '4078723797_strava.gpx'
   description: |
-      Same activity as 4078723797.fit but exported from Garmin Connect as .tcx.
+      Same activity as 4078723797.fit but first synced to Strava and then exported as .gpx.
   sport: 'cycling'
   file_type: 'GPX'
   recording_device: 'Garmin Edge 1000'
@@ -59,15 +78,62 @@
     - name: 'TeamZwatt Zpider'
       data_types:
         - 'power'
-        - 'left-right balance'
         - 'cadence'
   included_data:
     - 'latitude'
     - 'longitude'
-    - 'speed'
     - 'power'
-    - 'left-right balance'
     - 'elevation'
     - 'cadence'
+    - 'heartrate'
+    - 'temperature'
+- path: '4801048867.fit'
+  description: |
+      Synced to Garmin Connect and then downloaded as original file.
+  sport: 'cycling'
+  file_type: 'FIT'
+  recording_device: 'Garmin Forerunner 935'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'speed'
+    - 'elevation'
+    - 'heartrate'
+    - 'temperature'
+- path: 'activity_4801048867.gpx'
+  description: |
+      Same activity as 4801048867.fit but exported from Garmin Connect as .gpx.
+  sport: 'cycling'
+  file_type: 'GPX'
+  recording_device: 'Garmin Forerunner 935'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'elevation'
+    - 'heartrate'
+    - 'temperature'
+- path: 'activity_4801048867.tcx'
+  description: |
+      Same activity as 4801048867.fit but exported from Garmin Connect as .tcx.
+  sport: 'cycling'
+  file_type: 'TCX'
+  recording_device: 'Garmin Forerunner 935'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'speed'
+    - 'elevation'
+    - 'heartrate'
+    - 'temperature'
+- path: '4801048867_strava.gpx'
+  description: |
+      Same activity as 4801048867.fit but first synced to Strava and then exported as .gpx.
+  sport: 'cycling'
+  file_type: 'GPX'
+  recording_device: 'Garmin Forerunner 935'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'elevation'
     - 'heartrate'
     - 'temperature'
