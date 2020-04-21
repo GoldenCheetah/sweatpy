@@ -31,7 +31,15 @@ def read_fit(fpath):
 
     fit_df = pd.DataFrame(records)
 
-    fit_df = fit_df.rename(columns={"heart_rate": "heartrate"})
+    fit_df = fit_df.rename(
+        columns={
+            "heart_rate": "heartrate",
+            "position_lat": "latitude",
+            "position_long": "longitude",
+            "altitude": "elevation",
+            "left_right_balance": "left-right balance",
+        }
+    )
 
     fit_df.index = (fit_df["timestamp"] - fit_df["timestamp"][0]) / np.timedelta64(
         1, "s"

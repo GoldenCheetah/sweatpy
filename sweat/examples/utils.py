@@ -42,7 +42,7 @@ class ExampleData(BaseModel):
     file_type: FileTypeEnum
     recording_device: str
     recording_device: str
-    sensors: List[Sensor]
+    sensors: List[Sensor] = None
     included_data: List[DataTypeEnum]
 
     @validator("path")
