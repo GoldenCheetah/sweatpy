@@ -15,6 +15,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.8.0] - 2020-04-26
 ### Added
 - Added reading TCX files.
 
