@@ -28,6 +28,7 @@ class DataTypeEnum(str, Enum):
     cadence = "cadence"
     heartrate = "heartrate"
     temperature = "temperature"
+    distance = "distance"
 
 
 class Sensor(BaseModel):

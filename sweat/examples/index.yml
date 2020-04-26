@@ -45,6 +45,7 @@
     - 'elevation'
     - 'cadence'
     - 'heartrate'
+    - 'distance'
 - path: 'activity_4078723797.gpx'
   description: |
       Same activity as 4078723797.fit but exported from Garmin Connect as .gpx.
@@ -124,7 +125,7 @@
     - 'speed'
     - 'elevation'
     - 'heartrate'
-    - 'temperature'
+    - 'distance'
 - path: '4801048867_strava.gpx'
   description: |
       Same activity as 4801048867.fit but first synced to Strava and then exported as .gpx.
@@ -137,3 +138,20 @@
     - 'elevation'
     - 'heartrate'
     - 'temperature'
+- path: '3173437224.tcx'
+  description: |
+      Synced from watch to Polar Flow Android, then to Polar Flow web service. Then exported as .tcx.
+  sport: 'running'
+  file_type: 'TCX'
+  recording_device: 'Polar M400'
+  sensors:
+    - name: 'Polar H7 Heart Rate Sensor'
+      data_types:
+        - 'heartrate'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'elevation'
+    - 'heartrate'
+    - 'cadence'
+    - 'distance'
