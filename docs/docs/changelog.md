@@ -15,6 +15,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.9.0] - 2020-05-23
 ### Added
 - Added generic read_file function
 - Added generic read_dir function
