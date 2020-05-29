@@ -11,13 +11,23 @@
 Sweatpy is a Python library that is designed to make workout analysis a breeze. The current state of the project is "very beta": features might be added, removed or changed in backwards incompatible ways. When the time is right a stable version will be released. Get in touch with the contributors or create an issue if you have problems/questions/feature requests/special use cases.
 
 ## Installation
-This library can be installed from [PyPI](https://pypi.org/):
+This library can be installed from [PyPI](https://pypi.org/project/sweat/):
 ```bash
 pip install sweat
 ```
 
 ## Usage
-Coming soon...
+Sweatpy supports loading .fit, .tcx and .gpx files. To load a .fit file:
+```python
+import sweat
+
+
+data = sweat.read_fit("path/to/file.fit")
+```
+More information about loading files can be found [here](/features/data_loading/).
+
+The data frames that are returned by Sweatpy when loading files is similar for different file types.
+Read more about this standardization [here](/features/nomenclature/).
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
