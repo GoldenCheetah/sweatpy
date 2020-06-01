@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from .utils import remove_duplicate_indices, resample_data
+
 
 NAMESPACES = {
     "default": "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2",
@@ -20,7 +22,18 @@ def xml_find_value_or_none(element, match, namespaces=None):
         return e.text
 
 
-def read_tcx(fpath):
+def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.DataFrame:
+    """This method loads a TCX file into a Pandas DataFrame.
+    Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
+
+    Args:
+        fpath: str, file-like or Path object
+        resample: whether or not the data frame needs to be resampled to 1Hz
+        interpolate: whether or not missing data in the data frame needs to be interpolated
+
+    Returns:
+        A pandas data frame with all the data.
+    """
     tree = ET.parse(Path(fpath))
     root = tree.getroot()
     activities = root.find("default:Activities", NAMESPACES)
@@ -30,7 +43,7 @@ def read_tcx(fpath):
         for lap in activity.findall("default:Lap", NAMESPACES):
             track = lap.find("default:Track", NAMESPACES)
             for trackpoint in track.findall("default:Trackpoint", NAMESPACES):
-                timestamp = xml_find_value_or_none(
+                datetime = xml_find_value_or_none(
                     trackpoint, "default:Time", NAMESPACES
                 )
                 elevation = xml_find_value_or_none(
@@ -65,7 +78,7 @@ def read_tcx(fpath):
 
                 records.append(
                     dict(
-                        timestamp=timestamp,
+                        datetime=datetime,
                         latitude=latitude,
                         longitude=longitude,
                         elevation=elevation,
@@ -79,5 +92,14 @@ def read_tcx(fpath):
 
     tcx_df = pd.DataFrame(records)
     tcx_df = tcx_df.dropna("columns", "all")
+    tcx_df["datetime"] = pd.to_datetime(tcx_df["datetime"], utc=True)
+    tcx_df = tcx_df.set_index("datetime")
+
+    # Convert columns to numeric if possible
+    tcx_df = tcx_df.apply(pd.to_numeric, errors="ignore")
+
+    tcx_df = remove_duplicate_indices(tcx_df)
+
+    tcx_df = resample_data(tcx_df, resample, interpolate)
 
     return tcx_df

@@ -17,7 +17,7 @@ def test_read_fit(example_fit):
     fit_df = fit.read_fit(example_fit.path)
 
     assert isinstance(fit_df, pd.DataFrame)
-    assert fit_df.index.dtype == int
+    assert isinstance(fit_df.index, pd.DatetimeIndex)
     included_data = set(i.value for i in example_fit.included_data)
     assert included_data <= set(fit_df.columns.to_list())
 

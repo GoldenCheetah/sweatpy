@@ -16,6 +16,6 @@ def test_read_tcx(example_tcx):
     tcx_df = tcx.read_tcx(example_tcx.path)
 
     assert isinstance(tcx_df, pd.DataFrame)
-    assert tcx_df.index.dtype == int
+    assert isinstance(tcx_df.index, pd.DatetimeIndex)
     included_data = set(i.value for i in example_tcx.included_data)
     assert included_data <= set(tcx_df.columns.to_list())
