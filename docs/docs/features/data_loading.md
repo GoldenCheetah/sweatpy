@@ -106,3 +106,15 @@ directory = Path("path/to/some/dir/")
 for activity in sweat.read_dir(directory):
     # Do things with the activities
 ```
+
+## Resampling
+All `read_*()` functions accept a `resample` and `interpolate` argument (both `False` by default) that can trigger a resampling to 1Hz and subsequent linear interpolation of the data for files that are not sampled (consistently) at 1Hz, as some Garmin devices with "smart recording mode" do.
+
+```python
+import sweat
+
+
+example_tcx = sweat.examples(path="3173437224.tcx")
+
+data = sweat.read_tcx(example_tcx.path, resample=True, interpolate=True)
+```

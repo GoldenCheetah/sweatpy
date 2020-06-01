@@ -20,7 +20,7 @@ def test_read_file(file_type):
     data = generic.read_file(example_file.path)
 
     assert isinstance(data, pd.DataFrame)
-    assert data.index.dtype == int
+    assert isinstance(data.index, pd.DatetimeIndex)
     included_data = set(i.value for i in example_file.included_data)
     assert included_data <= set(data.columns.to_list())
 

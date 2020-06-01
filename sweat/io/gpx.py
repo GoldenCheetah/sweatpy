@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from .utils import remove_duplicate_indices, resample_data
+
 
 NAMESPACES = {
     "default": "http://www.topografix.com/GPX/1/1",
@@ -20,7 +22,18 @@ def xml_find_value_or_none(element, match, namespaces=None):
         return e.text
 
 
-def read_gpx(fpath):
+def read_gpx(fpath, resample: bool = False, interpolate: bool = False) -> pd.DataFrame:
+    """This method loads a GPX file into a Pandas DataFrame.
+    Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
+
+    Args:
+        fpath: str, file-like or Path object
+        resample: whether or not the data frame needs to be resampled to 1Hz
+        interpolate: whether or not missing data in the data frame needs to be interpolated
+
+    Returns:
+        A pandas data frame with all the data.
+    """
     tree = ET.parse(Path(fpath))
     root = tree.getroot()
     trk = root.find("default:trk", NAMESPACES)
@@ -33,7 +46,7 @@ def read_gpx(fpath):
 
         elevation = xml_find_value_or_none(trackpoint, "default:ele", NAMESPACES)
 
-        timestamp = xml_find_value_or_none(trackpoint, "default:time", NAMESPACES)
+        datetime = xml_find_value_or_none(trackpoint, "default:time", NAMESPACES)
 
         extensions = trackpoint.find("default:extensions", NAMESPACES)
 
@@ -54,7 +67,7 @@ def read_gpx(fpath):
                 latitude=latitude,
                 longitude=longitude,
                 elevation=elevation,
-                timestamp=timestamp,
+                datetime=datetime,
                 power=power,
                 temperature=temperature,
                 heartrate=heartrate,
@@ -64,5 +77,11 @@ def read_gpx(fpath):
 
     gpx_df = pd.DataFrame(records)
     gpx_df = gpx_df.dropna("columns", "all")
+    gpx_df["datetime"] = pd.to_datetime(gpx_df["datetime"], utc=True)
+    gpx_df = gpx_df.set_index("datetime")
+
+    gpx_df = remove_duplicate_indices(gpx_df)
+
+    gpx_df = resample_data(gpx_df, resample, interpolate)
 
     return gpx_df

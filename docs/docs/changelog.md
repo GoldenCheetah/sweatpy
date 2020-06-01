@@ -18,6 +18,10 @@ Types of changes:
 ### Added
 - Usage examples on docs home page
 - Nomenclature for data frames
+- Adds ability to resample and interpolate data frames
+
+### Changed
+- Changes the index of returned data frames to a pandas.DateTimeIndex
 
 ## [0.9.0] - 2020-05-23
 ### Added

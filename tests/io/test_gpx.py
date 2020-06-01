@@ -16,6 +16,6 @@ def test_read_gpx(example_gpx):
     gpx_df = gpx.read_gpx(example_gpx.path)
 
     assert isinstance(gpx_df, pd.DataFrame)
-    assert gpx_df.index.dtype == int
+    assert isinstance(gpx_df.index, pd.DatetimeIndex)
     included_data = set(i.value for i in example_gpx.included_data)
     assert included_data <= set(gpx_df.columns.to_list())

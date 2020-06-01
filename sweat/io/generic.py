@@ -1,12 +1,14 @@
 from pathlib import Path
-from typing import Union
+from typing import Generator, Union
+
+import pandas as pd
 
 from .fit import read_fit
 from .gpx import read_gpx
 from .tcx import read_tcx
 
 
-def read_file(fpath: Union[str, Path]):
+def read_file(fpath: Union[str, Path], *args, **kwargs) -> pd.DataFrame:
     """This method tries to recognize the file type of the fpath argument by reading the file extension (suffix).
     Please note that this method does not support file-like objects, in contrast to the other read_* functions of sweatpy.
 
@@ -29,10 +31,10 @@ def read_file(fpath: Union[str, Path]):
             f"Argument fpath ({fpath}) has an unsupported file extensions (suffix): {suffix}"
         )
 
-    return read_func(fpath)
+    return read_func(fpath, *args, **kwargs)
 
 
-def read_dir(path: Union[str, Path]):
+def read_dir(path: Union[str, Path]) -> Generator[pd.DataFrame, None, None]:
     """Generator function that returns activities in a directory as pandas data frames.
 
     Args:
