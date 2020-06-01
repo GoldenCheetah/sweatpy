@@ -15,6 +15,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.10.0] - 2020-06-01
 ### Added
 - Usage examples on docs home page
 - Nomenclature for data frames
