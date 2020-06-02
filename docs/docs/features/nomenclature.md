@@ -19,3 +19,5 @@ For the data frames returned by the `read_*()` methods, the column and data type
 | distance          | meter | |
 | elevation         | meter | |
 | temperature       | degrees Celsius | |
+| lap               | - | lap counter, zero-indexed |
+| session       | - | session counter, triggered when an activity is (manually or automatically) paused or stopped and then resumed |

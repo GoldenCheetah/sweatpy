@@ -23,6 +23,8 @@
     - 'cadence'
     - 'heartrate'
     - 'temperature'
+  laps: 1
+  sessions: 1
 - path: 'activity_4078723797.tcx'
   description: |
       Same activity as 4078723797.fit but exported from Garmin Connect as .tcx.
@@ -46,6 +48,8 @@
     - 'cadence'
     - 'heartrate'
     - 'distance'
+  laps: 1
+  sessions: 1
 - path: 'activity_4078723797.gpx'
   description: |
       Same activity as 4078723797.fit but exported from Garmin Connect as .gpx.
@@ -66,6 +70,8 @@
     - 'cadence'
     - 'heartrate'
     - 'temperature'
+  laps: 1
+  sessions: 1
 - path: '4078723797_strava.gpx'
   description: |
       Same activity as 4078723797.fit but first synced to Strava and then exported as .gpx.
@@ -88,6 +94,8 @@
     - 'cadence'
     - 'heartrate'
     - 'temperature'
+  laps: 1
+  sessions: 1
 - path: '4801048867.fit'
   description: |
       Synced to Garmin Connect and then downloaded as original file.
@@ -101,6 +109,8 @@
     - 'elevation'
     - 'heartrate'
     - 'temperature'
+  laps: 8
+  sessions: 1
 - path: 'activity_4801048867.gpx'
   description: |
       Same activity as 4801048867.fit but exported from Garmin Connect as .gpx.
@@ -113,6 +123,8 @@
     - 'elevation'
     - 'heartrate'
     - 'temperature'
+  laps: 1
+  sessions: 1
 - path: 'activity_4801048867.tcx'
   description: |
       Same activity as 4801048867.fit but exported from Garmin Connect as .tcx.
@@ -126,6 +138,8 @@
     - 'elevation'
     - 'heartrate'
     - 'distance'
+  laps: 1
+  sessions: 1
 - path: '4801048867_strava.gpx'
   description: |
       Same activity as 4801048867.fit but first synced to Strava and then exported as .gpx.
@@ -138,6 +152,8 @@
     - 'elevation'
     - 'heartrate'
     - 'temperature'
+  laps: 1
+  sessions: 1
 - path: '3173437224.tcx'
   description: |
       Synced from watch to Polar Flow Android, then to Polar Flow web service. Then exported as .tcx.
@@ -155,6 +171,8 @@
     - 'heartrate'
     - 'cadence'
     - 'distance'
+  laps: 1
+  sessions: 1
 - path: '2020-06-01-16-52-40.fit'
   description: |
       Copied directly from Garmin device. Short activity with some intervals and a pause in the middle.
@@ -180,3 +198,5 @@
     - 'cadence'
     - 'heartrate'
     - 'temperature'
+  laps: 5
+  sessions: 2

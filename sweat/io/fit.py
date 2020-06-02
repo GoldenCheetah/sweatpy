@@ -27,8 +27,27 @@ def read_fit(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
     fitfile = FitFile(fpath)
 
     records = []
-    for record in fitfile.get_messages("record"):
-        records.append(record.get_values())
+    lap = 0
+    session = -1
+    for record in fitfile.get_messages():
+        if record.mesg_type is None:
+            continue
+
+        if record.mesg_type.name == "record":
+            values = record.get_values()
+            values["lap"] = lap
+            values["session"] = session
+            records.append(values)
+        elif record.mesg_type.name == "lap":
+            lap += 1
+        elif record.mesg_type.name == "event":
+            if record.get_value("event_type") == "start":
+                print(record.get_values())
+                # This happens whens an activity is (manually or automatically) paused or stopped and the resumed
+                session += 1
+        elif record.mesg_type.name == "sport":
+            # @TODO handle this to be able to return metadata
+            pass
 
     fit_df = pd.DataFrame(records)
 
