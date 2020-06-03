@@ -11,21 +11,21 @@ def test_top_level_import():
 
 
 @pytest.mark.parametrize(
-    "example_fit", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit)]
 )
-def test_read_fit(example_fit):
-    activity = fit.read_fit(example_fit.path)
+def test_read_fit(example):
+    activity = fit.read_fit(example.path)
 
     assert isinstance(activity, pd.DataFrame)
     assert isinstance(activity.index, pd.DatetimeIndex)
-    included_data = set(i.value for i in example_fit.included_data)
+    included_data = set(i.value for i in example.included_data)
     assert included_data <= set(activity.columns.to_list())
 
     assert "lap" in activity.columns
-    assert activity["lap"].max() == example_fit.laps - 1
+    assert activity["lap"].max() == example.laps - 1
 
     assert "session" in activity.columns
-    assert activity["session"].max() == example_fit.sessions - 1
+    assert activity["session"].max() == example.sessions - 1
 
 
 def test_read_fit_no_fit():

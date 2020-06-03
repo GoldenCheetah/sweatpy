@@ -19,5 +19,5 @@ For the data frames returned by the `read_*()` methods, the column and data type
 | distance          | meter | |
 | elevation         | meter | |
 | temperature       | degrees Celsius | |
-| lap               | - | lap counter, zero-indexed |
-| session       | - | session counter, triggered when an activity is (manually or automatically) paused or stopped and then resumed |
+| lap               | - | lap counter, zero-indexed. Only supported for .fit and .tcx files. |
+| session       | - | session counter, zero-indexed. Triggered when an activity is (manually or automatically) paused or stopped and then resumed. Only supported for .fit files. |
