@@ -45,6 +45,8 @@ class ExampleData(BaseModel):
     recording_device: str
     sensors: List[Sensor] = None
     included_data: List[DataTypeEnum]
+    laps: int = None
+    sessions: int = None
 
     @validator("path")
     def make_path_absolute(cls, v):

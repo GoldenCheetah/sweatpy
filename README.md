@@ -1,4 +1,7 @@
 # Sweatpy
+
+[![Downloads](https://pepy.tech/badge/sweat)](https://pepy.tech/project/sweat)
+
 > :warning: **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning any dependencies with `sweat==0.4.0`.**
 
 Documentation can be found [here](https://sweatpy.gssns.io).
