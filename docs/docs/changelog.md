@@ -15,6 +15,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.11.0] - 2020-06-04
 ### Added
 - Adds lap and session data for FIT files
 - Adds lap data for TCX files
