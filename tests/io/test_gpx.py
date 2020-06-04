@@ -10,12 +10,12 @@ def test_top_level_import():
 
 
 @pytest.mark.parametrize(
-    "example_gpx", [(i) for i in sweat.examples(file_type=FileTypeEnum.gpx)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.gpx)]
 )
-def test_read_gpx(example_gpx):
-    gpx_df = gpx.read_gpx(example_gpx.path)
+def test_read_gpx(example):
+    activity = gpx.read_gpx(example.path)
 
-    assert isinstance(gpx_df, pd.DataFrame)
-    assert isinstance(gpx_df.index, pd.DatetimeIndex)
-    included_data = set(i.value for i in example_gpx.included_data)
-    assert included_data <= set(gpx_df.columns.to_list())
+    assert isinstance(activity, pd.DataFrame)
+    assert isinstance(activity.index, pd.DatetimeIndex)
+    included_data = set(i.value for i in example.included_data)
+    assert included_data <= set(activity.columns.to_list())

@@ -123,7 +123,7 @@
     - 'elevation'
     - 'heartrate'
     - 'temperature'
-  laps: 1
+  laps: 8
   sessions: 1
 - path: 'activity_4801048867.tcx'
   description: |
@@ -138,7 +138,7 @@
     - 'elevation'
     - 'heartrate'
     - 'distance'
-  laps: 1
+  laps: 8
   sessions: 1
 - path: '4801048867_strava.gpx'
   description: |
@@ -171,7 +171,7 @@
     - 'heartrate'
     - 'cadence'
     - 'distance'
-  laps: 1
+  laps: 2
   sessions: 1
 - path: '2020-06-01-16-52-40.fit'
   description: |
@@ -200,3 +200,50 @@
     - 'temperature'
   laps: 5
   sessions: 2
+- path: 'activity_5039744860.gpx'
+  description: |
+      Same as 2020-06-01-16-52-40.fit but exported from Garmin Connect as gpx.
+  sport: 'cycling'
+  file_type: 'GPX'
+  recording_device: 'Garmin Edge 1000'
+  sensors:
+    - name: 'Wahoo Tickr X'
+      data_types:
+        - 'heartrate'
+    - name: 'TeamZwatt Zpider'
+      data_types:
+        - 'cadence'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'elevation'
+    - 'cadence'
+    - 'heartrate'
+    - 'temperature'
+  laps: 1
+  sessions: 1
+- path: 'activity_5039744860.tcx'
+  description: |
+      Same as 2020-06-01-16-52-40.fit but exported from Garmin Connect as tcx.
+  sport: 'cycling'
+  file_type: 'TCX'
+  recording_device: 'Garmin Edge 1000'
+  sensors:
+    - name: 'Wahoo Tickr X'
+      data_types:
+        - 'heartrate'
+    - name: 'TeamZwatt Zpider'
+      data_types:
+        - 'power'
+        - 'cadence'
+  included_data:
+    - 'latitude'
+    - 'longitude'
+    - 'distance'
+    - 'speed'
+    - 'power'
+    - 'elevation'
+    - 'cadence'
+    - 'heartrate'
+  laps: 5
+  sessions: 1

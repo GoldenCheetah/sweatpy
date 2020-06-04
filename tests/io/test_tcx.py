@@ -10,12 +10,18 @@ def test_top_level_import():
 
 
 @pytest.mark.parametrize(
-    "example_tcx", [(i) for i in sweat.examples(file_type=FileTypeEnum.tcx)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.tcx)]
 )
-def test_read_tcx(example_tcx):
-    tcx_df = tcx.read_tcx(example_tcx.path)
+def test_read_tcx(example):
+    activity = tcx.read_tcx(example.path)
 
-    assert isinstance(tcx_df, pd.DataFrame)
-    assert isinstance(tcx_df.index, pd.DatetimeIndex)
-    included_data = set(i.value for i in example_tcx.included_data)
-    assert included_data <= set(tcx_df.columns.to_list())
+    assert isinstance(activity, pd.DataFrame)
+    assert isinstance(activity.index, pd.DatetimeIndex)
+    included_data = set(i.value for i in example.included_data)
+    assert included_data <= set(activity.columns.to_list())
+
+    assert "lap" in activity.columns
+    assert activity["lap"].max() == example.laps - 1
+
+    assert "session" in activity.columns
+    assert activity["session"].max() == example.sessions - 1

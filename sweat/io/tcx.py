@@ -39,8 +39,11 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
     activities = root.find("default:Activities", NAMESPACES)
 
     records = []
+    lap_no = -1
+    session = 0
     for activity in activities.findall("default:Activity", NAMESPACES):
         for lap in activity.findall("default:Lap", NAMESPACES):
+            lap_no += 1
             track = lap.find("default:Track", NAMESPACES)
             for trackpoint in track.findall("default:Trackpoint", NAMESPACES):
                 datetime = xml_find_value_or_none(
@@ -87,6 +90,8 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
                         distance=distance,
                         speed=speed,
                         power=power,
+                        lap=lap_no,
+                        session=session,
                     )
                 )
 

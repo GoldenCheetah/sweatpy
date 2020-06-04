@@ -17,6 +17,7 @@ Types of changes:
 ## [Unreleased] - {ISO8601 date}
 ### Added
 - Adds lap and session data for FIT files
+- Adds lap data for TCX files
 
 ## [0.10.0] - 2020-06-01
 ### Added
