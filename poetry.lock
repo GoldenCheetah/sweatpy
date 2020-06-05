@@ -8,6 +8,17 @@ version = "1.4.3"
 
 [[package]]
 category = "main"
+description = "Better dates & times for Python"
+name = "arrow"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "0.15.6"
+
+[package.dependencies]
+python-dateutil = "*"
+
+[[package]]
+category = "main"
 description = "Safe, minimalistic evaluator of python expression using ast module"
 name = "asteval"
 optional = false
@@ -711,6 +722,21 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 version = "1.14.0"
 
 [[package]]
+category = "main"
+description = "Python library for interacting with Strava v3 REST API"
+name = "stravalib"
+optional = false
+python-versions = "*"
+version = "0.10.2"
+
+[package.dependencies]
+arrow = "*"
+pytz = "*"
+requests = ">=2.0,<3.0dev"
+six = "*"
+units = "*"
+
+[[package]]
 category = "dev"
 description = "Test utilities for code working with files and commands"
 name = "testpath"
@@ -796,6 +822,14 @@ tests = ["nose", "numpy"]
 
 [[package]]
 category = "main"
+description = "Python support for quantities with units"
+name = "units"
+optional = false
+python-versions = "*"
+version = "0.07"
+
+[[package]]
+category = "main"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 name = "urllib3"
 optional = false
@@ -867,13 +901,17 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "ed77c00e565e4644d5fbc418045059d909f73edf46185014ccada29d0ac16942"
+content-hash = "1759e26bff61f8bf928a5b814f3e0f7d81f95d107dac476ba64a73cda0a14221"
 python-versions = "^3.6.1"
 
 [metadata.files]
 appdirs = [
     {file = "appdirs-1.4.3-py2.py3-none-any.whl", hash = "sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"},
     {file = "appdirs-1.4.3.tar.gz", hash = "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92"},
+]
+arrow = [
+    {file = "arrow-0.15.6-py2.py3-none-any.whl", hash = "sha256:a24c1de90850f6fb2033fd6bf8a11f281e84cb54825e5eabdda219e673b52aac"},
+    {file = "arrow-0.15.6.tar.gz", hash = "sha256:eb5d339f00072cc297d7de252a2e75f272085d1231a3723f1026d1fa91367118"},
 ]
 asteval = [
     {file = "asteval-0.9.18.tar.gz", hash = "sha256:5d64e18b8a72c2c7ae8f9b70d1f80b68bbcaa98c1c0d7047c35489d03209bc86"},
@@ -1291,6 +1329,9 @@ six = [
     {file = "six-1.14.0-py2.py3-none-any.whl", hash = "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"},
     {file = "six-1.14.0.tar.gz", hash = "sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a"},
 ]
+stravalib = [
+    {file = "stravalib-0.10.2.tar.gz", hash = "sha256:76db248b24cbd6c51cf93b475d8a8df04ec4b6c6287dca244e47f37a433276d7"},
+]
 testpath = [
     {file = "testpath-0.4.4-py2.py3-none-any.whl", hash = "sha256:bfcf9411ef4bf3db7579063e0546938b1edda3d69f4e1fb8756991f5951f85d4"},
     {file = "testpath-0.4.4.tar.gz", hash = "sha256:60e0a3261c149755f4399a1fff7d37523179a70fdc3abdf78de9fc2604aeec7e"},
@@ -1348,6 +1389,9 @@ typed-ast = [
 ]
 uncertainties = [
     {file = "uncertainties-3.1.2.tar.gz", hash = "sha256:ba07c17a8a78cb58a47cd373079c7ea459f8b26cd474e29163b6ba0d72856a1e"},
+]
+units = [
+    {file = "units-0.07.tar.gz", hash = "sha256:43eb3e073e1b11289df7b1c3f184b5b917ccad178b717b03933298716f200e14"},
 ]
 urllib3 = [
     {file = "urllib3-1.25.8-py2.py3-none-any.whl", hash = "sha256:2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc"},

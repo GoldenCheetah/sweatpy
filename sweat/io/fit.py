@@ -42,7 +42,6 @@ def read_fit(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
             lap += 1
         elif record.mesg_type.name == "event":
             if record.get_value("event_type") == "start":
-                print(record.get_values())
                 # This happens whens an activity is (manually or automatically) paused or stopped and the resumed
                 session += 1
         elif record.mesg_type.name == "sport":

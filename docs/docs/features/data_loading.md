@@ -6,6 +6,10 @@
 - [GPX files](#gpx-files)
 - [TCX files](#tcx-files)
 
+...and loading data from these services:
+
+- [Strava](#strava)
+
 Helper functions:
 
 - [`read_file()`](#helper-functions), that automatically determines the file format.
@@ -74,6 +78,19 @@ example_tcx = sweat.examples(path="3173437224.tcx")
 
 data = sweat.read_tcx(example_tcx.path)
 ```
+
+## Strava
+The `sweat.read_strava()` function can be used to pull data from Strava.
+Sweat assumes you already have access to an API access token. Read more about that [here](http://developers.strava.com/docs/authentication/).
+If you are looking for a Python library that helps you with this, take a look at [stravalib](https://github.com/hozn/stravalib/) or [stravaio](https://github.com/sladkovm/stravaio).
+
+Usage:
+```python
+import sweat
+
+data = sweat.read_strava(activity_id=1234567890, access_token="some access token")
+```
+
 
 ## Helper functions
 `read_file()` works exactly as the other `read_*()` functions but tries to automatically determine the file format.

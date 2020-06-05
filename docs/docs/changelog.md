@@ -16,6 +16,11 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Rewrite of Strava implemention, now features a single read_strava() function.
+
+### Removed
+- Old Strava functionality is removed in favor of a new read_strava() function.
 
 ## [0.12.0] - 2020-06-05
 ### Added
