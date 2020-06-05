@@ -22,6 +22,9 @@ Types of changes:
 
 ### Removed
 - Removed the old critical power curve fitting functionality
+- Removed WorkoutDataFrame model because it is not maintained.
+- Removed Athlete model because it is not maintained.
+- Removed GoldenCheetahClient because it is not maintained. Will be re-implemented later.
 
 ## [0.11.0] - 2020-06-04
 ### Added

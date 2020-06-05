@@ -12,7 +12,6 @@ documentation = "https://github.com/goldencheetah/sweatpy"
 [tool.poetry.dependencies]
 python = "^3.6.1"
 fitparse = "^1.1.0"
-goldencheetahlib = "^0.8.0"
 lmfit = "^1.0.0"
 scipy = "^1.4.1"
 pandas = "^1.0.3"
@@ -23,13 +22,13 @@ scikit-learn = "^0.23.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.4"
-vcrpy = "^4.0.2"
 mkdocs = "^1.1"
 mkdocs-material = "^5.1.0"
 
 # https://tox.readthedocs.io/en/latest/example/basic.html#pyproject-toml-tox-legacy-ini
 black = "^19.10b0"
 mknotebooks = "^0.3.6"
+vcrpy = "^4.0.2"
 [tool.tox]
 legacy_tox_ini = """
 [tox]
