@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.12.0] - 2020-06-05
 ### Added
 - Added the CriticalPowerRegressor
 - Some refactoring and documentation for W'balance functionality.
