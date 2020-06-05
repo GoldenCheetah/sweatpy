@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The same types of changes should be grouped.
 Types of changes:
+
 - `Added` for new features.
 - `Changed` for changes in existing functionality.
 - `Deprecated` for soon-to-be removed features.
@@ -15,6 +16,12 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Added the CriticalPowerRegressor
+- Some refactoring and documentation for W'balance functionality.
+
+### Removed
+- Removed the old critical power curve fitting functionality
 
 ## [0.11.0] - 2020-06-04
 ### Added

@@ -32,7 +32,7 @@ The data frames that are returned by Sweatpy when loading files is similar for d
 Read more about this standardization [here](/features/nomenclature/).
 
 ## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [contributing](contributing.md).
 
 ## Contributors
 - [Aart Goossens](https://github.com/AartGoossens)
