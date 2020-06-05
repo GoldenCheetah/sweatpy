@@ -102,10 +102,8 @@ def w_prime_balance_froncioni_skiba_clarke(power, cp, w_prime):
     return pd.Series(w_prime_balance)
 
 
-def w_prime_balance(power, cp, w_prime, algorithm=None, *args, **kwargs):
-    if algorithm is None:
-        method = w_prime_balance_waterworth
-    elif algorithm == "waterworth":
+def w_prime_balance(power, cp, w_prime, algorithm="waterworth", *args, **kwargs):
+    if algorithm == "waterworth":
         method = w_prime_balance_waterworth
     elif algorithm == "skiba":
         method = w_prime_balance_skiba

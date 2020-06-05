@@ -117,3 +117,7 @@ def enable_type_casting(module_or_func=None):
         raise ValueError(
             "enable_type_casting takes arguments of types [ModuleType, FunctionType]"
         )
+
+
+def array_1d_to_2d(l):
+    return np.asarray(l).reshape(-1, 1)

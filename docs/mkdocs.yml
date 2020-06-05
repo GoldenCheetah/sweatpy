@@ -25,6 +25,7 @@ plugins:
 nav:
     - 'index.md'
     - 'Features':
+        - 'features/Critical power.ipynb'
         - 'features/nomenclature.md'
         - 'features/data_loading.md'
         - 'features/example_data.md'

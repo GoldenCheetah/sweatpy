@@ -31,7 +31,7 @@ class WorkoutDataFrame(BaseWorkoutDataFrame):
     def compute_power_per_kg(self):
         return power.wpk(self.power, self.athlete.weight)
 
-    def compute_w_prime_balance(self, algorithm=None, *args, **kwargs):
+    def compute_w_prime_balance(self, algorithm="waterworth", *args, **kwargs):
         return w_prime_balance.w_prime_balance(
             self.power,
             self.athlete.cp,
