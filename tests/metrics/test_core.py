@@ -66,13 +66,6 @@ class TestRollingMean:
 
         assert (rv == expected).all()
 
-    def test_rolling_mean_real_data(self, test_stream):
-        rv = rolling_mean(
-            np.asarray(test_stream["watts"]), mask=test_stream["moving"], window=1
-        )
-
-        assert (rv == test_stream["watts"]).all()
-
 
 class TestMedianFilter:
     def test_median_filter(self):

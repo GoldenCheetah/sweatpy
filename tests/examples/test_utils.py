@@ -50,7 +50,6 @@ def test_examples_by_sport():
     sport = utils.SportEnum.cycling
 
     examples = utils.examples(sport=sport)
-    print(type(examples))
 
     assert isinstance(examples, filter)
 

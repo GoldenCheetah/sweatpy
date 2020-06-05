@@ -1,190 +1,95 @@
-"""Very thin wrapper around the Strava API v3
+from datetime import timedelta
 
-    STRAVA_ACCESS_TOKEN must be explicitly provided as an input
+import pandas as pd
+from stravalib.client import Client
 
-    ALL returned values are python objects e.g. dict or list
-"""
-import requests
-import logging
-
-logger = logging.getLogger(__name__)
+from .utils import resample_data
 
 
-def retrieve_athlete(access_token):
-    """Retrieve current(authenticated) athlete
+STREAM_TYPES = [
+    "time",
+    "latlng",
+    "distance",
+    "altitude",
+    "velocity_smooth",
+    "heartrate",
+    "cadence",
+    "watts",
+    "temp",
+    "moving",
+    "grade_smooth",
+]
 
-    API V3: https://strava.github.io/api/v3/athlete/#get-details
+COLUMN_TRANSLATIONS = {
+    "altitude": "elevation",
+    "velocity_smooth": "speed",
+    "watts": "power",
+    "temp": "temperature",
+    "grade_smooth": "grade",
+}
 
-    Parameters
-    ----------
-    access_token : str
-        Settings/My API Applications/Your Access Token
 
-    Returns
-    -------
-    dict
+def read_strava(
+    activity_id: int,
+    access_token: str,
+    refresh_token: str = None,
+    client_id: int = None,
+    client_secret: str = None,
+    resample: bool = False,
+    interpolate: bool = False,
+) -> pd.DataFrame:
+    """This method lets you retrieve activity data from Strava.
+    Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
+    Two API calls are made to the Strava API: 1 to retrieve activity metadata, 1 to retrieve the raw data ("streams").
+
+    Args:
+        activity_id: The id of the activity
+        access_token: The Strava access token
+        refresh_token: The Strava refresh token. Optional.
+        client_id: The Strava client id. Optional. Used for token refresh.
+        client_secret: The Strava client secret. Optional. Used for token refresh.
+        resample: whether or not the data frame needs to be resampled to 1Hz
+        interpolate: whether or not missing data in the data frame needs to be interpolated
+
+    Returns:
+        A pandas data frame with all the data.
     """
+    client = Client()
+    client.access_token = access_token
+    client.refresh_token = refresh_token
 
-    endpoint_url = "https://www.strava.com/api/v3/athlete"
+    activity = client.get_activity(activity_id)
+    start_datetime = activity.start_date_local
 
-    r = requests.get(endpoint_url, headers=authorization_header(access_token))
-
-    r.raise_for_status()
-    athlete = r.json()
-
-    return athlete
-
-
-def retrieve_zones(access_token, **kwargs):
-    """Retrieve Power and Heartrate zones
-
-    API V3: https://strava.github.io/api/v3/athlete/#zones
-
-    Parameters
-    ----------
-    access_token : str
-        Settings/My API Applications/Your Access Token
-
-    Returns
-    -------
-    dict
-    """
-
-    endpoint_url = "https://www.strava.com/api/v3/athlete/zones"
-
-    r = requests.get(endpoint_url, headers=authorization_header(access_token))
-
-    r.raise_for_status()
-    zones = r.json()
-
-    return zones
-
-
-def retrieve_activity(activity_id, access_token):
-    """Retrieve a detailed representation of activity
-
-    API V3: https://strava.github.io/api/v3/activities/#get-details
-
-    Parameters
-    ----------
-    activity_id: int
-    access_token : str
-        Settings/My API Applications/Your Access Token
-
-    Returns
-    -------
-    dict
-    """
-
-    endpoint_url = "https://www.strava.com/api/v3/activities/{}".format(activity_id)
-
-    r = requests.get(endpoint_url, headers=authorization_header(access_token))
-
-    r.raise_for_status()
-    activity = r.json()
-
-    return activity
-
-
-def retrieve_streams(activity_id, access_token, **kwargs):
-    """Retrieve activity streams
-
-    API V3: https://strava.github.io/api/v3/streams/#activity
-
-    Parameters
-    ----------
-    activity_id : int
-    access_token : str
-        Settings/My API Applications/Your Access Token
-    type: {None, 'original'}
-        Returns serialized original API response if set to 'original'
-
-    Returns
-    -------
-    streams : list
-        Streams are the list of dicts
-    """
-
-    types = kwargs.get(
-        "types",
-        "time,latlng,distance,altitude,velocity_smooth,heartrate,cadence,watts,temp,moving,grade_smooth",
+    streams = client.get_activity_streams(
+        activity_id=activity_id, types=STREAM_TYPES, series_type="time",
     )
 
-    endpoint_url = "https://www.strava.com/api/v3/activities/{}/streams/{}".format(
-        activity_id, types
-    )
+    raw_data = dict()
+    for key, value in streams.items():
+        if key == "latlng":
+            latitude, longitude = list(zip(*value.data))
+            raw_data["latitude"] = latitude
+            raw_data["longitude"] = longitude
+        else:
+            try:
+                key = COLUMN_TRANSLATIONS[key]
+            except KeyError:
+                pass
 
-    r = requests.get(endpoint_url, headers=authorization_header(access_token))
+            raw_data[key] = value.data
 
-    r.raise_for_status()
-    streams = r.json()
+    data = pd.DataFrame(raw_data)
 
-    if streams and not kwargs.get("type", None):
+    def time_to_datetime(time):
+        return start_datetime + timedelta(seconds=time)
 
-        streams = stream2dict(streams)
+    data["datetime"] = data["time"].apply(time_to_datetime)
 
-    return streams
+    data = data.drop(["time"], axis="columns")
 
+    data = data.set_index("datetime")
 
-def stream2dict(stream_list):
-    """Convert stream list into stream dict
+    data = resample_data(data, resample, interpolate)
 
-    Parameters
-    ----------
-    stream_list : list
-        Stream in list form (list of dicts), as returned by Strava API v3
-
-    Returns
-    -------
-    stream_dict : dict
-        Stream in dict form, with key set to *stream name* and value set to the actual stream list.
-        In this form, the stream is ready to be consumed by pandas
-    """
-
-    stream_dict = {}
-
-    for s in stream_list:
-
-        stream_dict.update({s["type"]: s["data"]})
-
-    return stream_dict
-
-
-def zones2list(zones, type="power"):
-    """Convert zones Strava response into a list
-
-    Parameters
-    ----------
-    zones : dict
-        Strava API zones response
-    type : {"power", "heart_rate"}
-
-    Returns
-    -------
-    y : list
-        Zones boundaries with left edge set to -1 and right to 10000
-    """
-
-    y = [x["min"] for x in zones[type]["zones"]]
-    y[0] = -1
-    y.append(10000)
-
-    return y
-
-
-def authorization_header(access_token):
-    """Authorization header dict to be used with requests.get()
-
-    Parameters
-    ----------
-    access_token : str
-        Settings/My API Applications/Your Access Token
-
-    Returns
-    -------
-    header : dict
-    """
-
-    rv = {"Authorization": "Bearer {}".format(access_token)}
-
-    return rv
+    return data
