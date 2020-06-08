@@ -33,9 +33,6 @@ class SweatAccessor:
             except KeyError:
                 continue
 
-    def mean_max(self, columns):
-        raise NotImplemented()
-
     def mean_max(self, columns: Union[List, str]) -> pd.DataFrame:
         if isinstance(columns, str):
             columns = [columns]
@@ -81,12 +78,14 @@ class SweatSeriesAccessor:
             raise AttributeError(f"Series dtype should be numeric")
 
     def mean_max(self) -> pd.Series:
+        """This method calculates the mean max values of the series.
+
+        Returns:
+            A pandas series with a TimedeltaIndex.
+        """
         result = core.mean_max(self._obj)
         index = pd.to_timedelta(range(len(result)), unit="s")
         return pd.Series(result, index=index, name="mean_max_" + self._obj.name)
-
-    def time_in_zone(self):
-        raise NotImplemented()
 
     def to_timedelta_index(self):
         """This method converts the index to a relative TimedeltaIndex, returning a copy of the series with the new index.
@@ -96,3 +95,34 @@ class SweatSeriesAccessor:
         """
         index = self._obj.index - self._obj.index[0]
         return pd.Series(self._obj, index=index)
+
+    def calculate_zones(
+        self, bins: List[int], labels: List[Union[int, str]]
+    ) -> pd.Series:
+        """Returns a pandas.Series with the zone label for each value.
+        This method uses the pandas.cut() method under the hood.
+        Nan will be returned for values that are not in any of the bins.
+
+        Args:
+            bins: Left and right bounds for each zone.
+            labels: Specifies the labels for the zones. Must be the same length as the resulting zones.
+
+        Returns:
+            A pandas series with the zone label for each value.
+        """
+        return pd.cut(self._obj, bins=bins, labels=labels)
+
+    def time_in_zone(self, bins: List[int], labels: List[Union[int, str]]) -> pd.Series:
+        """Returns a pandas.Series with the value counts for each zone.
+        This method uses the pandas.Series.value_counts() method under the hood.
+
+        Args:
+            bins: Left and right bounds for each zone.
+            labels: Specifies the labels for the zones. Must be the same length as the resulting zones.
+
+        Returns:
+            A pandas series with the value counts for each zones.
+        """
+        zones = self.calculate_zones(bins, labels)
+        zones_value_counts = zones.value_counts()
+        return pd.to_timedelta(zones_value_counts, unit="s")

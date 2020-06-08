@@ -19,6 +19,7 @@ Types of changes:
 ### Added
 - Adds sweat accessor to pandas series and data frames.
 - Add to_timedelta_index() and mean_max() to accessors.
+- Adds calculate_zones() and time_in_zone() to series accessor.
 
 ## [0.13.0] - 2020-06-05
 ### Added

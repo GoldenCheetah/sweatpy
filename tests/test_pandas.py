@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -72,3 +73,22 @@ class TestSweatSeriesAccessor:
         assert isinstance(data, pd.Series)
         assert isinstance(data.index, pd.TimedeltaIndex)
         assert data.name == "power"
+
+    def test_accessor_compute_zones(self):
+        example = sweat.examples(path="4078723797.fit")
+        data = sweat.read_fit(example.path)
+
+        zones = data["heartrate"].sweat.calculate_zones(
+            [0, 100, 150, np.inf], ["zone 1", "zone 2", "zone 3"]
+        )
+        assert len(zones) == len(data)
+        assert set(zones.unique()) == set(["zone 1", "zone 2", "zone 3"])
+
+    def test_accessor_time_in_zone(self):
+        example = sweat.examples(path="4078723797.fit")
+        data = sweat.read_fit(example.path)
+
+        time_in_zone = data["heartrate"].sweat.time_in_zone(
+            [0, 100, 150, np.inf], ["zone 1", "zone 2", "zone 3"]
+        )
+        assert set(time_in_zone.index.unique()) == set(["zone 1", "zone 2", "zone 3"])
