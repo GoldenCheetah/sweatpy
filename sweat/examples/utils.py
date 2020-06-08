@@ -5,6 +5,8 @@ from typing import List
 from yaml import load, Loader
 from pydantic import BaseModel, parse_obj_as, validator
 
+from sweat.constants import DataTypeEnum
+
 
 class SportEnum(str, Enum):
     cycling = "cycling"
@@ -16,19 +18,6 @@ class FileTypeEnum(str, Enum):
     fit = "FIT"
     tcx = "TCX"
     gpx = "GPX"
-
-
-class DataTypeEnum(str, Enum):
-    latitude = "latitude"
-    longitude = "longitude"
-    speed = "speed"
-    power = "power"
-    left_right_balance = "left-right balance"
-    elevation = "elevation"
-    cadence = "cadence"
-    heartrate = "heartrate"
-    temperature = "temperature"
-    distance = "distance"
 
 
 class Sensor(BaseModel):
