@@ -175,7 +175,7 @@
   sessions: 1
 - path: '2020-06-01-16-52-40.fit'
   description: |
-      Copied directly from Garmin device. Short activity with some intervals and a pause in the middle.
+      Copied directly from Garmin device. Short activity with smart recording, some intervals and a pause in the middle.
   sport: 'cycling'
   file_type: 'FIT'
   recording_device: 'Garmin Edge 1000'

@@ -81,8 +81,10 @@ data = sweat.read_tcx(example_tcx.path)
 
 ## Strava
 The `sweat.read_strava()` function can be used to pull data from Strava.
-Sweat assumes you already have access to an API access token. Read more about that [here](http://developers.strava.com/docs/authentication/).
-If you are looking for a Python library that helps you with this, take a look at [stravalib](https://github.com/hozn/stravalib/) or [stravaio](https://github.com/sladkovm/stravaio).
+Sweat assumes you already have an API access token. Read more about that [here](http://developers.strava.com/docs/authentication/).
+If you are looking for a Python library that helps you with Strava API authentication, take a look at [stravalib](https://github.com/hozn/stravalib/) or [stravaio](https://github.com/sladkovm/stravaio).
+`read_strava()` returns a [pandas.DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) with column names matching *Sweatpy* [nomenclature](nomenclature.md).
+
 
 Usage:
 ```python
