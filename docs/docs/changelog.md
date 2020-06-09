@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.14.0] - 2020-06-09
 ### Added
 - Adds sweat accessor to pandas series and data frames.
 - Add to_timedelta_index() and mean_max() to accessors.
