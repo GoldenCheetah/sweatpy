@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.15.0] - 2020-06-14
 ### Added
 - Adds exponential power duration model.
 - Adds omni power duration model
