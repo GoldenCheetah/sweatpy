@@ -16,6 +16,12 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Adds exponential power duration model.
+- Adds omni power duration model
+
+### Changed
+- Renames CriticalPowerRegressor to PowerDurationRegressor
 
 ## [0.14.0] - 2020-06-09
 ### Added

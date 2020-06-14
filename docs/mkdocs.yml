@@ -25,10 +25,10 @@ plugins:
 nav:
     - 'index.md'
     - 'Features':
-        - 'features/Critical power.ipynb'
         - 'features/Metrics.ipynb'
-        - 'features/nomenclature.md'
+        - 'features/Power duration modelling.ipynb'
         - 'features/data_loading.md'
         - 'features/example_data.md'
+        - 'features/nomenclature.md'
     - 'changelog.md'
     - 'contributing.md'
