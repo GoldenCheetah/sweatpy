@@ -5,7 +5,7 @@ build_docker:
 
 test:
 	docker-compose -f docker/docker-compose.test.yml build
-	docker-compose -f docker/docker-compose.test.yml run sweatpy tox -e py38 -- ${pytestargs}
+	docker-compose -f docker/docker-compose.test.yml run sweatpy tox -- ${pytestargs}
 
 lint:
 	docker-compose -f docker/docker-compose.lint.yml build
