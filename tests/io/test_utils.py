@@ -13,7 +13,11 @@ def check_if_sampled_at_1hz(data: pd.Series) -> bool:
 
 
 @pytest.mark.parametrize(
-    "path,sampled_1hz", [("4078723797.fit", True), ("2020-06-01-16-52-40.fit", False),]
+    "path,sampled_1hz",
+    [
+        ("4078723797.fit", True),
+        ("2020-06-01-16-52-40.fit", False),
+    ],
 )
 def test_resample_data(path, sampled_1hz):
     example = sweat.examples(path=path)

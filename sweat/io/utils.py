@@ -37,4 +37,4 @@ def remove_duplicate_indices(data: pd.DataFrame, keep="first") -> pd.DataFrame:
 
 
 def semicircles_to_degrees(semicircles):
-    return semicircles * ( 180 / (2**31) )
+    return semicircles * (180 / (2 ** 31))

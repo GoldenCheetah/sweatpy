@@ -5,8 +5,7 @@ from scipy.optimize import curve_fit
 
 
 class PowerDurationRegressor(BaseEstimator, RegressorMixin):
-    """Based on: https://scikit-learn.org/stable/developers/develop.html
-    """
+    """Based on: https://scikit-learn.org/stable/developers/develop.html"""
 
     def __init__(
         self,
