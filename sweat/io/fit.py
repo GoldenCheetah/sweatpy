@@ -4,7 +4,7 @@ from fitparse import FitFile
 import numpy as np
 import pandas as pd
 
-from .utils import remove_duplicate_indices, resample_data
+from .utils import remove_duplicate_indices, resample_data, semicircles_to_degrees
 
 
 def read_fit(fpath, resample: bool = False, interpolate: bool = False) -> pd.DataFrame:
@@ -63,6 +63,9 @@ def read_fit(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
     fit_df["datetime"] = pd.to_datetime(fit_df["timestamp"], utc=True)
     fit_df = fit_df.drop(["timestamp"], axis="columns")
     fit_df = fit_df.set_index("datetime")
+
+    fit_df["latitude"] = semicircles_to_degrees(fit_df["latitude"])
+    fit_df["longitude"] = semicircles_to_degrees(fit_df["longitude"])
 
     fit_df = remove_duplicate_indices(fit_df)
 

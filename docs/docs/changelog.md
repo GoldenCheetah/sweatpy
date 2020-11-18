@@ -19,6 +19,9 @@ Types of changes:
 ## Added
 - Adds support for Python 3.9
 
+### Fixed
+- Latitude and longitude from FIT files are now converted from semicircles to degrees.
+
 ## [0.15.0] - 2020-06-14
 ### Added
 - Adds exponential power duration model.
