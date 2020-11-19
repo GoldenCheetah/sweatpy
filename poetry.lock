@@ -180,6 +180,28 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "gitdb"
+version = "4.0.5"
+description = "Git Object Database"
+category = "dev"
+optional = false
+python-versions = ">=3.4"
+
+[package.dependencies]
+smmap = ">=3.0.1,<4"
+
+[[package]]
+name = "gitpython"
+version = "3.1.11"
+description = "Python Git Library"
+category = "dev"
+optional = false
+python-versions = ">=3.4"
+
+[package.dependencies]
+gitdb = ">=4.0.1,<5"
+
+[[package]]
 name = "idna"
 version = "2.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -408,16 +430,18 @@ mkdocs-material = ">=5.0.0"
 
 [[package]]
 name = "mknotebooks"
-version = "0.3.6.post0.dev8"
+version = "0.6.2.post0.dev7"
 description = "Plugin for mkdocs to generate markdown documents from jupyter notebooks."
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
+gitpython = "*"
 jupyter-client = "*"
+markdown = ">=3.3.3"
 mkdocs = ">=1.1"
-nbconvert = ">=5.6.1"
+nbconvert = ">=6.0.0"
 
 [[package]]
 name = "more-itertools"
@@ -793,6 +817,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "smmap"
+version = "3.0.4"
+description = "A pure Python implementation of a sliding window memory map manager"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
 name = "stravalib"
 version = "0.10.2"
 description = "Python library for interacting with Strava v3 REST API"
@@ -981,7 +1013,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "1759e26bff61f8bf928a5b814f3e0f7d81f95d107dac476ba64a73cda0a14221"
+content-hash = "6af795ee9b4eaa8e4475bc0371a219675c11dc1f5af4ae497be713e53450558f"
 
 [metadata.files]
 appdirs = [
@@ -1091,6 +1123,14 @@ fitparse = [
 future = [
     {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
 ]
+gitdb = [
+    {file = "gitdb-4.0.5-py3-none-any.whl", hash = "sha256:91f36bfb1ab7949b3b40e23736db18231bf7593edada2ba5c3a174a7b23657ac"},
+    {file = "gitdb-4.0.5.tar.gz", hash = "sha256:c9e1f2d0db7ddb9a704c2a0217be31214e91a4fe1dea1efad19ae42ba0c285c9"},
+]
+gitpython = [
+    {file = "GitPython-3.1.11-py3-none-any.whl", hash = "sha256:6eea89b655917b500437e9668e4a12eabdcf00229a0df1762aabd692ef9b746b"},
+    {file = "GitPython-3.1.11.tar.gz", hash = "sha256:befa4d101f91bad1b632df4308ec64555db684c360bd7d2130b4807d49ce86b8"},
+]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
     {file = "idna-2.10.tar.gz", hash = "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6"},
@@ -1193,7 +1233,7 @@ mkdocs-material-extensions = [
     {file = "mkdocs_material_extensions-1.0.1-py3-none-any.whl", hash = "sha256:d90c807a88348aa6d1805657ec5c0b2d8d609c110e62b9dce4daf7fa981fa338"},
 ]
 mknotebooks = [
-    {file = "mknotebooks-0.3.6.post0.dev8-py3-none-any.whl", hash = "sha256:6bd4f23d8d22a2d6cea5211b63eee3ed32d7b9f16043787e872928b6687d3b48"},
+    {file = "mknotebooks-0.6.2.post0.dev7-py3-none-any.whl", hash = "sha256:45c52f03c43c3ef88175bb8fe933e1779ea42026442862e148772eb258e9a3a0"},
 ]
 more-itertools = [
     {file = "more-itertools-8.6.0.tar.gz", hash = "sha256:b3a9005928e5bed54076e6e549c792b306fddfe72b2d1d22dd63d42d5d3899cf"},
@@ -1542,6 +1582,10 @@ scipy = [
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
+]
+smmap = [
+    {file = "smmap-3.0.4-py2.py3-none-any.whl", hash = "sha256:54c44c197c819d5ef1991799a7e30b662d1e520f2ac75c9efbeb54a742214cf4"},
+    {file = "smmap-3.0.4.tar.gz", hash = "sha256:9c98bbd1f9786d22f14b3d4126894d56befb835ec90cef151af566c7e19b5d24"},
 ]
 stravalib = [
     {file = "stravalib-0.10.2.tar.gz", hash = "sha256:76db248b24cbd6c51cf93b475d8a8df04ec4b6c6287dca244e47f37a433276d7"},

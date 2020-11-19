@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sweat"
-version = "0.16.0"
+version = "0.16.1"
 description = "Workout analysis"
 license = "MIT"
 authors = ["Aart Goossens <aart@goossens.me>"]
@@ -28,7 +28,7 @@ mkdocs-material = "^5.1.0"
 
 # https://tox.readthedocs.io/en/latest/example/basic.html#pyproject-toml-tox-legacy-ini
 black = "^19.10b0"
-mknotebooks = "^0.3.6"
+mknotebooks = "^0.6.0"
 vcrpy = "^4.0.2"
 [tool.tox]
 legacy_tox_ini = """

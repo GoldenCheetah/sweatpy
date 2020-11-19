@@ -16,6 +16,9 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+## [0.16.0] - 2020-11-19
+### Fixed
+- Fixes publishing docs by updating mknotebooks version >0.6.0
 
 ## [0.16.0] - 2020-11-19
 ## Added
