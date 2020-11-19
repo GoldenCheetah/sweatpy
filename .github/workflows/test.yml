@@ -12,14 +12,18 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
       uses: snok/install-poetry@v1.1.1
+      with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
     - name: Install dependencies
       run: |
         poetry install
     - name: Run pytest
       run: |
+        source .venv/bin/activate
         pytest tests/
