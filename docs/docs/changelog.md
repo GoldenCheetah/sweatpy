@@ -16,6 +16,11 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+## Added
+- Adds support for Python 3.9
+
+### Fixed
+- Latitude and longitude from FIT files are now converted from semicircles to degrees.
 
 ## [0.15.0] - 2020-06-14
 ### Added
