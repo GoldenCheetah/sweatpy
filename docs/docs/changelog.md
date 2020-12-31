@@ -19,6 +19,7 @@ Types of changes:
 ## [0.16.0] - 2020-11-19
 ### Fixed
 - Fixes publishing docs by updating mknotebooks version >0.6.0
+- Fixes error when loading FIT file without location data.
 
 ## [0.16.0] - 2020-11-19
 ## Added

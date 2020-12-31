@@ -64,8 +64,9 @@ def read_fit(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
     fit_df = fit_df.drop(["timestamp"], axis="columns")
     fit_df = fit_df.set_index("datetime")
 
-    fit_df["latitude"] = semicircles_to_degrees(fit_df["latitude"])
-    fit_df["longitude"] = semicircles_to_degrees(fit_df["longitude"])
+    for coordinate in ["latitude", "longitude"]:
+        if coordinate in fit_df.columns:
+            fit_df[coordinate] = semicircles_to_degrees(fit_df[coordinate])
 
     fit_df = remove_duplicate_indices(fit_df)
 
