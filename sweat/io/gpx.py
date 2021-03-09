@@ -64,14 +64,14 @@ def read_gpx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
 
         records.append(
             dict(
-                latitude=latitude,
-                longitude=longitude,
-                elevation=elevation,
+                latitude=pd.to_numeric(latitude),
+                longitude=pd.to_numeric(longitude),
+                elevation=pd.to_numeric(elevation),
                 datetime=datetime,
-                power=power,
-                temperature=temperature,
-                heartrate=heartrate,
-                cadence=cadence,
+                power=pd.to_numeric(power),
+                temperature=pd.to_numeric(temperature),
+                heartrate=pd.to_numeric(heartrate),
+                cadence=pd.to_numeric(cadence),
             )
         )
 
