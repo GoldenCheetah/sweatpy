@@ -257,7 +257,7 @@ def weighted_average_power(y, mask=None, algorithm="WAP", value=0.0):
     return rv
 
 
-def mean_max(y, mask=None, value=0.0):
+def mean_max(y, mask=None, value=0.0, monotonic=False):
     """Mean-max curve
 
     Compute mean-max (power duration curve) from the stream. Mask-filter options can be
@@ -288,6 +288,18 @@ def mean_max(y, mask=None, value=0.0):
     y = np.array([])
     for t in np.arange(1, len(energy)):
         y = np.append(y, energy.diff(t).max() / (t))
+
+    if monotonic:
+        monotonic_y = []
+        previous = y[-1]
+        for p in np.flip(y):
+            if p <= previous:
+                monotonic_y.append(previous)
+            else:
+                monotonic_y.append(p)
+                previous = p
+
+        y = np.flip(monotonic_y)
 
     return y
 
