@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.17.1] - 2021-03-09
 ### Fixed
 - Numerical columns are now converted to numeric dtypes for gpx files.
 
