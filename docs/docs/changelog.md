@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Fixed
+- Fixes the index of mean max calculations as they were of by 1 second. First index is now 00:00:01 instead of 00:00:00.
 
 ## [0.18.0] - 2021-03-12
 ### Added
