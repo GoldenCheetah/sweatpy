@@ -33,7 +33,9 @@ class SweatAccessor:
             except KeyError:
                 continue
 
-    def mean_max(self, columns: Union[List, str], monotonic: bool=False) -> pd.DataFrame:
+    def mean_max(
+        self, columns: Union[List, str], monotonic: bool = False
+    ) -> pd.DataFrame:
         if isinstance(columns, str):
             columns = [columns]
 
@@ -77,7 +79,7 @@ class SweatSeriesAccessor:
         if not is_numeric_dtype(obj):
             raise AttributeError(f"Series dtype should be numeric")
 
-    def mean_max(self, monotonic: bool=False) -> pd.Series:
+    def mean_max(self, monotonic: bool = False) -> pd.Series:
         """This method calculates the mean max values of the series.
 
         Returns:
