@@ -20,6 +20,13 @@ def test_read_gpx(example):
     assert isinstance(activity.index, pd.DatetimeIndex)
     included_data = set(i.value for i in example.included_data)
     assert included_data <= set(activity.columns.to_list())
-    for column in ["power", "cadence", "heartrate", "elevation", "latitude", "longitude"]:
+    for column in [
+        "power",
+        "cadence",
+        "heartrate",
+        "elevation",
+        "latitude",
+        "longitude",
+    ]:
         if column in activity.columns:
             assert is_numeric_dtype(activity[column])
