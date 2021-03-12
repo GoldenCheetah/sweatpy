@@ -171,6 +171,21 @@ class TestMeanMax:
         assert rv[49] == 75.5
         assert rv[-1] == 50.5
 
+    def test_power_duration_curve(self):
+        power = pd.Series([100] * 120 + ([300] * 60 + [100] * 60) * 4 + [100] * 60)
+        rv = mean_max(power)
+
+        assert rv[0] == 300
+        assert pytest.approx(rv[-1], 172.8)
+        assert not pd.Series(rv).is_monotonic
+
+        rv = mean_max(power, monotonic=True)
+
+        assert rv[0] == 300
+        assert pytest.approx(rv[-1], 172.8)
+        s = pd.Series(rv)
+        assert s.sort_index(ascending=False).is_monotonic
+
 
 class TestMultipleBestIntervals:
     def test_mean_max_bests(self, power):

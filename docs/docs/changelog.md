@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Adds `monotonic` argument to `sweat.mean_max()` to enforce a monotonically decreasing mean max curve. Usage: `power.sweat.mean_max(monotonic=True)`. Defaults to False.
 
 ## [0.17.1] - 2021-03-09
 ### Fixed

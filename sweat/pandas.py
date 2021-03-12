@@ -33,13 +33,15 @@ class SweatAccessor:
             except KeyError:
                 continue
 
-    def mean_max(self, columns: Union[List, str]) -> pd.DataFrame:
+    def mean_max(
+        self, columns: Union[List, str], monotonic: bool = False
+    ) -> pd.DataFrame:
         if isinstance(columns, str):
             columns = [columns]
 
         data = None
         for column in columns:
-            result = core.mean_max(self._obj[column])
+            result = core.mean_max(self._obj[column], monotonic=monotonic)
 
             if data is None:
                 index = pd.to_timedelta(range(len(result)), unit="s")
@@ -77,13 +79,13 @@ class SweatSeriesAccessor:
         if not is_numeric_dtype(obj):
             raise AttributeError(f"Series dtype should be numeric")
 
-    def mean_max(self) -> pd.Series:
+    def mean_max(self, monotonic: bool = False) -> pd.Series:
         """This method calculates the mean max values of the series.
 
         Returns:
             A pandas series with a TimedeltaIndex.
         """
-        result = core.mean_max(self._obj)
+        result = core.mean_max(self._obj, monotonic=monotonic)
         index = pd.to_timedelta(range(len(result)), unit="s")
         return pd.Series(result, index=index, name="mean_max_" + self._obj.name)
 
