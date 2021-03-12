@@ -44,7 +44,7 @@ class SweatAccessor:
             result = core.mean_max(self._obj[column], monotonic=monotonic)
 
             if data is None:
-                index = pd.to_timedelta(range(len(result)), unit="s")
+                index = pd.to_timedelta(range(1, len(result) + 1), unit="s")
                 data = pd.DataFrame(index=index)
 
             data["mean_max_" + column] = result
@@ -86,7 +86,7 @@ class SweatSeriesAccessor:
             A pandas series with a TimedeltaIndex.
         """
         result = core.mean_max(self._obj, monotonic=monotonic)
-        index = pd.to_timedelta(range(len(result)), unit="s")
+        index = pd.to_timedelta(range(1, len(result) + 1), unit="s")
         return pd.Series(result, index=index, name="mean_max_" + self._obj.name)
 
     def to_timedelta_index(self):

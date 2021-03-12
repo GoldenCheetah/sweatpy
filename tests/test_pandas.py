@@ -13,6 +13,7 @@ class TestSweatAccessor:
 
         assert isinstance(mean_max_data, pd.DataFrame)
         assert isinstance(mean_max_data.index, pd.TimedeltaIndex)
+        assert mean_max_data.index[0] == pd.Timedelta(1, unit="seconds")
         assert "mean_max_power" in mean_max_data.columns
         assert len(mean_max_data) == len(data) - 1
 
@@ -48,6 +49,7 @@ class TestSweatSeriesAccessor:
 
         assert isinstance(mean_max, pd.Series)
         assert isinstance(mean_max.index, pd.TimedeltaIndex)
+        assert mean_max.index[0] == pd.Timedelta(1, unit="seconds")
         assert mean_max.name == "mean_max_power"
         assert len(mean_max) == len(data) - 1
 
