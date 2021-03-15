@@ -16,6 +16,11 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- Adds matplotlib dependency.
+
+### Fixed
+- Removes unnecessary numpy import in pdm docs.
 
 ## [0.18.1] - 2021-03-12
 ### Fixed
