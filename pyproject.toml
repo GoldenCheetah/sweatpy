@@ -31,6 +31,7 @@ mkdocs-material = "^5.1.0"
 black = "^19.10b0"
 mknotebooks = "^0.6.0"
 vcrpy = "^4.0.2"
+openpyxl = "^3.0.7"
 [tool.tox]
 legacy_tox_ini = """
 [tox]

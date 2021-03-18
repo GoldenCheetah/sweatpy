@@ -14,7 +14,7 @@ markdown_extensions:
   - codehilite
   - toc:
       permalink: true
-      toc_depth: 2
+      toc_depth: 3
 
 repo_name: goldencheetah/sweatpy
 repo_url: https://github.com/goldencheetah/sweatpy

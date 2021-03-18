@@ -37,6 +37,59 @@ example_fit = sweat.examples(path="4078723797.fit")
 data = sweat.read_fit(example_fit.path)
 ```
 
+### HRV data
+The `read_fit()` function accepts an `hrv=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the key "data" and a [pandas.Series](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html) with RR intervals in the "hrv" key.
+
+```python
+import sweat
+
+
+example_fit = sweat.examples(path="4078723797.fit")
+
+data = sweat.read_fit(example_fit.path, hrv=True)
+
+data["hrv"]
+-> pd.Series
+```
+
+
+### Summaries
+The `read_fit()` function accepts an `summaries=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the keys "activity", "session" and "laps" relevant summaries:
+
+- "activity": a dictionairy with a summary of the entire activity.
+- "sessions": a [pandas.DataFrames](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) with summaries of each session. Only for multi session FIT files this is different from the activity summary.
+- "sessions": a [pandas.DataFrames](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) with summaries of each lap.
+
+```python
+import sweat
+
+
+example_fit = sweat.examples(path="4078723797.fit")
+
+data = sweat.read_fit(example_fit.path, summaries=True)
+
+data["sessions"]
+-> pd.DataFrame
+```
+
+### Metadata
+The `read_fit()` function accepts an `metadata=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the key "devices" a list of all the devices found in the FIT file.
+
+```python
+import sweat
+
+
+example_fit = sweat.examples(path="4078723797.fit")
+
+data = sweat.read_fit(example_fit.path, metadata=True)
+
+data["devices"]
+-> list
+```
+
 ## GPX files
 The `read_gpx()` function accepts strings, [pathlib](https://docs.python.org/3/library/pathlib.html) objects and other file-like objects and returns a [pandas.DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) with column names matching *Sweatpy* [nomenclature](nomenclature.md).
 

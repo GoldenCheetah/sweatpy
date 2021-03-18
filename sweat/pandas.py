@@ -1,3 +1,4 @@
+from functools import wraps
 from typing import List, Union
 
 import numpy as np
@@ -8,10 +9,24 @@ from .constants import DataTypeEnum
 from .metrics import core
 
 
+def validate_sample_rate(sample_rate):
+    def wrapper(func):
+        @wraps(func)
+        def wrapped(self, *args, **kwargs):
+            if not all(self._obj.index.to_series().diff()[1:] == sample_rate):
+                raise AttributeError(
+                    f"Data is not sampled at a regular interval of {sample_rate.tostring()}. Consider resampling first."
+                )
+            return func(self, *args, **kwargs)
+
+        return wrapped
+
+    return wrapper
+
+
 @pd.api.extensions.register_dataframe_accessor("sweat")
 class SweatAccessor:
     def __init__(self, pandas_obj):
-        self._validate(pandas_obj)
         self._obj = pandas_obj
 
     @staticmethod
@@ -33,6 +48,7 @@ class SweatAccessor:
             except KeyError:
                 continue
 
+    @validate_sample_rate(sample_rate=np.timedelta64(1, "s"))
     def mean_max(
         self, columns: Union[List, str], monotonic: bool = False
     ) -> pd.DataFrame:
@@ -63,7 +79,6 @@ class SweatAccessor:
 @pd.api.extensions.register_series_accessor("sweat")
 class SweatSeriesAccessor:
     def __init__(self, pandas_obj):
-        self._validate(pandas_obj)
         self._obj = pandas_obj
 
     @staticmethod
@@ -79,6 +94,7 @@ class SweatSeriesAccessor:
         if not is_numeric_dtype(obj):
             raise AttributeError(f"Series dtype should be numeric")
 
+    @validate_sample_rate(sample_rate=np.timedelta64(1, "s"))
     def mean_max(self, monotonic: bool = False) -> pd.Series:
         """This method calculates the mean max values of the series.
 
