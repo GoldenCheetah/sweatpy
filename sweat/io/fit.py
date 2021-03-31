@@ -8,7 +8,7 @@ from fitparse import FitFile
 from fitparse.utils import FitHeaderError
 
 from .exceptions import InvalidFitFile
-from .utils import remove_duplicate_indices, resample_data, semicircles_to_degrees
+from .utils import create_empty_dataframe, remove_duplicate_indices, resample_data, semicircles_to_degrees
 
 
 def process_location_columns(df, columns=None):
@@ -146,74 +146,77 @@ def read_fit(
 
     fit_df = pd.DataFrame(records)
 
-    fit_df = fit_df.rename(
-        columns={
-            "heart_rate": "heartrate",
-            "position_lat": "latitude",
-            "position_long": "longitude",
-            "altitude": "elevation",
-            "left_right_balance": "left-right balance",
-        }
-    )
+    if fit_df.empty:
+        fit_df = create_empty_dataframe()
+    else:
+        fit_df = fit_df.rename(
+            columns={
+                "heart_rate": "heartrate",
+                "position_lat": "latitude",
+                "position_long": "longitude",
+                "altitude": "elevation",
+                "left_right_balance": "left-right balance",
+            }
+        )
 
-    # Postprocessing fit_df
-    fit_df["datetime"] = pd.to_datetime(fit_df["timestamp"], utc=True)
-    fit_df = fit_df.drop(["timestamp"], axis="columns")
-    fit_df = fit_df.set_index("datetime")
-    fit_df = fit_df.sort_index()
+        # Postprocessing fit_df
+        fit_df["datetime"] = pd.to_datetime(fit_df["timestamp"], utc=True)
+        fit_df = fit_df.drop(["timestamp"], axis="columns")
+        fit_df = fit_df.set_index("datetime")
+        fit_df = fit_df.sort_index()
 
-    if "left-right balance" in fit_df.columns:
-        try:
-            fit_df["left-right balance"] = pd.to_numeric(fit_df["left-right balance"])
-        except ValueError:
-            # Weird issue with some fit files
-            fit_df.loc[
-                fit_df["left-right balance"] == "right", "left-right balance"
-            ] = np.nan
-            fit_df["left-right balance"] = pd.to_numeric(fit_df["left-right balance"])
+        if "left-right balance" in fit_df.columns:
+            try:
+                fit_df["left-right balance"] = pd.to_numeric(fit_df["left-right balance"])
+            except ValueError:
+                # Weird issue with some fit files
+                fit_df.loc[
+                    fit_df["left-right balance"] == "right", "left-right balance"
+                ] = np.nan
+                fit_df["left-right balance"] = pd.to_numeric(fit_df["left-right balance"])
 
-        # Source: https://www.thisisant.com/forum/viewthread/6445/#7097
-        fit_df["right balance"] = fit_df["left-right balance"] - 128
-        fit_df["left balance"] = 100 - fit_df["right balance"]
+            # Source: https://www.thisisant.com/forum/viewthread/6445/#7097
+            fit_df["right balance"] = fit_df["left-right balance"] - 128
+            fit_df["left balance"] = 100 - fit_df["right balance"]
 
-    fit_df = process_location_columns(fit_df, columns=["latitude", "longitude"])
+        fit_df = process_location_columns(fit_df, columns=["latitude", "longitude"])
 
-    session_summaries = process_summaries(session_summaries)
-    lap_summaries = process_summaries(lap_summaries)
+        session_summaries = process_summaries(session_summaries)
+        lap_summaries = process_summaries(lap_summaries)
 
-    fit_df["session"] = 0
-    fit_df["lap"] = 0
-    session_end = pd.Timestamp.max.tz_localize("UTC")
-    if not session_summaries.empty:
-        for session, session_start in (
-            session_summaries["start_time"].sort_index(ascending=False).iteritems()
-        ):
-            fit_df.loc[
-                (fit_df.index >= session_start) & (fit_df.index < session_end),
-                "session",
-            ] = session
+        fit_df["session"] = 0
+        fit_df["lap"] = 0
+        session_end = pd.Timestamp.max.tz_localize("UTC")
+        if not session_summaries.empty:
+            for session, session_start in (
+                session_summaries["start_time"].sort_index(ascending=False).iteritems()
+            ):
+                fit_df.loc[
+                    (fit_df.index >= session_start) & (fit_df.index < session_end),
+                    "session",
+                ] = session
 
-            if not lap_summaries.empty:
-                laps_in_session = lap_summaries.loc[
-                    (lap_summaries["start_time"] >= session_start)
-                    & (lap_summaries["start_time"] < session_end)
-                ].reset_index()
-                lap_end = session_end
-                for lap, lap_start in (
-                    laps_in_session["start_time"]
-                    .sort_index(ascending=False)
-                    .iteritems()
-                ):
-                    fit_df.loc[
-                        (fit_df.index >= lap_start) & (fit_df.index < lap_end), "lap"
-                    ] = lap
-                    lap_end = lap_start
+                if not lap_summaries.empty:
+                    laps_in_session = lap_summaries.loc[
+                        (lap_summaries["start_time"] >= session_start)
+                        & (lap_summaries["start_time"] < session_end)
+                    ].reset_index()
+                    lap_end = session_end
+                    for lap, lap_start in (
+                        laps_in_session["start_time"]
+                        .sort_index(ascending=False)
+                        .iteritems()
+                    ):
+                        fit_df.loc[
+                            (fit_df.index >= lap_start) & (fit_df.index < lap_end), "lap"
+                        ] = lap
+                        lap_end = lap_start
 
-            session_end = session_start
+                session_end = session_start
 
-    fit_df = remove_duplicate_indices(fit_df)
+        fit_df = remove_duplicate_indices(fit_df)
 
-    fit_df = resample_data(fit_df, resample, interpolate)
+        fit_df = resample_data(fit_df, resample, interpolate)
 
     if not hrv and not summaries and not metadata:
         return fit_df
