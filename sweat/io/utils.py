@@ -38,3 +38,9 @@ def remove_duplicate_indices(data: pd.DataFrame, keep="first") -> pd.DataFrame:
 
 def semicircles_to_degrees(semicircles):
     return semicircles * (180 / (2 ** 31))
+
+
+def create_empty_dataframe():
+    df = pd.DataFrame()
+    df.index = pd.to_datetime(df.index)
+    return df

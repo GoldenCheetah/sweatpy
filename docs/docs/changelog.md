@@ -18,6 +18,9 @@ Types of changes:
 ## [Unreleased] - {ISO8601 date}
 ### Added
 - Adds matplotlib dependency.
+- Extends `sweat.read_fit()` with support for multi session FIT files, hrv data, metadata (summaries and devices), error handling and much more...
+- Properly handles left-right balance from FIT files.
+- Adds Garmin FIT Profile based on the Garmin FIT SDK 21.47.
 
 ### Fixed
 - Removes unnecessary numpy import in pdm docs.

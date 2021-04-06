@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from .utils import remove_duplicate_indices, resample_data
+from .utils import create_empty_dataframe, remove_duplicate_indices, resample_data
 
 
 NAMESPACES = {
@@ -15,6 +15,9 @@ NAMESPACES = {
 
 
 def xml_find_value_or_none(element, match, namespaces=None):
+    if element is None:
+        return None
+
     e = element.find(match, namespaces=namespaces)
     if e is None:
         return e
@@ -96,6 +99,10 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
                 )
 
     tcx_df = pd.DataFrame(records)
+
+    if tcx_df.empty:
+        return create_empty_dataframe()
+
     tcx_df = tcx_df.dropna("columns", "all")
     tcx_df["datetime"] = pd.to_datetime(tcx_df["datetime"], utc=True)
     tcx_df = tcx_df.set_index("datetime")

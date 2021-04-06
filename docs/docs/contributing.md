@@ -61,6 +61,20 @@ make test
 ```
 ...or the equivalent `docker-compose` command.
 
+To run tests only for a specific Python version, like Python 3.8:
+```bash
+toxargs="-e py38" make test
+```
+For a list of available Python version, see the `envlist` variable in `pyproject.toml`.
+The `toxargs` environment variable can also be used to pass other settings to [tox](https://tox.readthedocs.io/en/latest/).
+
+To only run specific tests, e.g. only that match "test_read_fit":
+```bash
+pytestargs="-k test_read_fit" make test
+```
+See the [pytest documentation](https://docs.pytest.org/en/stable/usage.html#specifying-tests-selecting-tests) for more information on selecting tests.
+The `pytestargs` environment variable can also be used to pass other settings to [pytest](https://docs.pytest.org/en/stable/).
+
 Code linting checks can be run with `make lint` or the equivalent `docker-compose` command.
 
 ### Git flow
@@ -115,3 +129,13 @@ This repo is setup with Github Actions that are triggered on specific events:
 * When a new release is created on the central repo, a new version of this package is published to PyPi and new documentation is published.
 
 *(This document is very much inspired by opensource.guide's [CONTRIBUTING.md](https://github.com/github/opensource.guide/blob/master/CONTRIBUTING.md))*
+
+## FIT profile
+The Profile.xlsx that is included in the Garmin FIT SDK (https://developer.garmin.com/fit/download/) is included in the source code as a JSON file (`sweat/io/fit_profile.jons`).
+Garmin regularly updates this file when new devices are introduced.
+Updating the JSON can be done by running:
+```python
+from sweat.io import fit
+fit._import_fit_profile("path/to/new/Profile.xlsx")
+```
+...the new JSON file is than replaced in the source directory.

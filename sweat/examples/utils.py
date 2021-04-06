@@ -12,6 +12,8 @@ class SportEnum(str, Enum):
     cycling = "cycling"
     running = "running"
     swimming = "swimming"
+    rowing = "rowing"
+    multisport = "multisport"
 
 
 class FileTypeEnum(str, Enum):

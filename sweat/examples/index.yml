@@ -199,7 +199,7 @@
     - 'heartrate'
     - 'temperature'
   laps: 5
-  sessions: 2
+  sessions: 1
 - path: 'activity_5039744860.gpx'
   description: |
       Same as 2020-06-01-16-52-40.fit but exported from Garmin Connect as gpx.
@@ -247,3 +247,33 @@
     - 'heartrate'
   laps: 5
   sessions: 1
+- path: '6449921903_ACTIVITY.fit'
+  description: |
+      Activity with multiple laps and start/stop. Synced to Garmin Connect and then downloaded as original file.
+  sport: 'cycling'
+  file_type: 'FIT'
+  recording_device: 'Garmin Forerunner 935'
+  sensors:
+    - name: 'Wattbike'
+      data_types:
+        - 'power'
+        - 'cadence'
+  included_data:
+    - 'distance'
+    - 'power'
+    - 'cadence'
+    - 'heartrate'
+  laps: 2
+  sessions: 1
+- path: '6471559601_ACTIVITY.fit'
+  description: |
+      Multisession activity. Running and rowing. Synced to Garmin Connect and then downloaded as original file.
+  sport: 'multisport'
+  file_type: 'FIT'
+  recording_device: 'Garmin Forerunner 935'
+  sensors:
+  included_data:
+    - 'elevation'
+    - 'heartrate'
+  laps: 1
+  sessions: 3
