@@ -8,7 +8,12 @@ from fitparse import FitFile
 from fitparse.utils import FitHeaderError
 
 from .exceptions import InvalidFitFile
-from .utils import create_empty_dataframe, remove_duplicate_indices, resample_data, semicircles_to_degrees
+from .utils import (
+    create_empty_dataframe,
+    remove_duplicate_indices,
+    resample_data,
+    semicircles_to_degrees,
+)
 
 
 def process_location_columns(df, columns=None):
@@ -167,13 +172,17 @@ def read_fit(
 
         if "left-right balance" in fit_df.columns:
             try:
-                fit_df["left-right balance"] = pd.to_numeric(fit_df["left-right balance"])
+                fit_df["left-right balance"] = pd.to_numeric(
+                    fit_df["left-right balance"]
+                )
             except ValueError:
                 # Weird issue with some fit files
                 fit_df.loc[
                     fit_df["left-right balance"] == "right", "left-right balance"
                 ] = np.nan
-                fit_df["left-right balance"] = pd.to_numeric(fit_df["left-right balance"])
+                fit_df["left-right balance"] = pd.to_numeric(
+                    fit_df["left-right balance"]
+                )
 
             # Source: https://www.thisisant.com/forum/viewthread/6445/#7097
             fit_df["right balance"] = fit_df["left-right balance"] - 128
@@ -208,7 +217,8 @@ def read_fit(
                         .iteritems()
                     ):
                         fit_df.loc[
-                            (fit_df.index >= lap_start) & (fit_df.index < lap_end), "lap"
+                            (fit_df.index >= lap_start) & (fit_df.index < lap_end),
+                            "lap",
                         ] = lap
                         lap_end = lap_start
 
@@ -266,6 +276,8 @@ def _import_fit_profile(fname):
 
 
 lru_cache(maxsize=32)
+
+
 def load_fit_profile():
     """
     This methods return the FIT profile types based on the Profile.xslx that is included in the Garmin FIT SDK (https://developer.garmin.com/fit/download/).
