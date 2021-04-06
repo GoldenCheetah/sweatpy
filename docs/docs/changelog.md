@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.19.0] - 2021-04-06
 ### Added
 - Adds matplotlib dependency.
 - Extends `sweat.read_fit()` with support for multi session FIT files, hrv data, metadata (summaries and devices), error handling and much more...
