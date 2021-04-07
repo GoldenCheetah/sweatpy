@@ -3,7 +3,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from .utils import create_empty_dataframe, remove_duplicate_indices, resample_data
+from .utils import (
+    create_empty_dataframe, remove_duplicate_indices, resample_data,
+    Device, Sensor
+)
 
 
 NAMESPACES = {
@@ -25,7 +28,12 @@ def xml_find_value_or_none(element, match, namespaces=None):
         return e.text
 
 
-def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.DataFrame:
+def read_tcx(
+    fpath,
+    resample: bool = False,
+    interpolate: bool = False,
+    metadata: bool = False
+) -> pd.DataFrame:
     """This method loads a TCX file into a Pandas DataFrame.
     Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
 
@@ -33,6 +41,7 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
         fpath: str, file-like or Path object
         resample: whether or not the data frame needs to be resampled to 1Hz
         interpolate: whether or not missing data in the data frame needs to be interpolated
+        metadata: whether to return metadata. Note: If set to True this method will return a dictionairy instead of a data frame.
 
     Returns:
         A pandas data frame with all the data.
@@ -42,11 +51,10 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
     activities = root.find("default:Activities", NAMESPACES)
 
     records = []
-    lap_no = -1
+    lap_no = 0
     session = 0
     for activity in activities.findall("default:Activity", NAMESPACES):
         for lap in activity.findall("default:Lap", NAMESPACES):
-            lap_no += 1
             track = lap.find("default:Track", NAMESPACES)
             for trackpoint in track.findall("default:Trackpoint", NAMESPACES):
                 datetime = xml_find_value_or_none(
@@ -97,6 +105,19 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
                         session=session,
                     )
                 )
+            lap_no += 1
+
+        if metadata:
+            creator = activity.find("default:Creator", NAMESPACES)
+            device_name = xml_find_value_or_none(creator, "default:Name", NAMESPACES)
+            device_unit_id = xml_find_value_or_none(creator, "default:UnitId", NAMESPACES)
+            device_product_id = xml_find_value_or_none(creator, "default:ProductId", NAMESPACES)
+
+            device = Device(
+                name=device_name,
+                serial_number=device_unit_id,
+                metadata={},
+            )
 
     tcx_df = pd.DataFrame(records)
 
@@ -114,4 +135,10 @@ def read_tcx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
 
     tcx_df = resample_data(tcx_df, resample, interpolate)
 
-    return tcx_df
+    if not metadata:
+        return tcx_df
+
+    return {
+        "data": tcx_df,
+        "device": device,
+    }
