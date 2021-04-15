@@ -240,7 +240,13 @@ def read_fit(
 
         fit_df = resample_data(fit_df, resample, interpolate)
 
-    if not hrv and not pool_lengths and not summaries and not metadata and not raw_messages:
+    if (
+        not hrv
+        and not pool_lengths
+        and not summaries
+        and not metadata
+        and not raw_messages
+    ):
         return fit_df
 
     return_value = {
@@ -252,7 +258,9 @@ def read_fit(
 
     if pool_lengths:
         pool_length_df = pd.DataFrame(pool_length_records)
-        pool_length_df["datetime"] = pd.to_datetime(pool_length_df["timestamp"], utc=True)
+        pool_length_df["datetime"] = pd.to_datetime(
+            pool_length_df["timestamp"], utc=True
+        )
         pool_length_df = pool_length_df.drop(["timestamp"], axis="columns")
         pool_length_df = pool_length_df.set_index("datetime")
         return_value["pool_lengths"] = pool_length_df

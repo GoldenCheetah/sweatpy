@@ -4,8 +4,11 @@ from pathlib import Path
 import pandas as pd
 
 from .utils import (
-    create_empty_dataframe, remove_duplicate_indices, resample_data,
-    Device, Sensor
+    create_empty_dataframe,
+    remove_duplicate_indices,
+    resample_data,
+    Device,
+    Sensor,
 )
 
 
@@ -29,10 +32,7 @@ def xml_find_value_or_none(element, match, namespaces=None):
 
 
 def read_tcx(
-    fpath,
-    resample: bool = False,
-    interpolate: bool = False,
-    metadata: bool = False
+    fpath, resample: bool = False, interpolate: bool = False, metadata: bool = False
 ) -> pd.DataFrame:
     """This method loads a TCX file into a Pandas DataFrame.
     Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
@@ -110,8 +110,12 @@ def read_tcx(
         if metadata:
             creator = activity.find("default:Creator", NAMESPACES)
             device_name = xml_find_value_or_none(creator, "default:Name", NAMESPACES)
-            device_unit_id = xml_find_value_or_none(creator, "default:UnitId", NAMESPACES)
-            device_product_id = xml_find_value_or_none(creator, "default:ProductId", NAMESPACES)
+            device_unit_id = xml_find_value_or_none(
+                creator, "default:UnitId", NAMESPACES
+            )
+            device_product_id = xml_find_value_or_none(
+                creator, "default:ProductId", NAMESPACES
+            )
 
             device = Device(
                 name=device_name,
