@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Added
+- `read_fit() now returns pool length records when the `pool_lenghts=True` argument is passed.
 
 ## [0.19.0] - 2021-04-06
 ### Added

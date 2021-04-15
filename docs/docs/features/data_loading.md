@@ -53,6 +53,22 @@ data["hrv"]
 -> pd.Series
 ```
 
+### Pool length data
+When reading FIT files from pool swims, you can use the `pool_lengths=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the key "data" and a [pandas.DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) with pool length records in the "pool_lengths" key.
+
+```python
+import sweat
+
+
+example_fit = sweat.examples(path="4078723797.fit")
+
+data = sweat.read_fit(example_fit.path, pool_lengths=True)
+
+data["pool_lengths"]
+-> pd.DataFrame
+```
+
 
 ### Summaries
 The `read_fit()` function accepts an `summaries=True` parameter.

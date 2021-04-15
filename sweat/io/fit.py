@@ -48,6 +48,7 @@ def read_fit(
     resample: bool = False,
     interpolate: bool = False,
     hrv: bool = False,
+    pool_lengths: bool = False,
     summaries: bool = False,
     metadata: bool = False,
     fitparse_kwargs=None,
@@ -61,6 +62,7 @@ def read_fit(
         resample: whether or not the data frame needs to be resampled to 1Hz
         interpolate: whether or not missing data in the data frame needs to be interpolated
         hrv: whether to return hrv data. Note: If set to True this method will return a dictionairy instead of a data frame.
+        pool_lengths: whether to return pool length data. Note: If set to True this method will return a dictionairy with a "pool_lengths" key instead of a data frame.
         summaries: whether to return session summary data. Note: If set to True this method will return a dictionairy instead of a data frame.
         metadata: whether to return metadata. Note: If set to True this method will return a dictionairy instead of a data frame.
         fitparse_kwargs: keyword arguments to pass the the python-fitparse FitFile class. Defaults to {"check_crc": False}
@@ -91,6 +93,7 @@ def read_fit(
     records = []
     sport = None
     rr_intervals = []
+    pool_length_records = []
     record_sequence = 0
     for record in fitfile.get_messages():
         try:
@@ -146,6 +149,9 @@ def read_fit(
             continue
         elif mesg_type == "session":
             session_summaries.append(record.get_values())
+        elif mesg_type == "length":
+            if pool_lengths:
+                pool_length_records.append(record.get_values())
         else:
             continue
 
@@ -228,7 +234,7 @@ def read_fit(
 
         fit_df = resample_data(fit_df, resample, interpolate)
 
-    if not hrv and not summaries and not metadata:
+    if not hrv and not swim and not summaries and not metadata:
         return fit_df
 
     return_value = {
@@ -237,6 +243,13 @@ def read_fit(
 
     if hrv:
         return_value["hrv"] = pd.Series(rr_intervals, name="RR interval")
+
+    if pool_lengths:
+        pool_length_df = pd.DataFrame(pool_length_records)
+        pool_length_df["datetime"] = pd.to_datetime(pool_length_df["timestamp"], utc=True)
+        pool_length_df = pool_length_df.drop(["timestamp"], axis="columns")
+        pool_length_df = pool_length_df.set_index("datetime")
+        return_value["pool_lengths"] = pool_length_df
 
     if summaries:
         return_value["sessions"] = session_summaries
