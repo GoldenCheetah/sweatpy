@@ -48,8 +48,10 @@ def read_fit(
     resample: bool = False,
     interpolate: bool = False,
     hrv: bool = False,
+    pool_lengths: bool = False,
     summaries: bool = False,
     metadata: bool = False,
+    raw_messages: bool = False,
     fitparse_kwargs=None,
 ) -> pd.DataFrame:
     """This method uses the Python fitparse library to load a FIT file into a Pandas DataFrame.
@@ -61,9 +63,11 @@ def read_fit(
         resample: whether or not the data frame needs to be resampled to 1Hz
         interpolate: whether or not missing data in the data frame needs to be interpolated
         hrv: whether to return hrv data. Note: If set to True this method will return a dictionairy instead of a data frame.
+        pool_lengths: whether to return pool length data. Note: If set to True this method will return a dictionairy with a "pool_lengths" key instead of a data frame.
         summaries: whether to return session summary data. Note: If set to True this method will return a dictionairy instead of a data frame.
         metadata: whether to return metadata. Note: If set to True this method will return a dictionairy instead of a data frame.
         fitparse_kwargs: keyword arguments to pass the the python-fitparse FitFile class. Defaults to {"check_crc": False}
+        raw_messages: Whether to return the raw FIT messages as a list of dictionaries. If set to True this method will return a dictionairy with a "raw_messages" key instead of a data frame.
 
     Returns:
         A pandas data frame with all the data or a dictionairy when either hrv, summaries or metadata are True.
@@ -91,12 +95,17 @@ def read_fit(
     records = []
     sport = None
     rr_intervals = []
+    pool_length_records = []
+    raw_message_records = []
     record_sequence = 0
     for record in fitfile.get_messages():
         try:
             mesg_type = record.mesg_type.name
         except AttributeError:
             continue
+
+        if raw_messages:
+            raw_message_records.append(record.get_values())
 
         if mesg_type == "record":
             values = record.get_values()
@@ -146,6 +155,9 @@ def read_fit(
             continue
         elif mesg_type == "session":
             session_summaries.append(record.get_values())
+        elif mesg_type == "length":
+            if pool_lengths:
+                pool_length_records.append(record.get_values())
         else:
             continue
 
@@ -228,7 +240,13 @@ def read_fit(
 
         fit_df = resample_data(fit_df, resample, interpolate)
 
-    if not hrv and not summaries and not metadata:
+    if (
+        not hrv
+        and not pool_lengths
+        and not summaries
+        and not metadata
+        and not raw_messages
+    ):
         return fit_df
 
     return_value = {
@@ -238,6 +256,15 @@ def read_fit(
     if hrv:
         return_value["hrv"] = pd.Series(rr_intervals, name="RR interval")
 
+    if pool_lengths:
+        pool_length_df = pd.DataFrame(pool_length_records)
+        pool_length_df["datetime"] = pd.to_datetime(
+            pool_length_df["timestamp"], utc=True
+        )
+        pool_length_df = pool_length_df.drop(["timestamp"], axis="columns")
+        pool_length_df = pool_length_df.set_index("datetime")
+        return_value["pool_lengths"] = pool_length_df
+
     if summaries:
         return_value["sessions"] = session_summaries
         return_value["laps"] = lap_summaries
@@ -245,6 +272,9 @@ def read_fit(
 
     if metadata:
         return_value["devices"] = devices
+
+    if raw_messages:
+        return_value["raw_messages"] = raw_message_records
 
     return return_value
 

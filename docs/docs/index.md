@@ -3,7 +3,7 @@
 [![Downloads](https://pepy.tech/badge/sweat)](https://pepy.tech/project/sweat)
 
 !!! warning
-    **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning any dependencies with `sweat==0.4.0`.**
+    **Sweatpy is currently undergoing major revisions which will result in deprecations and backwards incompatible changes. We recommend pinning your sweatpy dependency in your requirements.txt file (e.g. `sweat==0.19.0`).**
 
 !!! tip
     Noticed a missing feature, found a bug or just have a great idea for `sweatpy`? Get in touch with us by creating an issue [here](https://github.com/GoldenCheetah/sweatpy/issues/new)!

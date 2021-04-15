@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+from typing import List
+
 import pandas as pd
 
 
@@ -44,3 +47,18 @@ def create_empty_dataframe():
     df = pd.DataFrame()
     df.index = pd.to_datetime(df.index)
     return df
+
+
+@dataclass
+class BaseDevice:
+    name: str
+    serial_number: str
+    metadata: dict
+
+
+class Sensor(BaseDevice):
+    pass
+
+
+class Device(BaseDevice):
+    sensors: List[Sensor]

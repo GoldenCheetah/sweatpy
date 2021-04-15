@@ -53,9 +53,25 @@ data["hrv"]
 -> pd.Series
 ```
 
+### Pool length data
+When reading FIT files from pool swims, you can use the `pool_lengths=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the key "data" and a [pandas.DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) with pool length records in the "pool_lengths" key.
+
+```python
+import sweat
+
+
+example_fit = sweat.examples(path="4078723797.fit")
+
+data = sweat.read_fit(example_fit.path, pool_lengths=True)
+
+data["pool_lengths"]
+-> pd.DataFrame
+```
+
 
 ### Summaries
-The `read_fit()` function accepts an `summaries=True` parameter.
+The `read_fit()` function accepts a `summaries=True` parameter.
 When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the keys "activity", "session" and "laps" relevant summaries:
 
 - "activity": a dictionairy with a summary of the entire activity.
@@ -75,7 +91,7 @@ data["sessions"]
 ```
 
 ### Metadata
-The `read_fit()` function accepts an `metadata=True` parameter.
+The `read_fit()` function accepts a `metadata=True` parameter.
 When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the key "devices" a list of all the devices found in the FIT file.
 
 ```python
@@ -87,6 +103,22 @@ example_fit = sweat.examples(path="4078723797.fit")
 data = sweat.read_fit(example_fit.path, metadata=True)
 
 data["devices"]
+-> list
+```
+
+### Raw FIT messages
+The `read_fit()` function accepts a `raw_messages=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the key "raw_messages" a list of dictionairies that contains all the raw FIT messages.
+
+```python
+import sweat
+
+
+example_fit = sweat.examples(path="4078723797.fit")
+
+data = sweat.read_fit(example_fit.path, raw_messages=True)
+
+data["raw_messages"]
 -> list
 ```
 
