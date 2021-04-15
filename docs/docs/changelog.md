@@ -18,6 +18,7 @@ Types of changes:
 ## [Unreleased] - {ISO8601 date}
 ### Added
 - `read_fit() now returns pool length records when the `pool_lenghts=True` argument is passed.
+- `read_fit()` now return raw FIT messages when a `raw_message=True` argument is passed.
 
 ## [0.19.0] - 2021-04-06
 ### Added
