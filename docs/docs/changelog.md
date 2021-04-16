@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.20.2] - 2021-04-16
 ### Fixed
 - `read_fit()` now handles summary data correctly when there is no data
 
