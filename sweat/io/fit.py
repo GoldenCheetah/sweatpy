@@ -163,6 +163,9 @@ def read_fit(
 
     fit_df = pd.DataFrame(records)
 
+    session_summaries = process_summaries(session_summaries)
+    lap_summaries = process_summaries(lap_summaries)
+
     if fit_df.empty:
         fit_df = create_empty_dataframe()
     else:
@@ -201,9 +204,6 @@ def read_fit(
             fit_df["left balance"] = 100 - fit_df["right balance"]
 
         fit_df = process_location_columns(fit_df, columns=["latitude", "longitude"])
-
-        session_summaries = process_summaries(session_summaries)
-        lap_summaries = process_summaries(lap_summaries)
 
         fit_df["session"] = 0
         fit_df["lap"] = 0
