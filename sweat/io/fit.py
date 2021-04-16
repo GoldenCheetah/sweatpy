@@ -258,11 +258,12 @@ def read_fit(
 
     if pool_lengths:
         pool_length_df = pd.DataFrame(pool_length_records)
-        pool_length_df["datetime"] = pd.to_datetime(
-            pool_length_df["timestamp"], utc=True
-        )
-        pool_length_df = pool_length_df.drop(["timestamp"], axis="columns")
-        pool_length_df = pool_length_df.set_index("datetime")
+        if not pool_length_df.empty:
+            pool_length_df["datetime"] = pd.to_datetime(
+                pool_length_df["start_time"], utc=True
+            )
+            # pool_length_df = pool_length_df.drop(["timestamp"], axis="columns")
+            pool_length_df = pool_length_df.set_index("datetime")
         return_value["pool_lengths"] = pool_length_df
 
     if summaries:
