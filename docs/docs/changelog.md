@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+
+## [0.20.1] - 2021-04-16
 ### Fixed
 - Fixed issue when `pool_lengths=True` but there are no pool length records in the FIT file.
 
