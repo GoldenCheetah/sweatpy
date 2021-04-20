@@ -16,6 +16,8 @@ Types of changes:
 - `Security` in case of vulnerabilities.
 
 ## [Unreleased] - {ISO8601 date}
+### Fixed
+- `sweat.read_fit()` now supports integer column names.
 
 ## [0.20.2] - 2021-04-16
 ### Fixed
