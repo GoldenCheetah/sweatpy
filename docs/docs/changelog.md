@@ -15,6 +15,10 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [Unreleased] - {yyyy-mm-dd}
+### Added
+- Adds testing for Python 3.10
+
 ## [0.20.3] - 2021-04-20
 ### Fixed
 - `sweat.read_fit()` now supports integer column names.
