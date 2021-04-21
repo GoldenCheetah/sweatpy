@@ -22,6 +22,8 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.jupyter
+    environment:
+      - PYTHONPATH=/src:${PYTHONPATH}
     ports:
       - "8889:8888"
     volumes:
