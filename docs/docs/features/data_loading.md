@@ -164,6 +164,20 @@ example_tcx = sweat.examples(path="3173437224.tcx")
 data = sweat.read_tcx(example_tcx.path)
 ```
 
+### Metadata
+The `read_tcx()` function accepts a `metadata=True` parameter.
+When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the key "device" a `Device` object that has the attributes `name`, `product_id`, `serial_number`, `sensors` and `metadata`:
+
+```python
+import sweat
+
+
+data = sweat.read_tcx("path_to.tcx", metadata=True)
+
+data["device"]
+-> Device(name='Garmin Edge 1000', product_id='1836', serial_number='3907354759', metadata={'creator_xml': ...}, sensors=[])
+```
+
 ## Strava
 The `sweat.read_strava()` function can be used to pull data from Strava.
 Sweat assumes you already have an API access token. Read more about that [here](http://developers.strava.com/docs/authentication/).

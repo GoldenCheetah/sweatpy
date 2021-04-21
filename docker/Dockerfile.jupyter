@@ -1,4 +1,5 @@
 FROM python
+ENV PYTHONPATH "${PYTHONPATH}:/src"
 
 RUN pip install jupyter
 

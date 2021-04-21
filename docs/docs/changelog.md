@@ -18,6 +18,7 @@ Types of changes:
 ## [Unreleased] - {yyyy-mm-dd}
 ### Added
 - Adds testing for Python 3.10
+- `read_tcx()` now supports a metadata=True kwarg that will return device data.
 
 ## [0.20.3] - 2021-04-20
 ### Fixed
