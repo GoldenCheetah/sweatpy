@@ -15,7 +15,7 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased] - {yyyy-mm-dd}
+## [0.21.0] - 2021-04-22
 ### Added
 - Adds testing for Python 3.10
 - `read_tcx()` now supports a metadata=True kwarg that will return device data.
