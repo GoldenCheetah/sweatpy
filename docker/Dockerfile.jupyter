@@ -2,7 +2,15 @@ FROM python
 
 RUN pip install jupyter
 
-RUN mkdir /src/
-WORKDIR /src/
+RUN mkdir /build
+WORKDIR /build
+COPY pyproject.toml poetry.lock README.md ./
+RUN mkdir /sweat
+COPY sweat ./sweat
 
-CMD pip install . && cd docs/docs/ && jupyter notebook --ip=0.0.0.0  --port=8888 --allow-root --NotebookApp.token='' --NotebookApp.password=''
+RUN pip install .
+
+RUN mkdir /src/
+WORKDIR /src/docs/docs
+
+CMD jupyter notebook --ip=0.0.0.0  --port=8888 --allow-root --NotebookApp.token='' --NotebookApp.password=''

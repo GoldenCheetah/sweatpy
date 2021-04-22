@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 import pandas as pd
@@ -50,15 +50,17 @@ def create_empty_dataframe():
 
 
 @dataclass
-class BaseDevice:
+class Sensor:
     name: str
-    serial_number: str
-    metadata: dict
+    product_id: str = None
+    serial_number: str = None
+    metadata: dict = field(default_factory=dict)
 
 
-class Sensor(BaseDevice):
-    pass
-
-
-class Device(BaseDevice):
-    sensors: List[Sensor]
+@dataclass
+class Device:
+    name: str
+    product_id: str = None
+    serial_number: str = None
+    metadata: dict = field(default_factory=dict)
+    sensors: List[Sensor] = field(default_factory=list)

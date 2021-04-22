@@ -110,17 +110,16 @@ def read_tcx(
         if metadata:
             creator = activity.find("default:Creator", NAMESPACES)
             device_name = xml_find_value_or_none(creator, "default:Name", NAMESPACES)
-            device_unit_id = xml_find_value_or_none(
-                creator, "default:UnitId", NAMESPACES
-            )
-            device_product_id = xml_find_value_or_none(
-                creator, "default:ProductId", NAMESPACES
+            unit_id = xml_find_value_or_none(creator, "default:UnitId", NAMESPACES)
+            product_id = xml_find_value_or_none(
+                creator, "default:ProductID", NAMESPACES
             )
 
             device = Device(
                 name=device_name,
-                serial_number=device_unit_id,
-                metadata={},
+                product_id=product_id,
+                serial_number=unit_id,
+                metadata={"creator_xml": creator},
             )
 
     tcx_df = pd.DataFrame(records)

@@ -36,7 +36,7 @@ openpyxl = "^3.0.7"
 legacy_tox_ini = """
 [tox]
 isolated_build = true
-envlist = py36,py37,py38,py39
+envlist = py36,py37,py38,py39,py3.10
 
 [testenv]
 whitelist_externals = poetry

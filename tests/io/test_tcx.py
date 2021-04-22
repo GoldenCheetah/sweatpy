@@ -27,10 +27,8 @@ def test_read_tcx(example):
     assert activity["session"].max() == example.sessions - 1
 
 
-@pytest.mark.parametrize(
-    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.tcx)]
-)
-def test_read_tcx_metadata(example):
+def test_read_tcx_metadata():
+    example = sweat.examples(path="activity_4078723797.tcx")
     activity = tcx.read_tcx(example.path, metadata=True)
 
     assert isinstance(activity, dict)
@@ -46,3 +44,10 @@ def test_read_tcx_metadata(example):
 
     assert "session" in data.columns
     assert data["session"].max() == example.sessions - 1
+
+    device = activity["device"]
+    assert device.name == "Garmin Edge 1000"
+    assert device.product_id is not None
+    assert device.serial_number is not None
+    assert device.sensors == []
+    assert "creator_xml" in device.metadata
