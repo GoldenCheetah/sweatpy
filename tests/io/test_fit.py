@@ -28,6 +28,29 @@ def test_read_fit(example):
     assert activity["session"].max() == example.sessions - 1
 
 
+@pytest.mark.parametrize(
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit)]
+)
+def test_read_fit_metadata(example):
+    fit_data = fit.read_fit(example.path, metadata=True, hrv=True)
+    activity = fit_data["data"]
+
+    assert isinstance(activity, pd.DataFrame)
+    assert isinstance(activity.index, pd.DatetimeIndex)
+    included_data = set(i.value for i in example.included_data)
+    assert included_data <= set(activity.columns.to_list())
+
+    assert "lap" in activity.columns
+    assert activity["lap"].max() == example.laps - 1
+
+    assert "session" in activity.columns
+    assert activity["session"].max() == example.sessions - 1
+
+    assert "hrv" in fit_data
+    assert "devices" in fit_data
+    assert "athlete" in fit_data
+
+
 def test_read_fit_no_fit():
     example_tcx = sweat.examples(path="activity_4078723797.tcx")
     with pytest.raises(exceptions.InvalidFitFile):

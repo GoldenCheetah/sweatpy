@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Dict, Optional
 
-from pydantic import BaseModel, conint, PositiveFloat, PositiveInt
+from pydantic import BaseModel
 
 
 class Gender(Enum):
@@ -20,20 +20,20 @@ class UnitSystem(Enum):
 class ThresholdSetting(BaseModel):
     sport: str
     sub_sport: str
-    power: Optional[PositiveInt]
-    speed: Optional[PositiveFloat]
-    heartrate: Optional[PositiveInt]
+    power: Optional[int]
+    speed: Optional[float]
+    heartrate: Optional[int]
 
 
 class Athlete(BaseModel):
     name: Optional[str]
     gender: Optional[Gender]
-    age: Optional[PositiveInt]
-    weight: Optional[PositiveFloat]
-    max_heartrate: Optional[PositiveInt]
+    age: Optional[int]
+    weight: Optional[float]
+    max_heartrate: Optional[int]
     unit_system: Optional[UnitSystem]
     threshold: Optional[ThresholdSetting]
-    activity_class: Optional[conint(ge=0, le=100)]
+    activity_class: Optional[int]
 
     @classmethod
     def from_fit_file(cls, user_profile, zones_target, sport):
