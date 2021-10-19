@@ -15,6 +15,13 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [unreleased] - {date}
+### Added
+- When `metadata=True` is passed to `sweat.read_fit()` the response now includes an "athlete" key that contains an Athlete model with information about the athlete.
+
+### Fixed
+- Suunto hrv samples that consist of only 1 value are now properly handled and do not raise a TypeError anymore.
+
 ## [0.21.0] - 2021-04-22
 ### Added
 - Adds testing for Python 3.10
