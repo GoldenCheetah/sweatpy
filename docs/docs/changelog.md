@@ -15,7 +15,7 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [unreleased] - {date}
+## [0.22.1] - 2021-10-19
 ### Fixed
 - Relax Athlete model validation because it raised errors for some FIT files.
 
