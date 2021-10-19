@@ -1,5 +1,6 @@
 import json
 import pathlib
+from collections.abc import Iterable
 from functools import lru_cache
 
 import numpy as np
@@ -8,6 +9,7 @@ from fitparse import FitFile
 from fitparse.utils import FitHeaderError
 
 from .exceptions import InvalidFitFile
+from .models import Athlete
 from .utils import (
     create_empty_dataframe,
     remove_duplicate_indices,
@@ -98,9 +100,12 @@ def read_fit(
     devices = {}
     records = []
     sport = None
+    sport_record = None
     rr_intervals = []
     pool_length_records = []
     raw_message_records = []
+    user_profile = None
+    zones_target = None
     record_sequence = 0
     for record in fitfile.get_messages():
         try:
@@ -129,10 +134,10 @@ def read_fit(
             continue
         elif mesg_type == "device_settings":
             continue
-        elif mesg_type == "user_profile":
-            continue
-        elif mesg_type == "zones_target":
-            continue
+        elif mesg_type == "user_profile" and metadata:
+            user_profile = record.get_values()
+        elif mesg_type == "zones_target" and metadata:
+            zones_target = record.get_values()
         elif mesg_type == "developer_data_id":
             continue
         elif mesg_type == "field_description":
@@ -147,10 +152,17 @@ def read_fit(
                 # @TODO Decide how to handle this with respect to laps and sessions
                 continue
         elif mesg_type == "sport":
+            sport_record = record.get_values()
             sport = record.get_value("sport")
         elif mesg_type == "hrv":
             if hrv:
                 values = record.get_values()["time"]
+                if values is None:
+                    continue
+
+                if not isinstance(values, Iterable):
+                    values = [values]
+
                 for val in values:
                     if val is not None:
                         rr_intervals.append(val)
@@ -277,6 +289,7 @@ def read_fit(
 
     if metadata:
         return_value["devices"] = devices
+        return_value["athlete"] = Athlete.from_fit_file(user_profile, zones_target, sport_record)
 
     if raw_messages:
         return_value["raw_messages"] = raw_message_records

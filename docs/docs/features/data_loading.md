@@ -93,6 +93,7 @@ data["sessions"]
 ### Metadata
 The `read_fit()` function accepts a `metadata=True` parameter.
 When set to `True` (default is `False`) a dictionairy is returned, with the dataframe in the "data" key, and in the key "devices" a list of all the devices found in the FIT file.
+Additionaly, the "athlete" key contains a model of the athlete with all available information.
 
 ```python
 import sweat
@@ -104,6 +105,9 @@ data = sweat.read_fit(example_fit.path, metadata=True)
 
 data["devices"]
 -> list
+
+data["athlete"]
+-> Athlete(name=None, gender=<Gender.MALE: 'MALE'>, age=34, weight=79.0, max_heartrate=189, unit_system=<UnitSystem.METRIC: 'METRIC'>, threshold=ThresholdSetting(sport='cycling', sub_sport='generic', power=200, speed=None, heartrate=182), activity_class=80)
 ```
 
 ### Raw FIT messages
