@@ -15,6 +15,10 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [unreleased] - {date}
+### Fixed
+- Relax Athlete model validation because it raised errors for some FIT files.
+
 ## [0.22.0] - 2021-10-19
 ### Added
 - When `metadata=True` is passed to `sweat.read_fit()` the response now includes an "athlete" key that contains an Athlete model with information about the athlete.
