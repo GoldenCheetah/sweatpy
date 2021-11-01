@@ -15,7 +15,7 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [unreleased] - {date}
+## [0.23.0] - 2021-11-01
 ### Changed
 - Updated dependency versions. Most notable is scikit-learn to ">= 0.23.1".
 

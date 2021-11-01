@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sweat"
-version = "0.22.1"
+version = "0.23.0"
 description = "Workout analysis"
 license = "MIT"
 authors = ["Aart Goossens <aart@goossens.me>"]
