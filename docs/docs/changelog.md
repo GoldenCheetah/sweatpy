@@ -15,6 +15,13 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [unreleased] - {date}
+### Changed
+- Updated dependency versions. Most notable is scikit-learn to ">= 0.23.1".
+
+### Deprecated
+- Python 3.6 support will be dropped in a next release as it is nearing EOL and some dependencies like scikit-learn already do not support it in their latest releases.
+
 ## [0.22.1] - 2021-10-19
 ### Fixed
 - Relax Athlete model validation because it raised errors for some FIT files.
