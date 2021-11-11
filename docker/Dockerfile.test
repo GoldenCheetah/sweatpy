@@ -8,7 +8,7 @@ RUN apt update
 RUN apt install -y software-properties-common
 RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt update --fix-missing
-RUN apt install -y \
+RUN apt install --fix-missing -y \
     curl \
     python3.6-dev \
     python3.7-dev \
