@@ -145,7 +145,11 @@ def read_fit(
         elif mesg_type == "activity":
             activity_summary = record.get_values()
         elif mesg_type == "lap":
-            lap_summaries.append(record.get_values())
+            lap_summary = {}
+            for field in record.fields:
+                if lap_summary.get(field.name, None) is None:
+                    lap_summary[field.name] = field.value
+            lap_summaries.append(lap_summary)
         elif mesg_type == "event":
             if record.get_value("event_type") == "start":
                 # This happens whens an activity is (manually or automatically) paused or stopped and the resumed
@@ -170,7 +174,11 @@ def read_fit(
             # @TODO Decide wether to use these
             continue
         elif mesg_type == "session":
-            session_summaries.append(record.get_values())
+            session_summary = {}
+            for field in record.fields:
+                if session_summary.get(field.name, None) is None:
+                    session_summary[field.name] = field.value
+            session_summaries.append(session_summary)
         elif mesg_type == "length":
             if pool_lengths:
                 pool_length_records.append(record.get_values())

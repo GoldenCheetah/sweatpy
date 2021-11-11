@@ -15,6 +15,10 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [unreleased] - {date}
+### Fixed
+- Some FIT files contain records with duplicate field names of which only 1 was not null. Added code to make sure that the non null value was picked.
+
 ## [0.23.0] - 2021-11-01
 ### Changed
 - Updated dependency versions. Most notable is scikit-learn to ">= 0.23.1".
