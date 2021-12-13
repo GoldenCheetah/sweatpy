@@ -15,7 +15,7 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [unreleased] - {date}
+## [0.23.2] - 2021-12-13
 ### Fixed
 - Fixes parsing the activity_class attribute on the athlete model returned by `read_fit(metadata=True)`. It should now handle all possible values.
 
