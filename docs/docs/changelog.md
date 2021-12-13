@@ -15,6 +15,11 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [unreleased] - {date}
+### Fixed
+- Fixes parsing the activity_class attribute on the athlete model returned by `read_fit(metadata=True)`. It should now handle all possible values.
+
+
 ## [0.23.1] - 2021-11-11
 ### Fixed
 - Some FIT files contain records with duplicate field names of which only 1 was not null. Added code to make sure that the non null value was picked.
