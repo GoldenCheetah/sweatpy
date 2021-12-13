@@ -61,7 +61,12 @@ class Athlete(BaseModel):
                     break
 
             data["max_heartrate"] = user_profile.get("default_max_heart_rate", None)
-            data["activity_class"] = user_profile.get("activity_class", None)
+            activity_class = user_profile.get("activity_class", None)
+            if activity_class == "level_max":
+                activity_class = 100
+            if activity_class is not None and not isinstance(activity_class, int):
+                activity_class = None
+            data["activity_class"] = activity_class
 
         if sport is not None and zones_target is not None:
             threshold_data = {}
