@@ -15,12 +15,13 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [unreleased] - {date}
+## [0.24.0] - 2021-12-16
 ### Added
 - Adds processing of resting heartrate to athlete model from FIT files.
 
 ### Fixed
 - Adds fixes for processing age and heigh to athlete model from FIT files.
+
 
 ## [0.23.2] - 2021-12-13
 ### Fixed
