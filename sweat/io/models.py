@@ -30,6 +30,8 @@ class Athlete(BaseModel):
     gender: Optional[Gender]
     age: Optional[int]
     weight: Optional[float]
+    height: Optional[float]
+    resting_heartrate: Optional[int]
     max_heartrate: Optional[int]
     unit_system: Optional[UnitSystem]
     threshold: Optional[ThresholdSetting]
@@ -47,9 +49,6 @@ class Athlete(BaseModel):
             else:
                 data["gender"] = Gender.UNSPECIFIED
 
-            data["weight"] = user_profile.get("weight", None)
-            data["height"] = user_profile.get("height", None)
-
             for setting in ["elev", "weight", "speed", "dist", "temperature", "height"]:
                 if f"{setting}_setting" in user_profile:
                     if user_profile[f"{setting}_setting"] == "statute":
@@ -60,7 +59,12 @@ class Athlete(BaseModel):
                         data["unit_system"] = UnitSystem.METRIC
                     break
 
+            data["weight"] = user_profile.get("weight", None)
+            data["height"] = user_profile.get("height", None)
+            data["age"] = user_profile.get("age", None)
             data["max_heartrate"] = user_profile.get("default_max_heart_rate", None)
+            data["resting_heartrate"] = user_profile.get("resting_heart_rate", None)
+
             activity_class = user_profile.get("activity_class", None)
             if activity_class == "level_max":
                 activity_class = 100
