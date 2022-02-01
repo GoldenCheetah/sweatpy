@@ -1,6 +1,7 @@
 FROM python
 
-RUN pip install jupyter
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+ENV PATH "/root/.poetry/bin:$PATH"
 
 RUN mkdir /build
 WORKDIR /build
@@ -9,6 +10,7 @@ RUN mkdir /sweat
 COPY sweat ./sweat
 
 RUN pip install .
+RUN pip install jupyter
 
 RUN mkdir /src/
 WORKDIR /src/docs/docs

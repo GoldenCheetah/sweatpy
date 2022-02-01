@@ -11,7 +11,7 @@ def test_top_level_import():
 
 
 @pytest.mark.parametrize(
-    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit, course=False)]
 )
 def test_read_fit(example):
     activity = fit.read_fit(example.path)
@@ -29,7 +29,7 @@ def test_read_fit(example):
 
 
 @pytest.mark.parametrize(
-    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit, course=False)]
 )
 def test_read_fit_metadata(example):
     fit_data = fit.read_fit(example.path, metadata=True, hrv=True)
@@ -54,4 +54,16 @@ def test_read_fit_metadata(example):
 def test_read_fit_no_fit():
     example_tcx = sweat.examples(path="activity_4078723797.tcx")
     with pytest.raises(exceptions.InvalidFitFile):
-        activity = fit.read_fit(example_tcx.path)
+        sweat.read_fit(example_tcx.path)
+
+
+@pytest.mark.parametrize(
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.fit, course=True)]
+)
+def test_read_fit_course(example):
+    course = sweat.read_fit(example.path)
+
+    assert isinstance(course, pd.DataFrame)
+    assert isinstance(course.index, pd.DatetimeIndex)
+    included_data = set(i.value for i in example.included_data)
+    assert included_data <= set(course.columns.to_list())

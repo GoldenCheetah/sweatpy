@@ -15,6 +15,10 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [unreleased] - {date}
+### Added
+- Added full support for parsing fit, tcx and gpx courses. Some of the functionality was already working, this release makes it complete.
+
 ## [0.24.0] - 2021-12-16
 ### Added
 - Adds processing of resting heartrate to athlete model from FIT files.
@@ -157,7 +161,7 @@ Types of changes:
 - Adds ability to resample and interpolate data frames
 
 ### Changed
-- Changes the index of returned data frames to a pandas.DateTimeIndex
+- Changes the index of returned data frames to a pandas.DatetimeIndex
 
 ## [0.9.0] - 2020-05-23
 ### Added

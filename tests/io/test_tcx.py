@@ -1,6 +1,7 @@
 import pandas as pd
 import pytest
 import sweat
+from pandas.api.types import is_numeric_dtype
 from sweat.io import tcx
 from sweat.examples.utils import FileTypeEnum
 
@@ -10,7 +11,7 @@ def test_top_level_import():
 
 
 @pytest.mark.parametrize(
-    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.tcx)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.tcx, course=False)]
 )
 def test_read_tcx(example):
     activity = tcx.read_tcx(example.path)
@@ -51,3 +52,15 @@ def test_read_tcx_metadata():
     assert device.serial_number is not None
     assert device.sensors == []
     assert "creator_xml" in device.metadata
+
+
+@pytest.mark.parametrize(
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.tcx, course=True)]
+)
+def test_read_tcx_course(example):
+    course = sweat.read_tcx(example.path)
+
+    assert isinstance(course, pd.DataFrame)
+    assert isinstance(course.index, pd.DatetimeIndex)
+    included_data = set(i.value for i in example.included_data)
+    assert included_data <= set(course.columns.to_list())

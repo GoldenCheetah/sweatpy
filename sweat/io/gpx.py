@@ -49,18 +49,24 @@ def read_gpx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
         datetime = xml_find_value_or_none(trackpoint, "default:time", NAMESPACES)
 
         extensions = trackpoint.find("default:extensions", NAMESPACES)
+        
+        if extensions is None:
+            power = None
+            temperature = None
+            heartrate = None
+            cadence = None
+        else:
+            power = xml_find_value_or_none(extensions, "default:power", NAMESPACES)
 
-        power = xml_find_value_or_none(extensions, "default:power", NAMESPACES)
+            trackpoint_extension = extensions.find("gpxtpx:TrackPointExtension", NAMESPACES)
 
-        trackpoint_extension = extensions.find("gpxtpx:TrackPointExtension", NAMESPACES)
-
-        temperature = xml_find_value_or_none(
-            trackpoint_extension, "gpxtpx:atemp", NAMESPACES
-        )
-        heartrate = xml_find_value_or_none(
-            trackpoint_extension, "gpxtpx:hr", NAMESPACES
-        )
-        cadence = xml_find_value_or_none(trackpoint_extension, "gpxtpx:cad", NAMESPACES)
+            temperature = xml_find_value_or_none(
+                trackpoint_extension, "gpxtpx:atemp", NAMESPACES
+            )
+            heartrate = xml_find_value_or_none(
+                trackpoint_extension, "gpxtpx:hr", NAMESPACES
+            )
+            cadence = xml_find_value_or_none(trackpoint_extension, "gpxtpx:cad", NAMESPACES)
 
         records.append(
             dict(
@@ -76,12 +82,12 @@ def read_gpx(fpath, resample: bool = False, interpolate: bool = False) -> pd.Dat
         )
 
     gpx_df = pd.DataFrame(records)
-    gpx_df = gpx_df.dropna("columns", "all")
-    gpx_df["datetime"] = pd.to_datetime(gpx_df["datetime"], utc=True)
-    gpx_df = gpx_df.set_index("datetime")
-
-    gpx_df = remove_duplicate_indices(gpx_df)
-
-    gpx_df = resample_data(gpx_df, resample, interpolate)
+    gpx_df = gpx_df.dropna(axis="columns", how="all")
+    if "datetime" in gpx_df.columns:
+        # GPX courses do not have a datetime column
+        gpx_df["datetime"] = pd.to_datetime(gpx_df["datetime"], utc=True)
+        gpx_df = gpx_df.set_index("datetime")
+        gpx_df = remove_duplicate_indices(gpx_df)
+        gpx_df = resample_data(gpx_df, resample, interpolate)
 
     return gpx_df

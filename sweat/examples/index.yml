@@ -277,3 +277,27 @@
     - 'heartrate'
   laps: 1
   sessions: 3
+- path: 'neighbourhood_loop.fit'
+  description: |
+      Small course exported from Ride With GPS.
+  file_type: 'FIT'
+  course: true
+  included_data:
+    - 'latitude'
+    - 'longitude'
+- path: 'neighbourhood_loop.tcx'
+  description: |
+      Small course exported from Ride With GPS. Same course as neighbourhood_loop.fit'
+  file_type: 'TCX'
+  course: true
+  included_data:
+    - 'latitude'
+    - 'longitude'
+- path: 'neighbourhood_loop.gpx'
+  description: |
+      Small course exported from Ride With GPS. Same course as neighbourhood_loop.fit'
+  file_type: 'GPX'
+  course: true
+  included_data:
+    - 'latitude'
+    - 'longitude'
