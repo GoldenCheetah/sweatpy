@@ -1,6 +1,6 @@
 from enum import Enum
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 from yaml import load, Loader
 from pydantic import BaseModel, parse_obj_as, validator
@@ -30,14 +30,15 @@ class Sensor(BaseModel):
 class ExampleData(BaseModel):
     description: str = None
     path: Path
-    sport: SportEnum
+    sport: Optional[SportEnum]
     file_type: FileTypeEnum
-    recording_device: str
-    recording_device: str
-    sensors: List[Sensor] = None
-    included_data: List[DataTypeEnum]
-    laps: int = None
-    sessions: int = None
+    recording_device: Optional[str]
+    recording_device: Optional[str]
+    sensors: Optional[List[Sensor]]
+    included_data: Optional[List[DataTypeEnum]]
+    laps: Optional[int]
+    sessions: Optional[int]
+    course: bool = False
 
     @validator("path")
     def make_path_absolute(cls, v):
@@ -52,7 +53,7 @@ def examples_data_dir():
     return Path(examples_dir(), "data")
 
 
-def examples(*, path=None, file_type=None, sport=None):
+def examples(*, path=None, file_type=None, sport=None, course=None):
     if path is not None and (file_type is not None or sport is not None):
         raise ValueError(
             "Providing both the path argument and one or more of file_type and sport is not supported."
@@ -65,15 +66,18 @@ def examples(*, path=None, file_type=None, sport=None):
     if path is not None:
         example_data_dir = examples_data_dir()
         path = Path(example_data_dir, path)
-        for example in examples():
+        for example in loaded_data:
             if example.path == path:
                 return example
         raise ValueError(f'Example data "{path}" not found.')
 
     if file_type is not None:
-        loaded_data = filter(lambda d: d.file_type == file_type, examples())
+        loaded_data = filter(lambda d: d.file_type == file_type, loaded_data)
 
     if sport is not None:
-        loaded_data = filter(lambda d: d.sport == sport, examples())
+        loaded_data = filter(lambda d: d.sport == sport, loaded_data)
+
+    if course is not None:
+        loaded_data = filter(lambda d: d.course == course, loaded_data)
 
     return loaded_data

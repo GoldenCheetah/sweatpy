@@ -32,7 +32,7 @@ class SweatAccessor:
     @staticmethod
     def _validate(obj):
         if not isinstance(obj.index, (pd.DatetimeIndex, pd.TimedeltaIndex)):
-            raise AttributeError("DataFrame Index should be a DateTimeIndex.")
+            raise AttributeError("DataFrame Index should be a DatetimeIndex.")
 
         if not all(obj.index.to_series().diff()[1:] == np.timedelta64(1, "s")):
             raise AttributeError(
@@ -84,7 +84,7 @@ class SweatSeriesAccessor:
     @staticmethod
     def _validate(obj):
         if not isinstance(obj.index, pd.DatetimeIndex):
-            raise AttributeError("DataFrame Index should be a DateTimeIndex.")
+            raise AttributeError("DataFrame Index should be a DatetimeIndex.")
 
         if not all(obj.index.to_series().diff()[1:] == np.timedelta64(1, "s")):
             raise AttributeError(

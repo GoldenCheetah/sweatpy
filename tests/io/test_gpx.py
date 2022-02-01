@@ -11,7 +11,7 @@ def test_top_level_import():
 
 
 @pytest.mark.parametrize(
-    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.gpx)]
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.gpx, course=False)]
 )
 def test_read_gpx(example):
     activity = gpx.read_gpx(example.path)
@@ -30,3 +30,15 @@ def test_read_gpx(example):
     ]:
         if column in activity.columns:
             assert is_numeric_dtype(activity[column])
+
+
+@pytest.mark.parametrize(
+    "example", [(i) for i in sweat.examples(file_type=FileTypeEnum.gpx, course=True)]
+)
+def test_read_gpx_course(example):
+    course = gpx.read_gpx(example.path)
+
+    assert isinstance(course, pd.DataFrame)
+    assert isinstance(course.index, pd.RangeIndex)
+    included_data = set(i.value for i in example.included_data)
+    assert included_data <= set(course.columns.to_list())

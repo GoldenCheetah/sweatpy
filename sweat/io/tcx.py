@@ -31,30 +31,17 @@ def xml_find_value_or_none(element, match, namespaces=None):
         return e.text
 
 
-def read_tcx(
-    fpath, resample: bool = False, interpolate: bool = False, metadata: bool = False
-) -> pd.DataFrame:
-    """This method loads a TCX file into a Pandas DataFrame.
-    Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
-
-    Args:
-        fpath: str, file-like or Path object
-        resample: whether or not the data frame needs to be resampled to 1Hz
-        interpolate: whether or not missing data in the data frame needs to be interpolated
-        metadata: whether to return metadata. Note: If set to True this method will return a dictionairy instead of a data frame.
-
-    Returns:
-        A pandas data frame with all the data.
-    """
-    tree = ET.parse(Path(fpath))
-    root = tree.getroot()
-    activities = root.find("default:Activities", NAMESPACES)
-
+def process_tcx_tree(elements, metadata, name):
     records = []
     lap_no = 0
     session = 0
-    for activity in activities.findall("default:Activity", NAMESPACES):
-        for lap in activity.findall("default:Lap", NAMESPACES):
+    for element in elements.findall(f"default:{name}", NAMESPACES):
+        if name == "Course":
+            laps = [element]
+        else:
+            laps = element.findall("default:Lap", NAMESPACES)
+
+        for lap in laps:
             track = lap.find("default:Track", NAMESPACES)
             for trackpoint in track.findall("default:Trackpoint", NAMESPACES):
                 datetime = xml_find_value_or_none(
@@ -107,8 +94,9 @@ def read_tcx(
                 )
             lap_no += 1
 
+        device = None
         if metadata:
-            creator = activity.find("default:Creator", NAMESPACES)
+            creator = element.find("default:Creator", NAMESPACES)
             device_name = xml_find_value_or_none(creator, "default:Name", NAMESPACES)
             unit_id = xml_find_value_or_none(creator, "default:UnitId", NAMESPACES)
             product_id = xml_find_value_or_none(
@@ -124,10 +112,22 @@ def read_tcx(
 
     tcx_df = pd.DataFrame(records)
 
+    return tcx_df, device
+
+
+def process_tcx_activities(activities, metadata):
+    return process_tcx_tree(activities, metadata, name="Activity")
+
+
+def process_tcx_courses(courses, metadata):
+    return process_tcx_tree(courses, metadata, name="Course")
+
+
+def postprocess(tcx_df, device, resample, interpolate, metadata):
     if tcx_df.empty:
         return create_empty_dataframe()
 
-    tcx_df = tcx_df.dropna("columns", "all")
+    tcx_df = tcx_df.dropna(axis="columns", how="all")
     tcx_df["datetime"] = pd.to_datetime(tcx_df["datetime"], utc=True)
     tcx_df = tcx_df.set_index("datetime")
 
@@ -145,3 +145,40 @@ def read_tcx(
         "data": tcx_df,
         "device": device,
     }
+
+
+def read_tcx(
+    fpath, resample: bool = False, interpolate: bool = False, metadata: bool = False
+) -> pd.DataFrame:
+    """This method loads a TCX file into a Pandas DataFrame.
+    Columns names are translated to sweat terminology (e.g. "heart_rate" > "heartrate").
+
+    Args:
+        fpath: str, file-like or Path object
+        resample: whether or not the data frame needs to be resampled to 1Hz
+        interpolate: whether or not missing data in the data frame needs to be interpolated
+        metadata: whether to return metadata. Note: If set to True this method will return a dictionairy instead of a data frame.
+
+    Returns:
+        A pandas data frame with all the data.
+    """
+    tree = ET.parse(Path(fpath))
+    root = tree.getroot()
+
+    activities = root.find("default:Activities", NAMESPACES)
+    if activities is not None:
+        tcx_df, device = process_tcx_activities(activities, metadata)
+
+        return postprocess(tcx_df, device, resample, interpolate, metadata)
+    
+    courses = None
+    for child in root:
+        if child.tag.endswith("Courses"):
+            courses = child
+    # courses = root.findall("default:Courses", NAMESPACES)
+    if courses is not None:
+        tcx_df, device = process_tcx_courses(courses, metadata)
+
+        return postprocess(tcx_df, device, resample, interpolate, metadata)
+    
+    raise TypeError("Unsupported gpx file format: This gpx file does not seem to contain either activities or courses.")
