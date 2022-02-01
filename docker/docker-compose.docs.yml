@@ -1,6 +1,19 @@
-version: '3.7'
+version: "3.7"
 
 services:
+  traefik:
+    image: "traefik:v2.4"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "8080:8080"
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   mkdocs:
     image: sweatpy-mkdocs
     container_name: sweatpy-mkdocs
@@ -15,6 +28,10 @@ services:
     tty: true
     depends_on:
       - jupyter
+    labels:
+      traefik.enable: true
+      traefik.http.routers.mkdocs.rule: Host(`mkdocs.sweatpy.localhost`)
+      traefik.http.routers.mkdocs.entrypoints: web
 
   jupyter:
     image: sweatpy-jupyter
@@ -30,3 +47,9 @@ services:
       - ../:/src
     stdin_open: true
     tty: true
+    depends_on:
+      - traefik
+    labels:
+      traefik.enable: true
+      traefik.http.routers.jupyter.rule: Host(`jupyter.sweatpy.localhost`)
+      traefik.http.routers.jupyter.entrypoints: web

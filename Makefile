@@ -17,3 +17,6 @@ testall:
 
 docs:
 	docker-compose -f docker/docker-compose.docs.yml up --remove-orphans
+
+build_docs:
+	docker-compose -f docker/docker-compose.docs.yml build
