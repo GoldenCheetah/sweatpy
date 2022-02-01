@@ -1,0 +1,840 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Data loading - Sweatpy docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546d78">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-loading" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Sweatpy docs" class="md-header-nav__button md-logo" aria-label="Sweatpy docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Sweatpy docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Data loading
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/goldencheetah/sweatpy/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    goldencheetah/sweatpy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Sweatpy docs" class="md-nav__button md-logo" aria-label="Sweatpy docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+
+    </a>
+    Sweatpy docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/goldencheetah/sweatpy/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    goldencheetah/sweatpy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Sweatpy" class="md-nav__link">
+      Sweatpy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Metrics/" title="Metrics" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Power%20duration%20modelling/" title="Power duration modelling" class="md-nav__link">
+      Power duration modelling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Data loading
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Data loading" class="md-nav__link md-nav__link--active">
+      Data loading
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fit-files" class="md-nav__link">
+    FIT files
+  </a>
+  
+    <nav class="md-nav" aria-label="FIT files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hrv-data" class="md-nav__link">
+    HRV data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pool-length-data" class="md-nav__link">
+    Pool length data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summaries" class="md-nav__link">
+    Summaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-fit-messages" class="md-nav__link">
+    Raw FIT messages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpx-files" class="md-nav__link">
+    GPX files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcx-files" class="md-nav__link">
+    TCX files
+  </a>
+  
+    <nav class="md-nav" aria-label="TCX files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_1" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strava" class="md-nav__link">
+    Strava
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helper-functions" class="md-nav__link">
+    Helper functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resampling" class="md-nav__link">
+    Resampling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../example_data/" title="Example data" class="md-nav__link">
+      Example data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../nomenclature/" title="Nomenclature" class="md-nav__link">
+      Nomenclature
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fit-files" class="md-nav__link">
+    FIT files
+  </a>
+  
+    <nav class="md-nav" aria-label="FIT files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hrv-data" class="md-nav__link">
+    HRV data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pool-length-data" class="md-nav__link">
+    Pool length data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summaries" class="md-nav__link">
+    Summaries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-fit-messages" class="md-nav__link">
+    Raw FIT messages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpx-files" class="md-nav__link">
+    GPX files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcx-files" class="md-nav__link">
+    TCX files
+  </a>
+  
+    <nav class="md-nav" aria-label="TCX files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_1" class="md-nav__link">
+    Metadata
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strava" class="md-nav__link">
+    Strava
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helper-functions" class="md-nav__link">
+    Helper functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resampling" class="md-nav__link">
+    Resampling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/goldencheetah/sweatpy/edit/master/docs/features/data_loading.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="data-loading">Data loading<a class="headerlink" href="#data-loading" title="Permanent link">&para;</a></h1>
+<p><em>Sweatpy</em> has built-in support for loading these activity file formats:</p>
+<ul>
+<li><a href="#fit-files">FIT files</a></li>
+<li><a href="#gpx-files">GPX files</a></li>
+<li><a href="#tcx-files">TCX files</a></li>
+</ul>
+<p>...and loading data from these services:</p>
+<ul>
+<li><a href="#strava">Strava</a></li>
+</ul>
+<p>Helper functions:</p>
+<ul>
+<li><a href="#helper-functions"><code>read_file()</code></a>, that automatically determines the file format.</li>
+<li><a href="#helper-functions"><code>read_dir()</code></a>, that iterates over all the files in a directory.</li>
+</ul>
+<h2 id="fit-files">FIT files<a class="headerlink" href="#fit-files" title="Permanent link">&para;</a></h2>
+<p>The <code>read_fit()</code> function accepts strings, <a href="https://docs.python.org/3/library/pathlib.html">pathlib</a> objects and other file-like objects and returns a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a> with column names matching <em>Sweatpy</em> <a href="../nomenclature/">nomenclature</a>.</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="s2">&quot;path/to/file.fit&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_fit</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797.fit&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="hrv-data">HRV data<a class="headerlink" href="#hrv-data" title="Permanent link">&para;</a></h3>
+<p>The <code>read_fit()</code> function accepts an <code>hrv=True</code> parameter.
+When set to <code>True</code> (default is <code>False</code>) a dictionairy is returned, with the dataframe in the key "data" and a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html">pandas.Series</a> with RR intervals in the "hrv" key.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_fit</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797.fit&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">hrv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;hrv&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span>
+</code></pre></div>
+
+<h3 id="pool-length-data">Pool length data<a class="headerlink" href="#pool-length-data" title="Permanent link">&para;</a></h3>
+<p>When reading FIT files from pool swims, you can use the <code>pool_lengths=True</code> parameter.
+When set to <code>True</code> (default is <code>False</code>) a dictionairy is returned, with the dataframe in the key "data" and a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a> with pool length records in the "pool_lengths" key.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_fit</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797.fit&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">pool_lengths</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;pool_lengths&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</code></pre></div>
+
+<h3 id="summaries">Summaries<a class="headerlink" href="#summaries" title="Permanent link">&para;</a></h3>
+<p>The <code>read_fit()</code> function accepts a <code>summaries=True</code> parameter.
+When set to <code>True</code> (default is <code>False</code>) a dictionairy is returned, with the dataframe in the "data" key, and in the keys "activity", "session" and "laps" relevant summaries:</p>
+<ul>
+<li>"activity": a dictionairy with a summary of the entire activity.</li>
+<li>"sessions": a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrames</a> with summaries of each session. Only for multi session FIT files this is different from the activity summary.</li>
+<li>"sessions": a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrames</a> with summaries of each lap.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_fit</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797.fit&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">summaries</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;sessions&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+</code></pre></div>
+
+<h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h3>
+<p>The <code>read_fit()</code> function accepts a <code>metadata=True</code> parameter.
+When set to <code>True</code> (default is <code>False</code>) a dictionairy is returned, with the dataframe in the "data" key, and in the key "devices" a list of all the devices found in the FIT file.
+Additionaly, the "athlete" key contains a model of the athlete with all available information.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_fit</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797.fit&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;devices&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="nb">list</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;athlete&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="n">Athlete</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gender</span><span class="o">=&lt;</span><span class="n">Gender</span><span class="o">.</span><span class="n">MALE</span><span class="p">:</span> <span class="s1">&#39;MALE&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">34</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">79.0</span><span class="p">,</span> <span class="n">max_heartrate</span><span class="o">=</span><span class="mi">189</span><span class="p">,</span> <span class="n">unit_system</span><span class="o">=&lt;</span><span class="n">UnitSystem</span><span class="o">.</span><span class="n">METRIC</span><span class="p">:</span> <span class="s1">&#39;METRIC&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">ThresholdSetting</span><span class="p">(</span><span class="n">sport</span><span class="o">=</span><span class="s1">&#39;cycling&#39;</span><span class="p">,</span> <span class="n">sub_sport</span><span class="o">=</span><span class="s1">&#39;generic&#39;</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heartrate</span><span class="o">=</span><span class="mi">182</span><span class="p">),</span> <span class="n">activity_class</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="raw-fit-messages">Raw FIT messages<a class="headerlink" href="#raw-fit-messages" title="Permanent link">&para;</a></h3>
+<p>The <code>read_fit()</code> function accepts a <code>raw_messages=True</code> parameter.
+When set to <code>True</code> (default is <code>False</code>) a dictionairy is returned, with the dataframe in the "data" key, and in the key "raw_messages" a list of dictionairies that contains all the raw FIT messages.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_fit</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797.fit&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_fit</span><span class="p">(</span><span class="n">example_fit</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">raw_messages</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;raw_messages&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="nb">list</span>
+</code></pre></div>
+
+<h2 id="gpx-files">GPX files<a class="headerlink" href="#gpx-files" title="Permanent link">&para;</a></h2>
+<p>The <code>read_gpx()</code> function accepts strings, <a href="https://docs.python.org/3/library/pathlib.html">pathlib</a> objects and other file-like objects and returns a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a> with column names matching <em>Sweatpy</em> <a href="../nomenclature/">nomenclature</a>.</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_gpx</span><span class="p">(</span><span class="s2">&quot;path/to/file.gpx&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_gpx</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;4078723797_strava.gpx&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_gpx</span><span class="p">(</span><span class="n">example_gpx</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="tcx-files">TCX files<a class="headerlink" href="#tcx-files" title="Permanent link">&para;</a></h2>
+<p>The <code>read_tcx()</code> function accepts strings, <a href="https://docs.python.org/3/library/pathlib.html">pathlib</a> objects and other file-like objects and returns a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a> with column names matching <em>Sweatpy</em> <a href="../nomenclature/">nomenclature</a>.</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_gpx</span><span class="p">(</span><span class="s2">&quot;path/to/file.gpx&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_tcx</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;3173437224.tcx&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_tcx</span><span class="p">(</span><span class="n">example_tcx</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="metadata_1">Metadata<a class="headerlink" href="#metadata_1" title="Permanent link">&para;</a></h3>
+<p>The <code>read_tcx()</code> function accepts a <code>metadata=True</code> parameter.
+When set to <code>True</code> (default is <code>False</code>) a dictionairy is returned, with the dataframe in the "data" key, and in the key "device" a <code>Device</code> object that has the attributes <code>name</code>, <code>product_id</code>, <code>serial_number</code>, <code>sensors</code> and <code>metadata</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_tcx</span><span class="p">(</span><span class="s2">&quot;path_to.tcx&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">]</span>
+<span class="o">-&gt;</span> <span class="n">Device</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Garmin Edge 1000&#39;</span><span class="p">,</span> <span class="n">product_id</span><span class="o">=</span><span class="s1">&#39;1836&#39;</span><span class="p">,</span> <span class="n">serial_number</span><span class="o">=</span><span class="s1">&#39;3907354759&#39;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;creator_xml&#39;</span><span class="p">:</span> <span class="o">...</span><span class="p">},</span> <span class="n">sensors</span><span class="o">=</span><span class="p">[])</span>
+</code></pre></div>
+
+<h2 id="strava">Strava<a class="headerlink" href="#strava" title="Permanent link">&para;</a></h2>
+<p>The <code>sweat.read_strava()</code> function can be used to pull data from Strava.
+Sweat assumes you already have an API access token. Read more about that <a href="http://developers.strava.com/docs/authentication/">here</a>.
+If you are looking for a Python library that helps you with Strava API authentication, take a look at <a href="https://github.com/hozn/stravalib/">stravalib</a> or <a href="https://github.com/sladkovm/stravaio">stravaio</a>.
+<code>read_strava()</code> returns a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">pandas.DataFrame</a> with column names matching <em>Sweatpy</em> <a href="../nomenclature/">nomenclature</a>.</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_strava</span><span class="p">(</span><span class="n">activity_id</span><span class="o">=</span><span class="mi">1234567890</span><span class="p">,</span> <span class="n">access_token</span><span class="o">=</span><span class="s2">&quot;some access token&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="helper-functions">Helper functions<a class="headerlink" href="#helper-functions" title="Permanent link">&para;</a></h2>
+<p><code>read_file()</code> works exactly as the other <code>read_*()</code> functions but tries to automatically determine the file format.
+It raises a <code>ValueError</code> when the file format cannot be determined or is not supported.
+Please note that the <code>read_file()</code> does not support passing file-like objects.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_tcx</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;3173437224.tcx&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">example_tcx</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>read_dir()</code> allows you to read all the files in a directory and iterate over them.
+It uses <code>read_file()</code> under the hood and returns a generator.
+Please note that <code>read_dir()</code> expects <strong>all</strong> the files in the directory to be of a supported file format.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;path/to/some/dir/&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">activity</span> <span class="ow">in</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_dir</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+    <span class="c1"># Do things with the activities</span>
+</code></pre></div>
+
+<h2 id="resampling">Resampling<a class="headerlink" href="#resampling" title="Permanent link">&para;</a></h2>
+<p>All <code>read_*()</code> functions accept a <code>resample</code> and <code>interpolate</code> argument (both <code>False</code> by default) that can trigger a resampling to 1Hz and subsequent linear interpolation of the data for files that are not sampled (consistently) at 1Hz, as some Garmin devices with "smart recording mode" do.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sweat</span>
+
+
+<span class="n">example_tcx</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">examples</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;3173437224.tcx&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">sweat</span><span class="o">.</span><span class="n">read_tcx</span><span class="p">(</span><span class="n">example_tcx</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interpolate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../Power%20duration%20modelling/" title="Power duration modelling" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Power duration modelling
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../example_data/" title="Example data" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Example data
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

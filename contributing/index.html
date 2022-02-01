@@ -1,0 +1,722 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Contributing - Sweatpy docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#546d78">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#contributing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Sweatpy docs" class="md-header-nav__button md-logo" aria-label="Sweatpy docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Sweatpy docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Contributing
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/goldencheetah/sweatpy/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    goldencheetah/sweatpy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Sweatpy docs" class="md-nav__button md-logo" aria-label="Sweatpy docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path d="M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z"/></svg>
+
+    </a>
+    Sweatpy docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/goldencheetah/sweatpy/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    goldencheetah/sweatpy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Sweatpy" class="md-nav__link">
+      Sweatpy
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../features/Metrics/" title="Metrics" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../features/Power%20duration%20modelling/" title="Power duration modelling" class="md-nav__link">
+      Power duration modelling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../features/data_loading/" title="Data loading" class="md-nav__link">
+      Data loading
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../features/example_data/" title="Example data" class="md-nav__link">
+      Example data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../features/nomenclature/" title="Nomenclature" class="md-nav__link">
+      Nomenclature
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../changelog/" title="Changelog" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Contributing
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Contributing" class="md-nav__link md-nav__link--active">
+      Contributing
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-contributions-we-are-looking-for" class="md-nav__link">
+    Types of contributions we are looking for
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ground-rules-expectations" class="md-nav__link">
+    Ground rules &amp; expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-contribute" class="md-nav__link">
+    How to contribute
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-environment" class="md-nav__link">
+    Setting up your environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-contributions" class="md-nav__link">
+    Code contributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Code contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    Running tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-flow" class="md-nav__link">
+    Git flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-merging-code" class="md-nav__link">
+    Requirements for merging code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-contributions" class="md-nav__link">
+    Documentation contributions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data" class="md-nav__link">
+    Example data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-integration-and-continuous-deployment" class="md-nav__link">
+    Continuous integration and continuous deployment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fit-profile" class="md-nav__link">
+    FIT profile
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-contributions-we-are-looking-for" class="md-nav__link">
+    Types of contributions we are looking for
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ground-rules-expectations" class="md-nav__link">
+    Ground rules &amp; expectations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-contribute" class="md-nav__link">
+    How to contribute
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-environment" class="md-nav__link">
+    Setting up your environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-contributions" class="md-nav__link">
+    Code contributions
+  </a>
+  
+    <nav class="md-nav" aria-label="Code contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    Running tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-flow" class="md-nav__link">
+    Git flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-merging-code" class="md-nav__link">
+    Requirements for merging code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-contributions" class="md-nav__link">
+    Documentation contributions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-data" class="md-nav__link">
+    Example data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-integration-and-continuous-deployment" class="md-nav__link">
+    Continuous integration and continuous deployment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fit-profile" class="md-nav__link">
+    FIT profile
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/goldencheetah/sweatpy/edit/master/docs/contributing.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h1>
+<p>Thanks for checking out Sweatpy!</p>
+<p>We've put together the following guidelines to help you figure out where you can best be helpful.</p>
+<h2 id="types-of-contributions-we-are-looking-for">Types of contributions we are looking for<a class="headerlink" href="#types-of-contributions-we-are-looking-for" title="Permanent link">&para;</a></h2>
+<p>There are many ways you can directly contribute to this project:</p>
+<p>Contributing to documentation:</p>
+<ul>
+<li>Notify us of errors in the documentation or provide fixes for them.</li>
+<li>Suggest or provide additions to the documentation.</li>
+</ul>
+<p>Contributing to code:</p>
+<ul>
+<li>Notify us of bugs in our code or provide fixes for them.</li>
+<li>Suggest or provide new features.</li>
+</ul>
+<p>Interested in making a contribution? Read on!</p>
+<h2 id="ground-rules-expectations">Ground rules &amp; expectations<a class="headerlink" href="#ground-rules-expectations" title="Permanent link">&para;</a></h2>
+<p>Before we get started, here are a few things we expect from you (and that you should expect from others):</p>
+<ul>
+<li>Be kind and thoughtful in your conversations around this project. Try to listen to others rather than convince them that your way is correct.</li>
+<li>Be considerate that the maintainers of this project do their work on a voluntary basis: Do not expect commercial support when you did not pay for it.</li>
+<li>If you open a pull request, please ensure that your contribution passes all tests. If there are test failures, you will need to address them before we can merge your contribution.</li>
+<li>When adding content, please consider if it is widely valuable.</li>
+</ul>
+<h2 id="how-to-contribute">How to contribute<a class="headerlink" href="#how-to-contribute" title="Permanent link">&para;</a></h2>
+<p>If you'd like to contribute, start by searching through the <a href="https://github.com/goldencheetah/sweatpy/issues">issues</a> and <a href="https://github.com/goldencheetah/sweatpy/pulls">pull requests</a> to see whether someone else has raised a similar idea or question.</p>
+<p>If you don't see your idea listed, and you think it fits into the goals of this project, do one of the following:</p>
+<ul>
+<li><strong>If your contribution is minor,</strong> such as a typo fix, open a pull request.</li>
+<li><strong>If your contribution is major,</strong> such as a new guide, start by opening an issue first. That way, other people can weigh in on the discussion before you do any work.</li>
+</ul>
+<h2 id="setting-up-your-environment">Setting up your environment<a class="headerlink" href="#setting-up-your-environment" title="Permanent link">&para;</a></h2>
+<p>For basic contributions like additions to the docs there are no requirements besides access to git and a text editor.</p>
+<p>If you are doing code changes you need to have <code>docker</code> an <code>docker-compose</code> installed to run the test suite. Instructions can be found <a href="https://docs.docker.com/compose/install/">here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The test suite can be run outside docker but requires installing <code>poetry</code> and <code>pyenv</code> locally. In most cases using the docker workflow is easiest.</p>
+</div>
+<h2 id="code-contributions">Code contributions<a class="headerlink" href="#code-contributions" title="Permanent link">&para;</a></h2>
+<p>The code for this library is located in the <code>sweat/</code> directory.
+Tests are located in <code>tests/</code>.</p>
+<h3 id="running-tests">Running tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h3>
+<p>To run the full (i.e. for all supported Python versions) test suite:</p>
+<div class="codehilite"><pre><span></span><code>make testall
+</code></pre></div>
+
+<p>...or the equivalent <code>docker-compose</code> command (see <a href="Makefile">Makefile</a>).</p>
+<p>For a short test run you can also run it for only 1 Python version (usually the latest major version; currently 3.8):</p>
+<div class="codehilite"><pre><span></span><code>make <span class="nb">test</span>
+</code></pre></div>
+
+<p>...or the equivalent <code>docker-compose</code> command.</p>
+<p>To run tests only for a specific Python version, like Python 3.8:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">toxargs</span><span class="o">=</span><span class="s2">&quot;-e py38&quot;</span> make <span class="nb">test</span>
+</code></pre></div>
+
+<p>For a list of available Python version, see the <code>envlist</code> variable in <code>pyproject.toml</code>.
+The <code>toxargs</code> environment variable can also be used to pass other settings to <a href="https://tox.readthedocs.io/en/latest/">tox</a>.</p>
+<p>To only run specific tests, e.g. only that match "test_read_fit":</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">pytestargs</span><span class="o">=</span><span class="s2">&quot;-k test_read_fit&quot;</span> make <span class="nb">test</span>
+</code></pre></div>
+
+<p>See the <a href="https://docs.pytest.org/en/stable/usage.html#specifying-tests-selecting-tests">pytest documentation</a> for more information on selecting tests.
+The <code>pytestargs</code> environment variable can also be used to pass other settings to <a href="https://docs.pytest.org/en/stable/">pytest</a>.</p>
+<p>Code linting checks can be run with <code>make lint</code> or the equivalent <code>docker-compose</code> command.</p>
+<h3 id="git-flow">Git flow<a class="headerlink" href="#git-flow" title="Permanent link">&para;</a></h3>
+<p>If you're new to git, <a href="https://try.github.io/">this</a> is a good place to start.</p>
+<p>For this project we adopted a slightly modified version of the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> (or more specifically, the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow">Forking workflow</a>.
+The difference is that we only work with a master branch in the central repository, so all pull requests are made from feature branches in the forked repositories directly to the master branch of the central repository.
+We realize that there are downsides to this flow but as it is easiest for maintainers we decided to adopt it.</p>
+<p>The general workflow will be:
+- Create a fork of the central repository and check it out locally if you have not done so yet.
+- Create a new feature branch (<code>feature/{your_new_feature}</code>)
+- Make all the required changes in the repo.
+- Commit your changes in a single commit and push to your fork.
+- Create a pull request from the feature branch in your fork to the master branch of the central repository.
+- When all checks pass, your changes will be merged to master.  </p>
+<h3 id="requirements-for-merging-code">Requirements for merging code<a class="headerlink" href="#requirements-for-merging-code" title="Permanent link">&para;</a></h3>
+<p>This list is not perfect, probably not complete and probably overly strict as well. We use it as a general guide line for all contributions to our code.</p>
+<ul>
+<li>New features should be generic and not specific to one user or use-case.</li>
+<li>New features should be properly unittested. Take a look at existings tests to get you started. Do not forget to test your <a href="https://en.wikipedia.org/wiki/Happy_path">unhappy paths</a> too!</li>
+<li>All tests should pass.</li>
+<li>The code should pass the linting check with Black.</li>
+<li>New features should include some documentation with at least a basic example.</li>
+<li>New features that include models or algorithms should state where it is coming from (e.g. a scientific article) in the documentation.</li>
+</ul>
+<h2 id="documentation-contributions">Documentation contributions<a class="headerlink" href="#documentation-contributions" title="Permanent link">&para;</a></h2>
+<p>Documentation is built with <a href="https://www.mkdocs.org/">mkdocs</a> with the <a href="https://squidfunk.github.io/mkdocs-material/">mkdocs-material</a> theme and is located in the <code>docs/</code> directory.
+Confusingly (but that's how mkdocs works by default so we kept it that way) the actual source files of the docs are in the <code>docs/docs/</code> directory.
+The home page (or root of the docs) is <code>docs/docs/index.md</code>.</p>
+<p>New markdown files that are added to the <code>docs/docs/</code> directory are rendered as sub-pages and automatically added to the left navigation pane.
+New directories that are added to the <code>docs/docs/</code> directory are added as new sections and automatically added also added to the left navigation pane.</p>
+<p>To run the docs dev-server run <code>make docs</code> (or the equivalent <code>docker-compose</code> command, see the <code>Makefile</code>). The documentation is now available for you at <a href="http://localhost:8000">http://localhost:8000</a>.
+The <code>make docs</code> command also runs a Jupyter notebook server at <a href="http://localhost:8888">http://localhost:8888</a> which can be used to easily create documentation with code examples (please note that you can also add inline code blocks in regular markdown files). Jupyter notebook files (ending in ".ipynb") are automatically rendered as documentation too.</p>
+<ul>
+<li>More information on working with markdown can be found <a href="https://guides.github.com/features/mastering-markdown/">here</a>.</li>
+<li>More information on working with Jupyter notebooks can be found <a href="https://jupyter-notebook.readthedocs.io/en/stable/notebook.html">here</a>.</li>
+</ul>
+<h2 id="example-data">Example data<a class="headerlink" href="#example-data" title="Permanent link">&para;</a></h2>
+<p>Example data is stored in <code>/sweat/examples/data/</code>.
+Every new data that is added needs to be added to <code>sweat/examples/index.yml</code> too.
+See <a href="../features/example_data/">Example data</a> for how to use the example data.</p>
+<h2 id="continuous-integration-and-continuous-deployment">Continuous integration and continuous deployment<a class="headerlink" href="#continuous-integration-and-continuous-deployment" title="Permanent link">&para;</a></h2>
+<p>This repo is setup with Github Actions that are triggered on specific events:</p>
+<ul>
+<li>The test suite and linting checks are triggered at each push and pull request.</li>
+<li>When a new release is created on the central repo, a new version of this package is published to PyPi and new documentation is published.</li>
+</ul>
+<p><em>(This document is very much inspired by opensource.guide's <a href="https://github.com/github/opensource.guide/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a>)</em></p>
+<h2 id="fit-profile">FIT profile<a class="headerlink" href="#fit-profile" title="Permanent link">&para;</a></h2>
+<p>The Profile.xlsx that is included in the Garmin FIT SDK (https://developer.garmin.com/fit/download/) is included in the source code as a JSON file (<code>sweat/io/fit_profile.jons</code>).
+Garmin regularly updates this file when new devices are introduced.
+Updating the JSON can be done by running:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sweat.io</span> <span class="kn">import</span> <span class="n">fit</span>
+<span class="n">fit</span><span class="o">.</span><span class="n">_import_fit_profile</span><span class="p">(</span><span class="s2">&quot;path/to/new/Profile.xlsx&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>...the new JSON file is than replaced in the source directory.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../changelog/" title="Changelog" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Changelog
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
